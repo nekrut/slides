@@ -1,0 +1,837 @@
+/* @theme deckkit */
+
+/*
+ * deckkit — a Marp theme + design system for technical/scientific decks.
+ *
+ * Everything here is driven by CSS custom properties, so a new deck can
+ * re-brand by overriding a handful of variables in its front matter:
+ *
+ *   style: |
+ *     :root { --accent: #B91C1C; --ink-strong: #450A0A; }
+ *
+ * Sections below:
+ *   1. Tokens          6. Callouts & notes
+ *   2. Base + typography  7. Metrics, pills, badges
+ *   3. Slide variants  8. Timeline
+ *   4. Layout (cols/cards) 9. Tables & figures
+ *   5. Cards          10. Genomics add-ons (gene maps, sequence logos)
+ */
+
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=Roboto+Mono:wght@400;700&display=swap');
+
+/* ------------------------------------------------------------------ *
+ * 1. Tokens
+ * ------------------------------------------------------------------ */
+
+:root {
+  /* surfaces & ink */
+  --bg: #fafbfb;
+  --surface: #ffffff;
+  --surface-alt: #eef2f6;
+  --surface-sunken: #f8fafc;
+  --ink: #1e293b;
+  --ink-strong: #0b2545;
+  --ink-muted: #475569;
+  --ink-faint: #64748b;
+  --ink-ghost: #94a3b8;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+
+  /* named hues — referenced by the .accent-* classes */
+  --navy: #0b2545;
+  --navy-soft: #134074;
+  --sky: #0ea5e9;
+  --sky-soft: #38bdf8;
+  --emerald: #10b981;
+  --purple: #8b5cf6;
+  --amber: #d97706;
+  --rose: #f43f5e;
+  --indigo: #6366f1;
+  --slate: #64748b;
+
+  /* the live accent — overridden per element by .accent-* */
+  --accent: var(--sky);
+  --accent-tint: #e0f2fe;
+  --accent-ink: #0369a1;
+  --accent-line: #bae6fd;
+
+  /* type */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Inter Tight', 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
+
+  /* shape */
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 5%);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 5%);
+
+  /* rhythm — slide density knobs, overridden by .compact / .dense */
+  --pad-y: 85px;
+  --pad-x: 80px;
+  --pad-bottom: 50px;
+  --gap: 20px;
+}
+
+/* Accent palettes. Put one on any card, callout, note, badge or pill. */
+.accent-sky     { --accent: var(--sky);     --accent-tint: #e0f2fe; --accent-ink: #0369a1; --accent-line: #bae6fd; }
+.accent-emerald { --accent: var(--emerald); --accent-tint: #dcfce7; --accent-ink: #15803d; --accent-line: #bbf7d0; }
+.accent-purple  { --accent: var(--purple);  --accent-tint: #f3e8ff; --accent-ink: #6b21a8; --accent-line: #e9d5ff; }
+.accent-amber   { --accent: var(--amber);   --accent-tint: #fef3c7; --accent-ink: #b45309; --accent-line: #fde68a; }
+.accent-rose    { --accent: var(--rose);    --accent-tint: #ffe4e6; --accent-ink: #be123c; --accent-line: #fecdd3; }
+.accent-indigo  { --accent: var(--indigo);  --accent-tint: #e0e7ff; --accent-ink: #4338ca; --accent-line: #c7d2fe; }
+.accent-slate   { --accent: var(--slate);   --accent-tint: #f1f5f9; --accent-ink: #475569; --accent-line: #e2e8f0; }
+.accent-navy    { --accent: var(--navy);    --accent-tint: #e2e8f0; --accent-ink: #0b2545; --accent-line: #cbd5e1; }
+
+/* ------------------------------------------------------------------ *
+ * 2. Base + typography
+ * ------------------------------------------------------------------ */
+
+section {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 24px;
+  padding: var(--pad-y) var(--pad-x) var(--pad-bottom) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--ink-strong);
+  font-size: 1.8em;
+  margin: 10px 0 0.4em;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--navy-soft);
+  font-size: 1.3em;
+  margin: 0.5em 0 0.3em;
+}
+
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink-strong);
+  font-size: 1.05em;
+  margin: 0.4em 0 0.2em;
+}
+
+p, ul, ol {
+  margin: 0 0 0.8em;
+  line-height: 1.5;
+}
+
+strong, b { color: inherit; font-weight: 700; }
+
+/* The paragraph directly under the slide title is the deck's standard
+   subtitle/lead — styled automatically so authors just write a sentence. */
+section > h1 + p {
+  font-size: 0.85em;
+  color: var(--ink-muted);
+  margin-bottom: 0.4em;
+}
+
+/* Logos set inline in a heading, e.g. `## ![](logo.svg) Datamonkey 2.0` */
+h2 img, h3 img { height: 20px; width: auto; vertical-align: middle; margin-right: 8px; }
+
+a { color: var(--sky); text-decoration: none; font-weight: 600; }
+a:hover { text-decoration: underline; }
+
+ul { list-style-type: none; padding-left: 0; }
+
+li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+li::before {
+  content: '\25aa';
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  color: var(--accent);
+  font-size: 0.9em;
+}
+
+/* Top-level slide bullets keep the deck's original square marker. */
+section > ul > li::before { content: '\25a0'; color: var(--sky-soft); font-size: 0.8em; top: 0.1em; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background-color: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #0f172a;
+}
+
+pre {
+  background-color: #0f172a;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  overflow: auto;
+}
+
+pre code { background-color: transparent; color: #f8fafc; padding: 0; }
+
+/* header / footer / page number */
+header {
+  width: 100%;
+  left: var(--pad-x);
+  top: 30px;
+  font-size: 0.6em;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+  font-family: var(--font-display);
+}
+
+header img { height: 16px; margin-right: 8px; vertical-align: middle; }
+
+footer {
+  left: auto;
+  right: 120px;
+  bottom: 30px;
+  font-size: 0.55em;
+  color: var(--ink-ghost);
+  text-align: right;
+}
+
+section::after {
+  left: auto;
+  right: var(--pad-x);
+  bottom: 30px;
+  font-size: 0.55em;
+  color: var(--ink-ghost);
+}
+
+/* ------------------------------------------------------------------ *
+ * 3. Slide variants  ( <!-- _class: dense --> )
+ * ------------------------------------------------------------------ */
+
+/* Density steps. Slides are a fixed 720px tall — step down when content grows
+   instead of hand-tuning padding per slide. */
+section.compact { font-size: 20px; --pad-y: 80px; --pad-x: 60px; --pad-bottom: 25px; }
+section.dense   { font-size: 19px; --pad-y: 75px; --pad-x: 60px; --pad-bottom: 20px; }
+section.micro   { font-size: 18px; --pad-y: 75px; --pad-x: 60px; --pad-bottom: 20px; }
+
+section.compact h1, section.dense h1, section.micro h1 { margin-top: 5px; margin-bottom: 0.15em; }
+section.compact h2, section.dense h2, section.micro h2 { margin-top: 0.2em; margin-bottom: 0.2em; }
+section.compact p, section.dense p, section.micro p { margin-bottom: 0.4em; }
+
+/* Pull the title block up when a slide needs the extra room. */
+section.headroom { --pad-y: 55px; }
+
+/* Title slide */
+section.title {
+  background-image: radial-gradient(circle at 100% 100%, #e0f2fe 0%, var(--bg) 65%);
+  justify-content: center;
+  padding: 80px 80px 80px 95px;
+  border-left: 16px solid var(--navy);
+}
+
+section.title h1 {
+  font-size: 2.8em;
+  line-height: 1.15;
+  margin: 0 0 20px;
+  border-bottom: none;
+}
+
+section.title h2 {
+  color: var(--sky);
+  font-size: 1.3em;
+  font-weight: 600;
+  margin: 0 0 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+section.title p { color: var(--ink-muted); font-size: 0.85em; margin: 4px 0; }
+section.title header,
+section.title footer,
+section.title::after { display: none; }
+
+/* Section-divider slide */
+section.divider {
+  background: var(--navy);
+  justify-content: center;
+  border-left: 16px solid var(--sky);
+}
+section.divider h1 { color: #fff; font-size: 2.4em; margin: 0; }
+section.divider h1 + p { color: #bae6fd; font-size: 0.9em; }
+section.divider header,
+section.divider footer,
+section.divider::after { display: none; }
+
+/* Brand bar — a row of partner logos on a dark plate (title slides). */
+.brandbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: var(--navy);
+  padding: 8px 20px;
+  border-radius: var(--radius);
+  width: fit-content;
+  border: 1px solid var(--navy-soft);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 5%);
+  margin-bottom: 30px;
+}
+
+.brandbar img { height: 26px; width: auto; }
+.brandbar img.invert { filter: brightness(0) invert(1); }
+.brandbar-sep { color: rgb(255 255 255 / 20%); font-size: 1.2em; font-weight: 300; }
+
+.presenter { margin-top: 20px; }
+.presenter p:last-child { font-size: 0.75em; color: var(--ink-muted); margin-top: 15px; }
+
+/* ------------------------------------------------------------------ *
+ * 4. Layout
+ * ------------------------------------------------------------------ */
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 2), 1fr);
+  gap: var(--gap);
+  margin-top: 15px;
+  align-items: start;
+}
+
+.cols > * > :last-child { margin-bottom: 0; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 2), 1fr);
+  gap: var(--gap);
+  margin-top: 15px;
+}
+
+/* Anything after the first layout block on a slide keeps breathing room. */
+.cols + .callout,
+.cards + .callout,
+.cols + .cols,
+.cards + .cards { margin-top: 15px; }
+
+/* ------------------------------------------------------------------ *
+ * 5. Cards
+ * ------------------------------------------------------------------ */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.card-left { border-left: 4px solid var(--accent); }
+.card-top { border-top: 4px solid var(--accent); border-radius: var(--radius); }
+.card-plain { border-color: var(--line); }
+
+.card-tag {
+  align-self: flex-start;
+  font-size: 0.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  background: var(--accent-tint);
+  color: var(--accent-ink);
+}
+
+.card-icon { font-size: 1.5em; margin-bottom: 6px; line-height: 1; }
+
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink-strong);
+  font-size: var(--title-size, 0.85em);
+  margin-bottom: 6px;
+}
+
+.card-title-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-subtitle {
+  font-size: 0.55em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  font-weight: 600;
+  margin: -4px 0 12px;
+}
+
+.card-body {
+  font-size: var(--body-size, 0.62em);
+  color: var(--ink-muted);
+  line-height: var(--body-lh, 1.4);
+}
+
+.card-body > :last-child { margin-bottom: 0; }
+.card-body ul { margin-top: 4px; }
+.card-body li { padding-left: 1.1em; margin-bottom: 5px; }
+.card-body li::before { content: '\25aa'; color: var(--accent); font-size: 0.9em; }
+
+/* Body density scale — `size=xs|sm|md|lg` on a card, cards grid or box. */
+.size-xs { --body-size: 0.55em; --body-lh: 1.35; --title-size: 0.75em; }
+.size-sm { --body-size: 0.62em; --body-lh: 1.4; --title-size: 0.85em; }
+.size-md { --body-size: 0.72em; --body-lh: 1.5; --title-size: 0.95em; }
+.size-lg { --body-size: 0.85em; --body-lh: 1.5; --title-size: 1.1em; }
+
+/* Check-marked list variant */
+.card-checks .card-body li::before { content: '\2713'; font-weight: bold; }
+
+/* Plain framed box (no accent bar) — good for summaries/takeaways. */
+.box {
+  background: var(--surface-alt);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+}
+
+.box-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85em;
+  color: var(--ink-strong);
+  margin-bottom: 6px;
+}
+
+.box-body { font-size: var(--body-size, 0.62em); color: var(--ink-muted); line-height: var(--body-lh, 1.5); }
+.box-body > :last-child { margin-bottom: 0; }
+.box-body li::before { content: '\2713'; color: var(--accent); }
+
+/* ------------------------------------------------------------------ *
+ * 6. Callouts & notes
+ * ------------------------------------------------------------------ */
+
+.callout {
+  background-color: var(--surface-alt);
+  border-left: 4px solid var(--accent);
+  padding: 12px 18px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 1em;
+}
+
+.callout:last-child { margin-bottom: 0; }
+
+.callout-title {
+  font-weight: 700;
+  color: var(--ink-strong);
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.callout-title img { height: 18px; }
+.callout-body > :last-child { margin-bottom: 0; }
+
+/* Compact callout for the footer strip of a dense slide. */
+.callout-slim { padding: 6px 12px; font-size: 0.85em; }
+.callout-slim .callout-title { margin-bottom: 2px; }
+
+/* Tinted conclusion box, used inside cards. */
+.note {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--accent-tint);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  color: var(--accent-ink);
+  font-weight: 500;
+  line-height: 1.4;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+}
+
+.note > :last-child { margin-bottom: 0; }
+
+/* ------------------------------------------------------------------ *
+ * 7. Metrics, pills, badges
+ * ------------------------------------------------------------------ */
+
+.metrics { margin: 12px 0; }
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 2px;
+}
+
+.metric-name { font-weight: 600; }
+.metric-value { font-family: var(--font-mono); font-weight: 700; color: var(--accent); }
+
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+
+.pill {
+  background: #f1f5f9;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.pill em { color: var(--ink-faint); font-size: 0.8em; font-weight: 400; font-style: normal; }
+
+.badge {
+  display: inline-block;
+  background-color: var(--accent-tint);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent-line);
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.65em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+section.title .badge { align-self: flex-start; margin-bottom: 25px; padding: 5px 12px; }
+
+/* text utilities */
+.mono { font-family: var(--font-mono); font-size: 0.9em; }
+.dim { color: var(--ink-faint); font-size: 0.85em; }
+.c-sky { color: var(--sky); }
+.c-emerald { color: var(--emerald); }
+.c-purple { color: var(--purple); }
+.c-amber { color: var(--amber); }
+.c-rose { color: var(--rose); }
+.c-slate { color: var(--ink-faint); }
+.c-navy { color: var(--ink-strong); }
+.muted { color: var(--ink-muted); }
+.tint { color: var(--accent); }
+.center { text-align: center; }
+.logo-dim { filter: brightness(0.2); }
+.heading-logo { vertical-align: middle; margin-right: 8px; }
+
+/* ------------------------------------------------------------------ *
+ * 8. Timeline
+ * ------------------------------------------------------------------ */
+
+.timeline { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
+
+.track {
+  background: var(--surface-alt);
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  border: 1px solid var(--line);
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+
+.track-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85em;
+  color: var(--ink-strong);
+}
+
+.track-title::before {
+  content: '\25a0';
+  color: var(--accent);
+  font-size: 1.1em;
+  margin-right: 6px;
+}
+
+.track-meta {
+  font-size: 0.7em;
+  color: var(--ink-faint);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.track-lane { position: relative; height: 85px; margin: 10px 30px; }
+
+.track-lane::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.node {
+  position: absolute;
+  top: 12px;
+  left: var(--x);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.node-dot {
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 15%);
+}
+
+.node-lg .node-dot { width: 20px; height: 20px; margin-top: -8px; border-width: 3px; filter: brightness(0.85); }
+.node-md .node-dot { width: 16px; height: 16px; margin-top: -6px; border-width: 2.5px; }
+.node-sm .node-dot { width: 14px; height: 14px; margin-top: -5px; }
+.node-open .node-dot { background: var(--bg); border: 2px dashed var(--accent); }
+
+.node-info {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.55em;
+  line-height: 1.25;
+  color: var(--ink-faint);
+  width: 110px;
+}
+
+.node-value { color: #0f172a; display: block; font-size: 1.15em; font-weight: 700; }
+.node-note { display: block; font-size: 0.95em; color: var(--ink-muted); }
+
+/* ------------------------------------------------------------------ *
+ * 9. Tables & figures
+ * ------------------------------------------------------------------ */
+
+section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-size: 0.85em;
+  background: transparent;
+}
+
+section table th {
+  padding: 4px 6px;
+  text-align: left;
+  border-bottom: 2px solid var(--line-strong);
+  border-top: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink-muted);
+  font-size: 0.8em;
+  background: transparent;
+}
+
+section table td {
+  padding: 4px 6px;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+  background: transparent;
+}
+
+section table tr { background: transparent; border: none; }
+
+.figure { display: block; }
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: var(--h, auto);
+  object-fit: contain;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px;
+  box-shadow: var(--shadow);
+}
+
+.figure-bare img { border: none; box-shadow: none; padding: 0; background: none; }
+.figure-caption { font-size: 0.55em; color: var(--ink-faint); margin-top: 6px; text-align: center; }
+
+/* ------------------------------------------------------------------ *
+ * 10. Genomics add-ons — gene maps and sequence logos
+ *     (Ignore these classes for non-biological decks.)
+ * ------------------------------------------------------------------ */
+
+.genemap {
+  position: relative;
+  margin: 18px 0 8px;
+  padding: 16px 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.gene-bar {
+  display: flex;
+  height: 22px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: #f1f5f9;
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / 4%);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.gene-segment {
+  flex: 0 0 var(--w);
+  box-sizing: border-box; /* keep padding/border inside the width so the axis stays true */
+  min-width: 3px; /* keeps very short features visible without distorting the axis */
+  background: var(--seg, var(--slate));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 15%);
+  border-right: 1px dashed rgb(255 255 255 / 40%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 2px;
+}
+
+.gene-segment:last-child { border-right: none; }
+
+.gene-marker {
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gene-marker-raise { top: -20px; }
+.gene-marker-raise .gene-marker-line { height: 34px; }
+
+.gene-marker-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--accent-tint);
+  color: var(--accent-ink);
+  border: 1px solid var(--accent-line);
+  padding: 0 4px;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  white-space: nowrap;
+}
+
+.gene-marker-line { width: 1px; height: 14px; background: var(--accent); opacity: 0.6; }
+
+.gene-axis {
+  position: relative;
+  height: 12px;
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.gene-tick {
+  position: absolute;
+  left: var(--x);
+  font-size: 8px;
+  color: var(--ink-ghost);
+  transform: translateX(-50%);
+}
+
+/* Motif strip — a short residue/base sequence with one position highlighted */
+.motif {
+  background: var(--surface-sunken);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.motif-seq {
+  font-family: var(--font-mono);
+  font-size: 1.1em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--ink-muted);
+  text-align: center;
+  margin: 6px 0;
+}
+
+.motif-hit {
+  color: var(--accent);
+  background: var(--accent-tint);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--accent-line);
+}
+
+.motif-label { text-align: center; font-size: 0.85em; color: var(--ink-faint); font-weight: 600; }
+
+/* Sequence-logo stacks — inline {{logo A:50 V:50}} */
+.logo-row { display: flex; align-items: center; gap: 8px; }
+
+.logo-stack {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 22px;
+  height: 34px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.logo-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  width: 100%;
+  height: var(--h);
+  font-size: var(--fs);
+  text-align: center;
+  line-height: 1;
+}
+
+/* Amino-acid colouring */
+.aa-T, .aa-I { color: #3b82f6; }
+.aa-A, .aa-V, .aa-L, .aa-M, .aa-F, .aa-W, .aa-C { color: #10b981; }
+.aa-S, .aa-Y, .aa-Q { color: #06b6d4; }
+.aa-N, .aa-D, .aa-E { color: #ec4899; }
+.aa-H, .aa-K, .aa-R { color: #8b5cf6; }
+.aa-G, .aa-P { color: #f97316; }

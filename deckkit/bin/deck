@@ -1,0 +1,114 @@
+#!/usr/bin/env node
+/**
+ * deck — build a deckkit presentation.
+ *
+ *   deck build  slides.md          HTML (default command)
+ *   deck png    slides.md          one PNG per slide
+ *   deck pdf    slides.md          PDF
+ *   deck watch  slides.md          live-reloading preview server
+ *   deck new    <directory>        scaffold a new deck
+ *
+ * Anything after the file is forwarded to marp-cli untouched.
+ */
+
+import { spawnSync } from 'node:child_process'
+import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs'
+import { basename, dirname, join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const HERE = dirname(dirname(fileURLToPath(import.meta.url)))
+const CONFIG = join(HERE, 'marp.config.mjs')
+const MARP = join(HERE, 'node_modules', '.bin', 'marp')
+
+const COMMANDS = new Set(['build', 'html', 'png', 'pdf', 'pptx', 'watch', 'new', 'help'])
+
+function usage(code = 0) {
+  console.log(
+    [
+      'Usage:',
+      '  deck [build] <slides.md> [marp options...]   render HTML',
+      '  deck png     <slides.md>                     render one PNG per slide',
+      '  deck pdf     <slides.md>                     render PDF',
+      '  deck watch   <slides.md>                     preview with live reload',
+      '  deck new     <directory> [--title "..."]     scaffold a new deck',
+    ].join('\n')
+  )
+  process.exit(code)
+}
+
+function marp(args, extra = []) {
+  const bin = existsSync(MARP) ? MARP : 'npx'
+  const head = existsSync(MARP) ? [] : ['--yes', '@marp-team/marp-cli']
+  // --no-stdin: without it marp-cli blocks waiting on a non-tty stdin.
+  const argv = [...head, '--no-stdin', '--config', CONFIG, ...extra, ...args]
+  const res = spawnSync(bin, argv.filter(Boolean), { stdio: 'inherit' })
+  process.exit(res.status ?? 1)
+}
+
+function scaffold(target, title) {
+  const dir = resolve(target)
+  mkdirSync(dir, { recursive: true })
+  mkdirSync(join(dir, 'assets'), { recursive: true })
+
+  const source = join(HERE, 'templates')
+  for (const file of readdirSync(source)) {
+    const dest = join(dir, file === 'deck.md' ? 'slides.md' : file)
+    if (existsSync(dest)) {
+      console.log(`skip   ${dest} (exists)`)
+      continue
+    }
+    copyFileSync(join(source, file), dest)
+    console.log(`create ${dest}`)
+  }
+
+  console.log(`\nDeck ready in ${dir}`)
+  console.log(`Edit slides.md, then:  ${join(HERE, 'bin', 'deck')} watch ${join(target, 'slides.md')}`)
+  if (title) console.log(`(remember to set the title to "${title}")`)
+}
+
+const argv = process.argv.slice(2)
+if (!argv.length) usage(1)
+
+const command = COMMANDS.has(argv[0]) ? argv.shift() : 'build'
+
+switch (command) {
+  case 'help':
+    usage()
+    break
+
+  case 'new': {
+    const target = argv.shift()
+    if (!target) usage(1)
+    const at = argv.indexOf('--title')
+    scaffold(target, at > -1 ? argv[at + 1] : undefined)
+    break
+  }
+
+  case 'png': {
+    const file = argv.shift()
+    if (!file) usage(1)
+    marp([file, '--images', 'png', '-o', join(dirname(file), `${basename(file, '.md')}.png`), ...argv])
+    break
+  }
+
+  case 'pdf':
+  case 'pptx': {
+    const file = argv.shift()
+    if (!file) usage(1)
+    marp([file, `--${command}`, ...argv])
+    break
+  }
+
+  case 'watch': {
+    const file = argv.shift()
+    if (!file) usage(1)
+    marp([file, '--watch', '--preview', ...argv])
+    break
+  }
+
+  default: {
+    const file = argv.shift()
+    if (!file) usage(1)
+    marp([file, '-o', join(dirname(file), `${basename(file, '.md')}.html`), ...argv])
+  }
+}

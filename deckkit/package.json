@@ -1,0 +1,20 @@
+{
+  "name": "deckkit",
+  "version": "1.0.0",
+  "description": "Marp-based deck system: content-only markdown in, polished HTML slides out",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "deck": "./bin/deck"
+  },
+  "main": "lib/index.mjs",
+  "scripts": {
+    "example": "./bin/deck build ../toolsfortomorrow_May_23_2026/slides.md"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@marp-team/marp-cli": "^4.5.0",
+    "markdown-it-attrs": "^5.0.1",
+    "markdown-it-bracketed-spans": "^1.0.3"
+  }
+}
