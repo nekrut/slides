@@ -923,6 +923,19 @@ section table tr { background: transparent; border: none; }
 }
 
 .figure-bare img { border: none; box-shadow: none; padding: 0; background: none; }
+
+/* A QR pinned to a slide's bottom-right, clear of the footer. */
+.qr-pin {
+  position: absolute;
+  right: var(--pad-x);
+  bottom: 62px;
+  /* `h=` on the figure sizes it, since a QR is square */
+  width: var(--h, 175px);
+  text-align: center;
+}
+
+.qr-pin img { width: 100%; height: auto; }
+.qr-pin .figure-caption { margin-top: 6px; font-size: 12px; }
 .figure-caption { font-size: 0.55em; color: var(--ink-faint); margin-top: 6px; text-align: center; }
 
 /* ------------------------------------------------------------------ *
