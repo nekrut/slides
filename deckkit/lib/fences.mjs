@@ -92,6 +92,25 @@ function metrics({ attrs, classes, content, md, env }) {
 }
 
 /* ------------------------------------------------------------------ *
+ * stats — a row of headline figures
+ * ------------------------------------------------------------------ */
+
+function stats({ attrs, classes, content, md, env }) {
+  const items = lines(content).map((line) => {
+    const [value, label, note] = fields(line)
+    return (
+      '<div class="stat">' +
+      `<span class="stat-value">${inline(md, env, value)}</span>` +
+      (label ? `<span class="stat-label">${inline(md, env, label)}</span>` : '') +
+      (note ? `<span class="stat-note">${inline(md, env, note)}</span>` : '') +
+      '</div>'
+    )
+  })
+  const cls = classList('stats', accentClass(attrs.accent), classes)
+  return `<div class="${cls}"${styleAttr({ '--cols': attrs.cols || items.length })}>${items.join('')}</div>`
+}
+
+/* ------------------------------------------------------------------ *
  * pills — compact chips, e.g. a list of conserved sites
  * ------------------------------------------------------------------ */
 
@@ -231,4 +250,4 @@ function motif({ attrs, classes, content }) {
   return `<div class="${classList('motif', accentClass(attrs.accent), classes)}">${seq}${label}</div>`
 }
 
-export const fenceComponents = { brandbar, metrics, pills, timeline, genemap, motif }
+export const fenceComponents = { brandbar, metrics, stats, pills, timeline, genemap, motif }

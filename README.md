@@ -70,4 +70,5 @@ colours are named accents (`sky`, `emerald`, `purple`, `amber`, `rose`,
 
 | Deck | Occasion |
 | --- | --- |
+| `asv2026` | American Society for Virology 2026 — BRC Analytics, Galaxy workflows, Orbit, Logan/LexicMap. 15 min |
 | `toolsfortomorrow_May_23_2026` | Andes Hantavirus glycoprotein selection analysis — BRC-Analytics / Datamonkey / HyPhy, May 2026 |

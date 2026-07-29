@@ -80,8 +80,13 @@ Detects transient evolutionary pressure.
 ```
 
 Container attributes (`cols`, `gap`, `ratio`, `accent`, `border`, `size`, `caps`,
-`checks`) become defaults for every card; the `{...}` block on a heading
-overrides them per card.
+`checks`, `thumb`) become defaults for every card; the `{...}` block on a
+heading overrides them per card.
+
+Drop a markdown image into a card body and it is framed automatically. Set
+`thumb=120px` on the grid to crop every image to a uniform band — six full-page
+screenshots are never legible on a slide, but six equal thumbnails read as a
+sequence.
 
 Card attributes: `tag`, `icon`, `subtitle`, `accent`, `border=left|top|none`,
 `size=xs|sm|md|lg`, `caps` (uppercase title), `checks` (✓ bullets).
@@ -139,12 +144,20 @@ Optional caption
 
 Text fields accept inline markdown; ` // ` becomes a line break.
 
-### `metrics`
+### `metrics` and `stats`
+
+`metrics` is label/value rows on a dashed rule; `stats` is a row of headline
+figures (`value | label | note`).
 
 ```
 ​```metrics accent=sky
 Human Branches dN/dS | 0.0224
 P-value (Threshold 0.05): 0.3104 (NS)
+​```
+
+​```stats accent=sky
+1,920 | pathogen taxa | bacteria, viruses and fungi
+5,060 | genome assemblies | with annotations
 ​```
 ```
 
@@ -207,6 +220,8 @@ brandbar's navy plate.
 - `[text]{.class}` — span with classes. Useful ones: `.badge`, `.mono`, `.dim`,
   `.muted`, `.center`, colours `.c-sky` `.c-emerald` `.c-purple` `.c-amber`
   `.c-rose`, accents `.accent-purple` (pairs with `.badge`).
+- `::: div .todo` — a dashed placeholder block for a template slide, so unfinished
+  spots are impossible to miss.
 - Markdown tables are styled by the theme — use them instead of HTML tables.
 
 ## Colour

@@ -119,7 +119,12 @@ function cards({ attrs, flags, classes, inner, Token }) {
   }
 
   const heads = topLevel(inner, (t) => t.type === 'heading_open' && t.tag === 'h3')
-  const style = { '--cols': attrs.cols || 2, '--gap': attrs.gap, 'grid-template-columns': attrs.ratio }
+  const style = {
+    '--cols': attrs.cols || 2,
+    '--gap': attrs.gap,
+    '--thumb': attrs.thumb,
+    'grid-template-columns': attrs.ratio,
+  }
   const out = [html(Token, `<div class="${classList('cards', classes)}"${styleAttr(style)}>`)]
 
   if (heads.length === 0) {

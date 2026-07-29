@@ -387,6 +387,21 @@ section.divider::after { display: none; }
 
 .card-body > :last-child { margin-bottom: 0; }
 .card-body ul { margin-top: 4px; }
+
+/* A screenshot dropped straight into a card body. Set `thumb=120px` on the
+   cards grid to crop them all to a uniform band — six full-page screenshots
+   are never legible on a slide, but six equal thumbnails read as a sequence. */
+.card-body img {
+  display: block;
+  width: 100%;
+  height: var(--thumb, auto);
+  object-fit: cover;
+  object-position: top center;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.card-body p:has(> img:only-child) { margin-bottom: 0; }
 .card-body li { padding-left: 1.1em; margin-bottom: 5px; }
 .card-body li::before { content: '\25aa'; color: var(--accent); font-size: 0.9em; }
 
@@ -484,6 +499,46 @@ section.divider::after { display: none; }
 .metric-name { font-weight: 600; }
 .metric-value { font-family: var(--font-mono); font-weight: 700; color: var(--accent); }
 
+/* Headline figures */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), 1fr);
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  font-size: 0.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.stat-note { font-size: 0.45em; color: var(--ink-faint); line-height: 1.35; }
+
 .pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
 
 .pill {
@@ -513,6 +568,21 @@ section.divider::after { display: none; }
 }
 
 section.title .badge { align-self: flex-start; margin-bottom: 25px; padding: 5px 12px; }
+
+/* Placeholder for a template slide — deliberately looks unfinished. */
+.todo {
+  border: 2px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+  color: var(--ink-faint);
+  padding: 18px 16px;
+  text-align: center;
+  font-size: 0.6em;
+  line-height: 1.5;
+}
+
+.todo > :last-child { margin-bottom: 0; }
+.todo strong { color: var(--ink-muted); }
 
 /* text utilities */
 .mono { font-family: var(--font-mono); font-size: 0.9em; }
