@@ -748,6 +748,15 @@ section.title .badge { align-self: flex-start; margin-bottom: 25px; padding: 5px
 .todo > :last-child { margin-bottom: 0; }
 .todo strong { color: var(--ink-muted); }
 
+/* the placeholder has to stay legible on a divider's navy ground */
+section.divider .todo {
+  border-color: rgb(255 255 255 / 28%);
+  background: rgb(255 255 255 / 6%);
+  color: #bae6fd;
+}
+
+section.divider .todo strong { color: #fff; }
+
 /* text utilities */
 /* Opt out of a component's uppercase treatment (e.g. the title-slide subtitle).
    Deliberately !important: it exists purely to override a component default

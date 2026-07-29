@@ -215,6 +215,15 @@ AI is an environmental and social disaster … but it could be great for science
 
 ---
 
+<!-- _class: divider -->
+
+# Responsibly? ... this is how we all go to hell
+
+::: figure src="images/agentic-science-poll.png" h=470px bare
+:::
+
+---
+
 <!-- _class: compact middle bigtitle -->
 
 # The bright agentic future
