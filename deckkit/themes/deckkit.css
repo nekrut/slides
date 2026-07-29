@@ -927,6 +927,24 @@ section table tr { background: transparent; border: none; }
 
 .figure-bare img { border: none; box-shadow: none; padding: 0; background: none; }
 
+/* A small note pinned along the bottom-left, on the footer's baseline. */
+.footnote {
+  position: absolute;
+  left: var(--pad-x);
+  bottom: 30px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.footnote a { color: inherit; font-weight: inherit; text-decoration: underline; }
+.footnote a:hover { color: var(--sky); }
+
+/* the title slide has a wider left padding, and its `p` rule would otherwise
+   win on specificity and resize this */
+section.title .footnote { left: 95px; font-size: 12px; }
+
 /* A QR pinned to a slide's bottom-right, clear of the footer. */
 .qr-pin {
   position: absolute;

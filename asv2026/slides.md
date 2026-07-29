@@ -29,6 +29,8 @@ Anton Nekrutenko | Penn State | [galaxyproject.org](https://galaxyproject.org)
 gxy.io/asv26
 :::
 
+BRCs = BV-BRC ([bv-brc.org](https://www.bv-brc.org/)) + PDN ([pathogendatanetwork.org](https://pathogendatanetwork.org/)) + BRC-analytics ([brc-analytics.org](https://brc-analytics.org)) {.footnote}
+
 ---
 
 <!-- _class: compact agenda -->
@@ -358,3 +360,5 @@ NIH NHGRI
 ::: figure src="assets/qr/asv26.svg" href="https://gxy.io/asv26" h=122px bare .qr-pin
 gxy.io/asv26
 :::
+
+BRCs = BV-BRC ([bv-brc.org](https://www.bv-brc.org/)) + PDN ([pathogendatanetwork.org](https://pathogendatanetwork.org/)) + BRC-analytics ([brc-analytics.org](https://brc-analytics.org)) {.footnote}
