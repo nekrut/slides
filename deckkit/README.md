@@ -52,9 +52,10 @@ comment.
 | Class | Use |
 | --- | --- |
 | `title` | title slide: gradient wash, navy edge, no header/footer |
-| `divider` | full-navy section break |
+| `divider` | full-navy section break, for a statement slide |
 | `compact` / `dense` / `micro` | density steps (20 / 19 / 18px) for busy slides |
 | `headroom` | pulls the title block up when a slide is very full |
+| `middle` | centres a sparse slide's content vertically |
 
 Slides are a fixed 1280×720. When content grows, step the density class down
 rather than hand-tuning spacing.
@@ -90,6 +91,25 @@ sequence.
 
 Card attributes: `tag`, `icon`, `subtitle`, `accent`, `border=left|top|none`,
 `size=xs|sm|md|lg`, `caps` (uppercase title), `checks` (✓ bullets).
+
+### `pillars` — linked cards under a brace
+
+For "these N things, and the thing that unites them".
+
+```markdown
+::: pillars brace="Agents" accent=sky
+### Data
+
+NCBI · EBI · UCSC Genome Browser
+
+### Tools + Workflows
+
+BioConda · BioContainers · Workflows
+:::
+```
+
+Cards are joined by connectors across the gap; `brace` draws the gathering
+bracket and its label. `faint` greys the brace, `plain` drops the connectors.
 
 ### `card` — a single card
 
@@ -192,6 +212,21 @@ mark: 978 | 978: ACA | raise
 `mark: position | label | raise` — `raise` staggers a marker that would collide
 with its neighbour. A segment can force a width with `w=0.8%`.
 
+### `embed` — a live widget
+
+Inlines a self-contained HTML fragment (markup + `<style>` + `<script>`) at
+build time, for something a static image cannot carry. `w` and `scale` size a
+widget built for a browser viewport down onto the 1280×720 slide — pass units,
+`w=1300px` not `w=1300`.
+
+```
+​```embed src="assets/orbit-demo.html" w=1300px scale=0.80 h=485px
+​```
+```
+
+Paths resolve relative to the deck directory. Animation runs in the HTML deck;
+a PNG export captures whatever frame it lands on.
+
 ### `pills`, `motif`, `brandbar`
 
 ```
@@ -218,8 +253,9 @@ brandbar's navy plate.
 - `{{logo T:67 L:33}}` — sequence-logo stack; works inside table cells.
   A residue without a percentage takes the remaining share.
 - `[text]{.class}` — span with classes. Useful ones: `.badge`, `.mono`, `.dim`,
-  `.muted`, `.center`, colours `.c-sky` `.c-emerald` `.c-purple` `.c-amber`
-  `.c-rose`, accents `.accent-purple` (pairs with `.badge`).
+  `.muted`, `.center`, `.big` and `.xl` for statement text, colours `.c-sky`
+  `.c-emerald` `.c-purple` `.c-amber` `.c-rose`, accents `.accent-purple`
+  (pairs with `.badge`).
 - `::: div .todo` — a dashed placeholder block for a template slide, so unfinished
   spots are impossible to miss.
 - Markdown tables are styled by the theme — use them instead of HTML tables.

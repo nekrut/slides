@@ -36,12 +36,15 @@ function usage(code = 0) {
   process.exit(code)
 }
 
-function marp(args, extra = []) {
+// Runs marp from the deck's own directory so every relative path in the
+// slides — images, embedded fragments — resolves the same way regardless of
+// where `deck` was invoked from.
+function marp(args, cwd) {
   const bin = existsSync(MARP) ? MARP : 'npx'
   const head = existsSync(MARP) ? [] : ['--yes', '@marp-team/marp-cli']
   // --no-stdin: without it marp-cli blocks waiting on a non-tty stdin.
-  const argv = [...head, '--no-stdin', '--config', CONFIG, ...extra, ...args]
-  const res = spawnSync(bin, argv.filter(Boolean), { stdio: 'inherit' })
+  const argv = [...head, '--no-stdin', '--config', CONFIG, ...args]
+  const res = spawnSync(bin, argv.filter(Boolean), { stdio: 'inherit', cwd })
   process.exit(res.status ?? 1)
 }
 
@@ -87,7 +90,7 @@ switch (command) {
   case 'png': {
     const file = argv.shift()
     if (!file) usage(1)
-    marp([file, '--images', 'png', '-o', join(dirname(file), `${basename(file, '.md')}.png`), ...argv])
+    marp([basename(file), '--images', 'png', '-o', `${basename(file, '.md')}.png`, ...argv], dirname(file))
     break
   }
 
@@ -95,20 +98,20 @@ switch (command) {
   case 'pptx': {
     const file = argv.shift()
     if (!file) usage(1)
-    marp([file, `--${command}`, ...argv])
+    marp([basename(file), `--${command}`, ...argv], dirname(file))
     break
   }
 
   case 'watch': {
     const file = argv.shift()
     if (!file) usage(1)
-    marp([file, '--watch', '--preview', ...argv])
+    marp([basename(file), '--watch', '--preview', ...argv], dirname(file))
     break
   }
 
   default: {
     const file = argv.shift()
     if (!file) usage(1)
-    marp([file, '-o', join(dirname(file), `${basename(file, '.md')}.html`), ...argv])
+    marp([basename(file), '-o', `${basename(file, '.md')}.html`, ...argv], dirname(file))
   }
 }

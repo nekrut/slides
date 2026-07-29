@@ -50,6 +50,7 @@ function cardChrome(meta, defaults = {}) {
     accentClass(accent),
     (attrs.size || defaults.size) && `size-${attrs.size || defaults.size}`,
     flags.has('checks') || defaults.checks ? 'card-checks' : '',
+    flags.has('middle') || defaults.middle ? 'card-middle' : '',
     classes
   )
 
@@ -79,12 +80,18 @@ function cols({ attrs, flags, classes, inner, Token }) {
   const style = {
     '--gap': attrs.gap,
     'grid-template-columns': attrs.ratio,
+    // `max` narrows and centres the grid — useful when fixed-aspect figures
+    // would otherwise leave a wide gutter between columns
+    'max-width': attrs.max,
+    'margin-inline': attrs.max ? 'auto' : undefined,
+    // `h` fixes the row height; with `stretch` every card takes it
+    height: attrs.h,
   }
 
   const out = []
   if (breaks.length === 0) {
     style['--cols'] = attrs.cols || (attrs.ratio ? undefined : 2)
-    const cls = classList('cols', flags.has('top') ? 'cols-top' : '', classes)
+    const cls = classList('cols', flags.has('stretch') ? 'cols-stretch' : '', classes)
     out.push(html(Token, `<div class="${cls}"${styleAttr(style)}>`))
     out.push(...inner)
     out.push(html(Token, '</div>'))
@@ -98,7 +105,7 @@ function cols({ attrs, flags, classes, inner, Token }) {
   })
 
   style['--cols'] = attrs.cols || (attrs.ratio ? undefined : chunks.length)
-  const cls = classList('cols', flags.has('top') ? 'cols-top' : '', classes)
+  const cls = classList('cols', flags.has('stretch') ? 'cols-stretch' : '', classes)
   out.push(html(Token, `<div class="${cls}"${styleAttr(style)}>`))
   for (const chunk of chunks) {
     out.push(html(Token, '<div class="col">'))
@@ -116,6 +123,7 @@ function cards({ attrs, flags, classes, inner, Token }) {
     caps: flags.has('caps'),
     size: attrs.size,
     checks: flags.has('checks'),
+    middle: flags.has('middle'),
   }
 
   const heads = topLevel(inner, (t) => t.type === 'heading_open' && t.tag === 'h3')
@@ -123,6 +131,7 @@ function cards({ attrs, flags, classes, inner, Token }) {
     '--cols': attrs.cols || 2,
     '--gap': attrs.gap,
     '--thumb': attrs.thumb,
+    '--card-minh': attrs.minh,
     'grid-template-columns': attrs.ratio,
   }
   const out = [html(Token, `<div class="${classList('cards', classes)}"${styleAttr(style)}>`)]
@@ -150,6 +159,52 @@ function cards({ attrs, flags, classes, inner, Token }) {
     out.push(...inner.slice(start + 3, end))
     out.push(html(Token, chrome.foot))
   })
+
+  out.push(html(Token, '</div>'))
+  return out
+}
+
+/**
+ * `pillars` — a row of cards joined by connectors, optionally gathered under a
+ * brace with a label. For "these three things, and the thing that unites them".
+ */
+function pillars({ attrs, flags, classes, inner, Token }) {
+  const heads = topLevel(inner, (t) => t.type === 'heading_open' && t.tag === 'h3')
+  const cls = classList('pillars', accentClass(attrs.accent), attrs.size && `size-${attrs.size}`, classes)
+  const style = { '--cols': attrs.cols || Math.max(heads.length, 1), '--gap': attrs.gap }
+
+  const out = [
+    html(Token, `<div class="${cls}"${styleAttr(style)}>`),
+    html(Token, `<div class="${classList('pillar-row', flags.has('plain') ? '' : 'pillar-linked')}">`),
+  ]
+
+  out.push(...inner.slice(0, heads[0] ?? inner.length))
+
+  heads.forEach((start, k) => {
+    const end = k + 1 < heads.length ? heads[k + 1] : inner.length
+    const titleToken = inner[start + 1]
+    const meta = splitTrailingAttrs(titleToken?.content ?? '')
+    if (titleToken) titleToken.content = meta.text
+
+    out.push(html(Token, `<div class="${classList('pillar', accentClass(meta.attrs.accent), meta.classes)}">`))
+    out.push(html(Token, '<div class="pillar-title">'))
+    if (titleToken) out.push(titleToken)
+    out.push(html(Token, '</div><div class="pillar-body">'))
+    out.push(...inner.slice(start + 3, end))
+    out.push(html(Token, '</div></div>'))
+  })
+
+  out.push(html(Token, '</div>'))
+
+  if (attrs.brace) {
+    const braceCls = classList('brace', flags.has('faint') ? 'brace-faint' : '')
+    out.push(
+      html(
+        Token,
+        `<div class="${braceCls}"></div><div class="brace-label">${esc(attrs.brace)}</div>`
+      )
+    )
+  }
 
   out.push(html(Token, '</div>'))
   return out
@@ -203,9 +258,10 @@ function box({ attrs, classes, inner, Token }) {
 function figure({ attrs, flags, classes, inner, Token }) {
   const cls = classList('figure', flags.has('bare') ? 'figure-bare' : '', classes)
   const style = { '--h': attrs.h || attrs.height }
-  const img = attrs.src
-    ? `<img src="${esc(attrs.src)}" alt="${esc(attrs.alt || '')}" />`
-    : ''
+  let img = attrs.src ? `<img src="${esc(attrs.src)}" alt="${esc(attrs.alt || '')}" />` : ''
+  if (img && attrs.href) {
+    img = `<a href="${esc(attrs.href)}" target="_blank" rel="noopener">${img}</a>`
+  }
   const out = [html(Token, `<div class="${cls}"${styleAttr(style)}>${img}`)]
   if (inner.length) {
     out.push(html(Token, '<div class="figure-caption">'), ...inner, html(Token, '</div>'))
@@ -226,6 +282,7 @@ export const components = {
   columns: cols,
   grid: cols,
   cards,
+  pillars,
   card,
   callout,
   note,

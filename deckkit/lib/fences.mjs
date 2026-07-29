@@ -9,6 +9,9 @@
  * **bold**, `code` and links work inside them.
  */
 
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
 import { accentClass, classList, esc, fields, parseAttrs, styleAttr } from './attrs.mjs'
 
 const BR = / \/\/ | \|\| /g
@@ -97,9 +100,11 @@ function metrics({ attrs, classes, content, md, env }) {
 
 function stats({ attrs, classes, content, md, env }) {
   const items = lines(content).map((line) => {
-    const [value, label, note] = fields(line)
+    // a trailing `accent=` overrides the container accent for this figure
+    const { plain, attrs: a } = takeAttrs(fields(line))
+    const [value, label, note] = plain
     return (
-      '<div class="stat">' +
+      `<div class="${classList('stat', accentClass(a.accent))}">` +
       `<span class="stat-value">${inline(md, env, value)}</span>` +
       (label ? `<span class="stat-label">${inline(md, env, label)}</span>` : '') +
       (note ? `<span class="stat-note">${inline(md, env, note)}</span>` : '') +
@@ -250,4 +255,27 @@ function motif({ attrs, classes, content }) {
   return `<div class="${classList('motif', accentClass(attrs.accent), classes)}">${seq}${label}</div>`
 }
 
-export const fenceComponents = { brandbar, metrics, stats, pills, timeline, genemap, motif }
+/* ------------------------------------------------------------------ *
+ * embed — inline a self-contained HTML fragment (markup + style + script)
+ *
+ * For live widgets a static image cannot carry. The file is inlined verbatim
+ * at build time, so the deck stays self-contained. `w`/`scale` size a widget
+ * built for a browser viewport down onto a 1280x720 slide.
+ * ------------------------------------------------------------------ */
+
+function embed({ attrs, classes, content }) {
+  const src = attrs.src || content.trim()
+  let body
+  try {
+    body = readFileSync(resolve(process.cwd(), src), 'utf8')
+  } catch {
+    return `<div class="todo">embed: cannot read <b>${esc(src)}</b></div>`
+  }
+  return (
+    `<div class="${classList('embed', classes)}"${styleAttr({ height: attrs.h })}>` +
+    `<div class="embed-inner"${styleAttr({ '--w': attrs.w, '--s': attrs.scale })}>${body}</div>` +
+    '</div>'
+  )
+}
+
+export const fenceComponents = { brandbar, metrics, stats, pills, timeline, genemap, motif, embed }

@@ -185,11 +185,13 @@ pre {
 pre code { background-color: transparent; color: #f8fafc; padding: 0; }
 
 /* header / footer / page number */
+/* Absolute sizes, not em: header and footer must not scale with a slide's
+   density class, or they change size from slide to slide. */
 header {
   width: 100%;
   left: var(--pad-x);
   top: 30px;
-  font-size: 0.6em;
+  font-size: 14px;
   color: var(--ink-faint);
   display: flex;
   align-items: center;
@@ -204,16 +206,25 @@ footer {
   left: auto;
   right: 120px;
   bottom: 30px;
-  font-size: 0.55em;
+  font-size: 13px;
   color: var(--ink-ghost);
   text-align: right;
 }
+
+/* Footer links stay visually quiet but remain clickable in the HTML deck. */
+footer a {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+footer a:hover { color: var(--sky); text-decoration: underline; }
 
 section::after {
   left: auto;
   right: var(--pad-x);
   bottom: 30px;
-  font-size: 0.55em;
+  font-size: 13px;
   color: var(--ink-ghost);
 }
 
@@ -233,6 +244,32 @@ section.compact p, section.dense p, section.micro p { margin-bottom: 0.4em; }
 
 /* Pull the title block up when a slide needs the extra room. */
 section.headroom { --pad-y: 55px; }
+
+/* Centre a sparse slide's content vertically instead of stranding it up top. */
+section.middle { justify-content: center; }
+section.middle > h1 { margin-top: 0; }
+
+/* Agenda / outline slide: the list is the content, set at display size and
+   spread down the full height so the slide carries no dead space. */
+section.agenda { --pad-bottom: 40px; }
+
+/* Display-size slide title. `agenda` includes it; add `bigtitle` to any slide
+   that should match. */
+section.agenda h1,
+section.bigtitle h1 { font-size: 3.6em; line-height: 1.05; margin: 0 0 0.1em; }
+
+section.agenda > h1 + p,
+section.bigtitle > h1 + p { font-size: 1.15em; margin-bottom: 0; }
+
+section.agenda > ul {
+  font-size: 2.6em;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0.35em 0 0;
+}
+
+section.agenda > ul > li { margin-bottom: 0.22em; padding-left: 0.85em; }
+section.agenda > ul > li::before { font-size: 0.45em; top: 0.5em; }
 
 /* Title slide */
 section.title {
@@ -269,8 +306,9 @@ section.divider {
   justify-content: center;
   border-left: 16px solid var(--sky);
 }
-section.divider h1 { color: #fff; font-size: 2.4em; margin: 0; }
+section.divider h1 { color: #fff; font-size: 2.4em; margin: 0 0 0.3em; }
 section.divider h1 + p { color: #bae6fd; font-size: 0.9em; }
+section.divider .big, section.divider .xl { color: #bae6fd; }
 section.divider header,
 section.divider footer,
 section.divider::after { display: none; }
@@ -310,6 +348,16 @@ section.divider::after { display: none; }
 
 .cols > * > :last-child { margin-bottom: 0; }
 
+/* `stretch` makes every column the height of the tallest — cards in a row then
+   share one baseline top and bottom instead of ragging to their own content. */
+.cols-stretch { align-items: stretch; }
+.cols-stretch > .col { display: flex; flex-direction: column; }
+.cols-stretch > .col > .card { flex: 1; }
+
+/* `.fill` grows the row into the slide's remaining height. The bottom margin
+   keeps it clear of the footer, which sits inside the section's padding box. */
+.cols.fill { flex: 1; min-height: 0; margin-bottom: 26px; }
+
 .cards {
   display: grid;
   grid-template-columns: repeat(var(--cols, 2), 1fr);
@@ -335,6 +383,8 @@ section.divider::after { display: none; }
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
+  /* `minh=` on the grid gives sparse cards a deliberate height */
+  min-height: var(--card-minh, auto);
   transition: all 0.2s ease;
 }
 
@@ -410,9 +460,101 @@ section.divider::after { display: none; }
 .size-sm { --body-size: 0.62em; --body-lh: 1.4; --title-size: 0.85em; }
 .size-md { --body-size: 0.72em; --body-lh: 1.5; --title-size: 0.95em; }
 .size-lg { --body-size: 0.85em; --body-lh: 1.5; --title-size: 1.1em; }
+.size-xl { --body-size: 1em; --body-lh: 1.55; --title-size: 1.35em; }
+.size-2xl { --body-size: 1.6em; --body-lh: 1.45; --title-size: 1.9em; }
 
 /* Check-marked list variant */
 .card-checks .card-body li::before { content: '\2713'; font-weight: bold; }
+
+/* `middle` centres a card's title and body in the space left under the tag,
+   so the tag stays pinned top-left and aligned across a row while uneven
+   titles still sit on a common optical centre. */
+.card-middle .card-title { margin-top: auto; }
+.card-middle > :last-child { margin-bottom: auto; }
+
+/* ---- pillars: linked cards gathered under a brace ---- */
+
+.pillars { display: flex; flex-direction: column; margin: 18px 0 0; }
+
+.pillar-row {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 3), 1fr);
+  gap: var(--gap, 44px);
+  align-items: stretch;
+}
+
+.pillar {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 26px 22px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* connector between adjacent pillars, drawn across the grid gap */
+.pillar-linked .pillar + .pillar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: var(--gap, 44px);
+  height: 3px;
+  background: var(--accent);
+  opacity: 0.45;
+}
+
+.pillar-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink-strong);
+  font-size: var(--title-size, 0.95em);
+  margin-bottom: 4px;
+}
+
+.pillar-body { font-size: var(--body-size, 0.6em); color: var(--ink-muted); line-height: 1.45; }
+.pillar-body > :last-child { margin-bottom: 0; }
+
+/* the brace gathering every pillar, plus its label */
+.brace {
+  height: 20px;
+  margin: 14px 6% 0;
+  border: 2px solid var(--accent);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  position: relative;
+}
+
+.brace::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2px;
+  height: 12px;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+
+.brace-label {
+  align-self: center;
+  margin-top: 22px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  /* matches the pillar titles, which share --title-size from the container */
+  font-size: var(--title-size, 0.95em);
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.brace-faint { border-color: var(--line-strong); }
+.brace-faint::after { background: var(--line-strong); }
+.brace-faint ~ .brace-label { color: var(--ink-faint); }
 
 /* Plain framed box (no accent bar) — good for summaries/takeaways. */
 .box {
@@ -539,6 +681,25 @@ section.divider::after { display: none; }
 
 .stat-note { font-size: 0.45em; color: var(--ink-faint); line-height: 1.35; }
 
+/* `.fill` grows the grid to the slide's remaining height and shares it evenly
+   between rows, so the figures carry the slide instead of floating at the top. */
+.stats.fill {
+  flex: 1;
+  grid-auto-rows: 1fr;
+  /* keeps the last row clear of the footer, which sits inside the padding box */
+  margin-bottom: 26px;
+}
+
+/* `.tight` packs a stacked column of figures alongside other content. */
+.stats.tight { gap: 11px; margin: 0; }
+.stats.tight .stat { padding: 10px 14px; }
+.stats.tight .stat-value { font-size: 1.45em; }
+
+.stats.fill .stat { justify-content: center; padding: 16px 20px; }
+.stats.fill .stat-value { font-size: 2.6em; }
+.stats.fill .stat-label { font-size: 0.65em; margin-top: 2px; }
+.stats.fill .stat-note { font-size: 0.5em; }
+
 .pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
 
 .pill {
@@ -585,6 +746,13 @@ section.title .badge { align-self: flex-start; margin-bottom: 25px; padding: 5px
 .todo strong { color: var(--ink-muted); }
 
 /* text utilities */
+/* Opt out of a component's uppercase treatment (e.g. the title-slide subtitle).
+   Deliberately !important: it exists purely to override a component default
+   that would otherwise win on specificity. */
+.nocaps { text-transform: none !important; letter-spacing: normal !important; }
+
+.big { font-size: 1.15em; line-height: 1.4; }
+.xl { font-size: 1.45em; line-height: 1.3; font-weight: 600; }
 .mono { font-family: var(--font-mono); font-size: 0.9em; }
 .dim { color: var(--ink-faint); font-size: 0.85em; }
 .c-sky { color: var(--sky); }
@@ -730,6 +898,15 @@ section table td {
 }
 
 section table tr { background: transparent; border: none; }
+
+/* Live embedded widget, scaled from browser dimensions onto the slide. */
+.embed { display: flex; justify-content: center; overflow: hidden; }
+
+.embed-inner {
+  width: var(--w, 100%);
+  transform: scale(var(--s, 1));
+  transform-origin: top center;
+}
 
 .figure { display: block; }
 
