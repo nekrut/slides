@@ -348,17 +348,29 @@ Median **4 s** against one index, **8.4 min** against all of them.
 
 # Thank you!
 
-::: cols ratio="1.35fr 0.65fr" gap=20px stretch h=320px
-::: card title="People A to Z" accent=emerald size=2xl
+::: cols ratio="0.85fr 0.4fr 1.05fr" gap=16px stretch
+::: card title="People A to Z" accent=emerald size=lg
 Artem Babayan, Dannon Baker, Kelsey Beavers, Danielle Callan, Rayan Chikhi, Nate Coraor, John Davis, Björn Grüning, Teo Lemane, Wolfgang Maier, Pierre Peterlongo, Sergei Pond, Dave Rogers, Marius Van Den Beek
 :::
 
 +++
 
-::: card title="Funding" accent=sky size=2xl
+::: card title="Funding" accent=sky size=lg
 NIH NIAID
 
 NIH NHGRI
+:::
+
++++
+
+::: card title="Links!" accent=indigo size=lg
+- [galaxyproject.org](https://galaxyproject.org) — Project home
+- [usegalaxy.org](https://usegalaxy.org) — US
+- [usegalaxy.eu](https://usegalaxy.eu) — EU
+- [usegalaxy.ca](https://usegalaxy.ca) — Canada
+- [usegalaxy.fr](https://usegalaxy.fr) — France
+- [usegalaxy.org.au](https://usegalaxy.org.au) — Australia
+- [training.galaxyproject.org](https://training.galaxyproject.org) — Galaxy Training Network
 :::
 :::
 
