@@ -572,6 +572,9 @@ section.divider::after { display: none; }
 }
 
 .box-body { font-size: var(--body-size, 0.62em); color: var(--ink-muted); line-height: var(--body-lh, 1.5); }
+
+/* Shrink a box to its content instead of spanning the slide. */
+.box-inline { align-self: flex-start; margin-top: 20px; }
 .box-body > :last-child { margin-bottom: 0; }
 .box-body li::before { content: '\2713'; color: var(--accent); }
 

@@ -40,7 +40,7 @@ A 15 min impossible challenge
 - What is BRC-Analytics
 - What is Galaxy
 - What are agentic analyses
-- Teaser: Logan / LexicMap
+- Teaser: Logan / Search Entire SRA
 
 ---
 
@@ -339,7 +339,7 @@ Median **4 s** against one index, **8.4 min** against all of them.
 
 ::: cols ratio="1.35fr 0.65fr" gap=20px stretch h=320px
 ::: card title="People A to Z" accent=emerald size=2xl
-Dannon Baker, Kelsey Beavers, Danielle Callan, Rayan Chikhi, Nate Coraor, John Davis, Björn Grüning, Teo Lemane, Wolfgang Maier, Pierre Peterlongo, Sergei Pond, Dave Rogers, Marius Van Den Beek
+Artem Babayan, Dannon Baker, Kelsey Beavers, Danielle Callan, Rayan Chikhi, Nate Coraor, John Davis, Björn Grüning, Teo Lemane, Wolfgang Maier, Pierre Peterlongo, Sergei Pond, Dave Rogers, Marius Van Den Beek
 :::
 
 +++
@@ -349,6 +349,10 @@ NIH NIAID
 
 NIH NHGRI
 :::
+:::
+
+::: box .box-inline accent=slate size=md
+**Find me at ASV26:** [anton@nekrut.org](mailto:anton@nekrut.org)
 :::
 
 ::: figure src="assets/qr/asv26.svg" href="https://gxy.io/asv26" h=122px bare .qr-pin
