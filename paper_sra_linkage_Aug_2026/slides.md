@@ -80,7 +80,7 @@ The record that groups everything one study deposited. Accessions look like `PRJ
 
 ### PMID {tag="the paper's number" accent=slate}
 
-**PubMed ID** — the unique number for a published article in NLM's biomedical literature index.
+**PubMed ID** — the unique number for a published article in PubMed, the US National Library of Medicine's index of the biomedical literature.
 :::
 
 ---
@@ -252,7 +252,7 @@ The lab, in interview format, one paper at a time.
 :::
 
 ```metrics accent=purple
-Measured genuine fabrication rate | 4.6%
+Genuine fabrication rate the guards measured | 4.6%
 ```
 
 ---
@@ -268,7 +268,7 @@ When the text classifier commits to an answer, it is right. It just rarely commi
 Pairs where the classifier committed | 117
 Contradicted by the independent adjudicator | 2
 Precision on "generated" | 96%
-Abstains on pairs the text *does* settle | ~32%
+Abstains even where the text *does* settle it | ~32%
 ```
 
 +++
@@ -289,7 +289,7 @@ Tuning the rules harder would not help. The classifier is not making mistakes �
 Each one produced a plausible number, a plausible fix, or a plausible absence.
 
 ::: cards cols=3 gap=16px size=sm border=top
-### A 64% that was really 2.3% {tag="bad sample" accent=rose}
+### A link-back rate that was really 2.3% {tag="bad sample" accent=rose}
 
 We measured how often archive records link back to a paper by sampling BioProject IDs — but sampled **consecutive** IDs.
 
@@ -308,7 +308,7 @@ Losing a mention is recoverable. Silently rewriting one into another group's dat
 
 ### The hidden BioProject {tag="wrong search term" accent=purple}
 
-Papers routed through GEO cite the GSE and never write the BioProject ID at all — **36 of 40** in a hand-checked sample.
+Papers routed through GEO cite the GEO series accession and never write the BioProject ID at all — **36 of 40** in a hand-checked sample.
 
 Searching the paper for the BioProject finds nothing, and "nothing" looked like *no evidence* when it actually meant *wrong search term*.
 :::
@@ -349,9 +349,16 @@ GEO series carrying a linked PMID | 88%
 Correct on hand-labelled items where it fired | 7 of 7
 ```
 
+Seven items — promising, not conclusive. {.dim}
+
+::: note accent=slate
+**This is not the link-back rate that fooled us earlier.** That one was measured on **BioProject** records, which almost never name a paper — 2.3%. **GEO series** records usually do — 88%. Different record type, different submission habit.
+:::
+
 <!--
 No text parsing. No sentence required. The submitter told GEO which paper this
-belonged to, and GEO kept it.
+belonged to, and GEO kept it. Expect the 2.3%-vs-88% question from the floor —
+the note answers it, so read it out rather than waiting to be asked.
 -->
 
 ---
@@ -383,8 +390,10 @@ Author-surname overlap coefficient — 33 sampled pairs {.dim .center}
 
 ```metrics accent=sky
 Correct on hand-labelled items | 8 of 8
-Unrelated papers × datasets reaching the threshold | 0.8%
+Unrelated paper–dataset pairs above threshold | 0.8%
 ```
+
+Eight items — promising, not conclusive. {.dim}
 :::
 
 <!--
@@ -419,11 +428,11 @@ Author overlap on the same item: **0.89**.
 
 # How far this reaches
 
-Two thirds of everything we extracted routes through GEO — and so is reachable this way.
+Nearly two thirds of everything we extracted routes through GEO — and so is reachable this way.
 
 ```stats accent=indigo
-64% | of all pairs | 422,514 pairs are GEO-routed
-155,741 | currently stuck | pairs sitting in the "ambiguous" pile that this can move
+422,514 | GEO-routed pairs | 64% of the 658,946 we extracted
+155,741 | currently stuck | ambiguous pairs this can move
 ```
 
 ---
@@ -469,7 +478,7 @@ node: 88% | Then | Experiment | Reconstruct metadata // from the paper alone | o
 ```
 
 ::: callout title="Why richness gets re-measured" icon="🔬" accent=amber slim
-The current measure came from sequencing-**run** records, which turned out to be blind to experimental design: median attribute entropy **0.0**, median **1** sample group. Run records describe machines; sample records describe experiments.
+The reconstruction experiment needs datasets whose metadata is worth hiding. We measured that on sequencing-**run** records — median **1** sample group, attribute entropy **0.0**, i.e. no variation to reconstruct. Run records describe machines; experimental design lives in the sample records.
 :::
 
 ---
@@ -485,15 +494,15 @@ Finding accession numbers in 622,896 papers is engineering. Deciding whether eac
 
 ### Text-only hits a wall you cannot tune past {accent=rose}
 
-~56% decided, and the missing 44% is missing because the sentence was never written — not because the rules were too strict.
+~56% of pairs decided. The rest went undecided because the sentence was never written — not because the rules were too strict.
 
 ### Metadata answers questions the text never asks {accent=emerald}
 
-GEO's linked PMID and author-name overlap decide pairs with no deposition sentence at all. Reachable for 64% of pairs (422,514), including 155,741 currently ambiguous.
+GEO's linked PMID and author-name overlap decide pairs with no deposition sentence at all. Reachable for 422,514 pairs — 64% of the total — including 155,741 currently ambiguous.
 
 ### Check the checker {accent=purple}
 
-Blind sampling, an independent adjudicator, and mechanically verified quotes caught a 64%-that-was-2.3%, a "fix" that rewrote accessions, and a search term that was silently wrong.
+Blind sampling, an independent adjudicator, and mechanically verified quotes caught a link-back rate measured from a broken sample, a "fix" that rewrote accessions, and a search term that was silently wrong.
 :::
 
 <!--

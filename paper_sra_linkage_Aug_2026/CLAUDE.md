@@ -46,13 +46,27 @@ differently from the source, or inferred. Numbers as briefed:
 | Deliverable | 83,164 papers · 95,831 datasets · median 1 dataset per paper |
 | Next | 140,768 GEO series; run-record richness gave median attribute entropy 0.0, median 1 sample group |
 
-Two coincidences worth knowing before someone spots them from the floor:
+Three collisions the deck is built to defuse — check any edit against these:
 
-- **64% appears twice with different meanings.** On the near-miss slide it is
-  the *wrong* reciprocal-link rate (true value 2.3%); on the reach slide it is
-  the share of pairs that are GEO-routed (422,514). Both are as briefed.
-- **The "44%" on the takeaways slide** is the complement of the ~56% decided
-  rate, not an independent measurement.
+- **64% must never appear as a bare headline figure.** It is the *wrong*
+  reciprocal-link rate on the near-miss slide (true value 2.3%) *and* the
+  GEO-routed share on the reach slide. Both are as briefed, so neither is
+  removed — instead the near-miss card is titled by the quantity ("A link-back
+  rate that was really 2.3%"), the reach slide leads with the count (422,514)
+  and carries 64% only as its note, and the takeaways slide no longer repeats
+  either percentage. Do not promote 64% back to a headline.
+- **Never state a complement as if it were measured.** The takeaways slide says
+  "~56% of pairs decided. The rest went undecided…" rather than naming a 44%.
+  (The "other 36%" on the caveats slide is fine: it is the labelled remainder of
+  a stated total, not a second measurement.)
+- **2.3% vs 88% look contradictory and are not.** 2.3% is how often *BioProject*
+  records name a paper; 88% is how often *GEO series* records do. The Signal A
+  slide carries a note saying so explicitly — keep it, or the deck appears to
+  contradict its own near-miss slide four slides later.
+
+Small-sample honesty: 7 of 7 and 8 of 8 each carry a dim "promising, not
+conclusive" caption at the point of claim, in addition to the caveats slide.
+Do not drop the captions and rely on the caveats slide alone.
 
 ## Tone
 
