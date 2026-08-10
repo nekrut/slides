@@ -449,7 +449,7 @@ Where the text classifier also committed, the two disagree on **2.0%** — 5,077
 :::
 
 ::: note accent=slate
-88% holds at full scale: 123,121 of 140,368 series carry a linked publication. And 422,514 pairs — 64% of the total — are GEO-*reachable*, but only 387,914 are decided; the gap is series with no linked publication at all.
+88% holds at full scale: of the 140,768 series, 140,368 returned a record, and 123,121 of those carry a linked publication. And 422,514 pairs — 64% of the total — are GEO-*reachable*, but only 387,914 are decided; the gap is series with no linked publication at all.
 :::
 
 ---
@@ -490,12 +490,12 @@ The table as it stands today — before the GEO signal is merged in — and what
 ```timeline
 track: Queued behind it | accent=indigo
 node: 12% | Done | 140,768 series | GEO→PMID across // every GEO series | lg
-node: 50% | Next | BioSample | Re-measure richness // from sample records | md
-node: 88% | Then | Experiment | Reconstruct metadata // from the paper alone | open
+node: 50% | Done | BioSample | Richness re-measured // from sample records | lg
+node: 88% | Next | Experiment | Reconstruct metadata // from the paper alone | open
 ```
 
-::: callout title="Why richness gets re-measured" icon="🔬" accent=amber slim
-The reconstruction experiment needs datasets whose metadata is worth hiding. We measured that on sequencing-**run** records — median **1** sample group, attribute entropy **0.0**, i.e. no variation to reconstruct. Run records describe machines; experimental design lives in the sample records.
+::: callout title="Richness had to be re-measured, and now works" icon="🔬" accent=amber slim
+The experiment needs datasets whose metadata is worth hiding. Measured on sequencing-**run** records: median **1** sample group, entropy **0.0** — nothing to reconstruct. Run records describe machines; design lives in the sample records. Re-measured there, the same 235,702 projects give median **4** groups and entropy **0.393**.
 :::
 
 ---
