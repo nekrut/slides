@@ -703,6 +703,67 @@ section.divider::after { display: none; }
 .stats.fill .stat-label { font-size: 0.65em; margin-top: 2px; }
 .stats.fill .stat-note { font-size: 0.5em; }
 
+/* Single-series horizontal bar chart. One accent per block; a row may override
+   it to separate a highlighted band from the rest. Values are direct-labelled
+   in ink — the bar carries identity, the text stays readable. */
+.bars {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 14px 0;
+}
+
+.bar-row { display: contents; }
+
+.bar-label {
+  font-family: var(--font-mono);
+  font-size: 0.6em;
+  font-weight: 700;
+  color: var(--ink-strong);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+}
+
+.bar-fill {
+  width: var(--w, 0%);
+  height: 14px;
+  min-width: 2px;
+  border-radius: 0 4px 4px 0;
+  background: var(--accent);
+}
+
+.bar-value {
+  font-family: var(--font-mono);
+  font-size: 0.62em;
+  font-weight: 700;
+  color: var(--ink-strong);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex: none;
+}
+
+.bar-value em { color: var(--ink-faint); font-size: 0.85em; font-weight: 400; font-style: normal; }
+
+.bar-note {
+  font-size: 0.55em;
+  color: var(--ink-muted);
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.bars-wide .bar-fill { height: 20px; }
+.bars-wide .bar-label, .bars-wide .bar-value { font-size: 0.72em; }
+.bars-wide .bar-note { font-size: 0.62em; }
+
 .pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
 
 .pill {

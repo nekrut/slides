@@ -116,6 +116,46 @@ function stats({ attrs, classes, content, md, env }) {
 }
 
 /* ------------------------------------------------------------------ *
+ * bars — a single-series horizontal bar chart
+ *
+ *   ```bars accent=sky max=21 unit="pairs"
+ *   0.00 | 21 | nothing in common
+ *   0.75–1.00 | 9 | accent=emerald
+ *   ```
+ *
+ * One row per category: `label | value | note`, plus optional trailing
+ * `k=v` fields (`accent=` recolours a single bar). Bar lengths are scaled
+ * against `max=`, defaulting to the largest value in the block, so the
+ * geometry is the data rather than a hand-set width.
+ * ------------------------------------------------------------------ */
+
+function bars({ attrs, flags, classes, content, md, env }) {
+  const rows = lines(content).map((line) => {
+    const { plain, attrs: a } = takeAttrs(fields(line))
+    const [label, value, note] = plain
+    return { label, value, note, accent: a.accent, num: Number(String(value).replace(/[^\d.-]/g, '')) }
+  })
+
+  const max = Number(attrs.max) || Math.max(...rows.map((r) => r.num || 0), 1)
+  const unit = attrs.unit ? ` <em>${inline(md, env, attrs.unit)}</em>` : ''
+
+  const html = rows.map((r) => {
+    const w = `${Math.max((r.num / max) * 100, r.num > 0 ? 1.5 : 0).toFixed(2)}%`
+    return (
+      `<div class="${classList('bar-row', accentClass(r.accent))}">` +
+      `<div class="bar-label">${inline(md, env, r.label)}</div>` +
+      `<div class="bar-track"><div class="bar-fill"${styleAttr({ '--w': w })}></div>` +
+      `<div class="bar-value">${inline(md, env, r.value)}${unit}</div></div>` +
+      (r.note ? `<div class="bar-note">${inline(md, env, r.note)}</div>` : '<div class="bar-note"></div>') +
+      '</div>'
+    )
+  })
+
+  const cls = classList('bars', accentClass(attrs.accent), flags.has('wide') ? 'bars-wide' : '', classes)
+  return `<div class="${cls}">${html.join('')}</div>`
+}
+
+/* ------------------------------------------------------------------ *
  * pills — compact chips, e.g. a list of conserved sites
  * ------------------------------------------------------------------ */
 
@@ -278,4 +318,4 @@ function embed({ attrs, classes, content }) {
   )
 }
 
-export const fenceComponents = { brandbar, metrics, stats, pills, timeline, genemap, motif, embed }
+export const fenceComponents = { brandbar, metrics, stats, bars, pills, timeline, genemap, motif, embed }

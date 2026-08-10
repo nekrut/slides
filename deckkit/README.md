@@ -181,6 +181,24 @@ P-value (Threshold 0.05): 0.3104 (NS)
 ​```
 ```
 
+### `bars`
+
+A single-series horizontal bar chart — one row per category, `label | value |
+note` plus optional trailing `k=v` fields. Bar lengths scale against `max=`
+(default: the largest value in the block), so the geometry is the data.
+
+```
+​```bars accent=sky unit="pairs" wide
+0.00 | 21 | no surname in common
+0.75–1.00 | 9 | accent=emerald
+​```
+```
+
+`accent=` on a row recolours that bar to separate a highlighted band from the
+rest; `wide` is the roomier variant for a chart that carries a slide alone.
+Every bar is direct-labelled with its value, so the chart never relies on
+colour alone.
+
 ### `timeline`
 
 ```
