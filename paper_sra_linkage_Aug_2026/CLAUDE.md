@@ -28,10 +28,13 @@ The arc, in order:
 
 ## Where the numbers come from
 
-Every figure on a slide is measured, from the analysis in the
-`metadata/paper-sra-linkage` repo (scan outputs, validation and adjudication
-runs, hand-labelled samples). Nothing on a slide is estimated, rounded
-differently from the source, or inferred. Numbers as briefed:
+Figures come from the analysis in the `metadata/paper-sra-linkage` repo (scan
+outputs, validation and adjudication runs, hand-labelled samples). Numbers as
+briefed — but see **Unresolved against the source data** below. A trace of all
+14 figure groups back to the repo on 10 Aug 2026 confirmed most of them exactly
+and found six the underlying data does not support as labelled. Those six are
+still on the slides as briefed, because correcting them needs a decision from
+the author, not a guess.
 
 | Slide | Figure |
 | --- | --- |
@@ -46,7 +49,51 @@ differently from the source, or inferred. Numbers as briefed:
 | Deliverable | 83,164 papers · 95,831 datasets · median 1 dataset per paper |
 | Next | 140,768 GEO series; run-record richness gave median attribute entropy 0.0, median 1 sample group |
 
-Three collisions the deck is built to defuse — check any edit against these:
+## Unresolved against the source data
+
+Traced 10 Aug 2026 against `metadata/paper-sra-linkage`. Confirmed exact: the
+mention and pair counts, the 99,538 / 267,661 / 291,747 split (live DB, not the
+stale `data/status.json`), the ~56% derivation, 88%, the 21/1/1/1/9 histogram,
+0.89, 422,514 / 155,741, 83,164 / 95,831 / median 1, and 140,768. Outstanding:
+
+1. **"622,896 open-access papers · scanned end to end" is mislabelled.**
+   622,896 is `counts.paper` — the Europe PMC *candidate-query* table, which the
+   repo README calls a prefilter at ~25% precision. The scan itself covered
+   millions of articles (`data/bulk_extract.log`, `data/finish.log`). So the
+   number is right and the words around it are wrong, in both directions: it is
+   not "papers scanned", and the slide lead "every open-access full text we
+   could read" claims a completeness the candidate query does not have. Same
+   number reappears on the takeaways slide.
+2. **"36 of 40" does not follow from any count in the repo.** From
+   `data/interview.json`: 36 is the number of items citing the dataset under
+   *some other* accession form. Papers that never write the BioProject is
+   **35 of 40**; and only **33 of 40** are GEO-routed at all, of which 33/33
+   never write it. Numerator and denominator are both off. Bad number to leave
+   on the slide about being fooled by bad numbers.
+3. **4.6% fabrication is not reproducible from the artifacts.** Re-running
+   `validate.audit_adjudications` over `data/adjudicated.json` prints **7.5%**
+   (18 of 241). The 4.6% comes from a hand-split in commit `172ec63` calling 7
+   of the 18 near-misses (11/241 = 4.56%); that split is recorded nowhere else.
+4. **117 / 2 / 96% / ~32% reproduce only under an unstated filter** —
+   `evidence_source == 'fulltext'` and excluding the 18 unverifiable-quote
+   items. Unfiltered the same quantities are 161 / 3 / 97.9% / 33.2%. The
+   filter should be stated if anyone asks how the sample was drawn.
+5. **"this signal can reach" on the reach slide is doing real work.** 422,514
+   and 155,741 are applicability, not resolution. What Signal A actually decides
+   is 387,914 pairs (58.9%), rescuing 138,836 from ambiguous (commit `0d65421`,
+   confirmed against the DB). Do not let "reach" drift into "decided".
+6. **0.8% has no data artifact** — the unrelated-pair null lives only in commit
+   `0d65421` and the `src/geo_pmid.py` docstring, not in
+   `data/author_overlap.json`. Worth regenerating before the deck is reused.
+
+Minor: "28–99%" truncates 99.6% (rounds to 100), so it understates — safe
+direction, left alone. Note also that `data/status.json`, `data/supervise.log`
+and `README.md` all carry superseded figures that contradict the deck while the
+deck is right; `status.json` is the file a sceptic will open first.
+
+## Collisions the deck is built to defuse
+
+Check any edit against these:
 
 - **64% must never appear as a bare headline figure.** It is the *wrong*
   reciprocal-link rate on the near-miss slide (true value 2.3%) *and* the

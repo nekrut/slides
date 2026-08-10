@@ -432,7 +432,7 @@ Nearly two thirds of everything we extracted routes through GEO — and so is re
 
 ```stats accent=indigo
 422,514 | GEO-routed pairs | 64% of the 658,946 we extracted
-155,741 | currently stuck | ambiguous pairs this can move
+155,741 | currently stuck | ambiguous pairs this signal can reach
 ```
 
 ---
