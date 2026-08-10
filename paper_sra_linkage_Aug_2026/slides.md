@@ -494,9 +494,25 @@ node: 50% | Done | BioSample | Richness re-measured // from sample records | lg
 node: 88% | Next | Experiment | Reconstruct metadata // from the paper alone | open
 ```
 
-::: callout title="Richness had to be re-measured, and now works" icon="🔬" accent=amber slim
-The experiment needs datasets whose metadata is worth hiding. Measured on sequencing-**run** records: median **1** sample group, entropy **0.0** — nothing to reconstruct. Run records describe machines; design lives in the sample records. Re-measured there, the same 235,702 projects give median **4** groups and entropy **0.393**.
+::: callout title="Richness had to be re-measured, and it is a floor" icon="🔬" accent=amber slim
+The experiment needs datasets whose metadata is worth hiding. Measured on sequencing-**run** records: median **1** sample group, entropy **0.0** — nothing to reconstruct. Run records describe machines; design lives in the sample records. Re-measured there, the same 235,702 projects give median **4** groups and **0.393** — a lower bound, since a design written only into a sample's title is invisible to it.
 :::
+
+<!--
+Expect: "isn't that just sample count?" Partly — group count and sample count
+correlate at 0.75. But a stricter variant that drops keys unique within a
+project still leaves a median of 3 groups, so it is not merely size restated.
+Give the number rather than waving it off.
+
+Five projects were checked by hand. Three matched exactly, including a 2x2 of
+cell line by treatment. Two scored 1 group because the design was written only
+in the sample title or alias. That also explains an archive skew: EBI-registered
+projects median 2 groups against 5 for NCBI-registered — submission checklists,
+not biology.
+
+83,164 here is deliberately the pre-merge number, and the lead says so. If asked
+why it is not 138,192, that is the projection from the previous slide.
+-->
 
 ---
 
