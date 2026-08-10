@@ -155,13 +155,15 @@ Get this wrong and the ground truth is poisoned: you end up asking a model to pr
 
 # The scan
 
-Every open-access full text we could read, every accession-shaped string in it.
+A broad candidate query first, then every accession-shaped string in the full text.
 
 ```stats accent=sky
-622,896 | open-access papers | scanned end to end
+622,896 | candidate papers | Europe PMC: open access, mentions an accession
 1,717,129 | accession mentions | extracted from full text
 658,946 | paper–dataset pairs | after deduplication
 ```
+
+The candidate query is a prefilter, not a census — roughly a quarter of its hits carry a real dataset accession. {.dim .center}
 
 <!--
 Scale is not the hard part. Extraction at this scale is a solved engineering
@@ -252,8 +254,10 @@ The lab, in interview format, one paper at a time.
 :::
 
 ```metrics accent=purple
-Genuine fabrication rate the guards measured | 4.6%
+Fabrication rate the guards measured | 7.5% (18 of 241 verdicts)
 ```
+
+Inspection suggests roughly half of the 18 are near-misses — whitespace, a minor edit, a quote spanning a paragraph break — rather than invention. {.dim .center}
 
 ---
 
@@ -270,6 +274,8 @@ Contradicted by the independent adjudicator | 2
 Precision on "generated" | 96%
 Abstains even where the text *does* settle it | ~32%
 ```
+
+Computed over the adjudications that had real full-text evidence **and** a quote that verified against the source. {.dim}
 
 +++
 
@@ -308,7 +314,9 @@ Losing a mention is recoverable. Silently rewriting one into another group's dat
 
 ### The hidden BioProject {tag="wrong search term" accent=purple}
 
-Papers routed through GEO cite the GEO series accession and never write the BioProject ID at all — **36 of 40** in a hand-checked sample.
+Papers routed through GEO cite the GEO series accession and never write the BioProject ID at all — **all 33** GEO-routed papers in a hand-checked sample of 40.
+
+Counting every alias, **36 of 40** never write the BioProject accession.
 
 Searching the paper for the BioProject finds nothing, and "nothing" looked like *no evidence* when it actually meant *wrong search term*.
 :::
@@ -426,14 +434,23 @@ Author overlap on the same item: **0.89**.
 
 <!-- _class: compact middle -->
 
-# How far this reaches
+# What it actually decides
 
-Nearly two thirds of everything we extracted routes through GEO — and so is reachable this way.
+Signal A has now been run across all 140,768 GEO series and loaded.
 
 ```stats accent=indigo
-422,514 | GEO-routed pairs | 64% of the 658,946 we extracted
-155,741 | currently stuck | ambiguous pairs this signal can reach
+387,914 | pairs decided | 59% of the 658,946 we extracted
+138,836 | rescued from ambiguous | 67,715 of them newly *generated*
+138,192 | papers in the deliverable | up from 83,164 — a 66% increase
 ```
+
+::: callout title="Two methods sharing no evidence agree on 98% of pairs" icon="🤝" accent=emerald
+Where the text classifier also committed, the two disagree on **2.0%** — 5,077 of 249,078 pairs. One reads prose, the other reads archive metadata, and neither was tuned against the other.
+:::
+
+::: note accent=slate
+88% holds at full scale: 123,121 of 140,368 series carry a linked publication. And 422,514 pairs — 64% of the total — are GEO-*reachable*, but only 387,914 are decided; the gap is series with no linked publication at all.
+:::
 
 ---
 
@@ -462,7 +479,7 @@ weakest numbers in the talk and the most likely to be quoted back.
 
 # Where we are, and what is next
 
-The table as it stands today, and the three steps queued behind it.
+The table as it stands today — before the GEO signal is merged in — and what is queued behind it.
 
 ```stats accent=emerald .tight cols=3
 83,164 | papers | linked to data they generated
@@ -472,7 +489,7 @@ The table as it stands today, and the three steps queued behind it.
 
 ```timeline
 track: Queued behind it | accent=indigo
-node: 12% | Running now | 140,768 series | GEO→PMID across // every GEO series | lg
+node: 12% | Done | 140,768 series | GEO→PMID across // every GEO series | lg
 node: 50% | Next | BioSample | Re-measure richness // from sample records | md
 node: 88% | Then | Experiment | Reconstruct metadata // from the paper alone | open
 ```
@@ -490,7 +507,7 @@ The reconstruction experiment needs datasets whose metadata is worth hiding. We 
 ::: cards cols=2 gap=18px size=md border=left
 ### The hard part is not extraction {accent=sky}
 
-Finding accession numbers in 622,896 papers is engineering. Deciding whether each one was *generated* or *reused* is the actual problem.
+Finding accession numbers across 622,896 candidate papers is engineering. Deciding whether each one was *generated* or *reused* is the actual problem.
 
 ### Text-only hits a wall you cannot tune past {accent=rose}
 
@@ -498,7 +515,7 @@ Finding accession numbers in 622,896 papers is engineering. Deciding whether eac
 
 ### Metadata answers questions the text never asks {accent=emerald}
 
-GEO's linked PMID and author-name overlap decide pairs with no deposition sentence at all. Reachable for 422,514 pairs — 64% of the total — including 155,741 currently ambiguous.
+GEO's linked PMID and author-name overlap decide pairs with no deposition sentence at all. Run at scale it settles 387,914 pairs — 59% of the total — and rescues 138,836 from ambiguous.
 
 ### Check the checker {accent=purple}
 
