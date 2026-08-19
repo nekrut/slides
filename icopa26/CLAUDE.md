@@ -34,9 +34,9 @@ insertion or deletion.**
 | 7 | Workflows that run on a eukaryotic pathogen |
 | 8 | Galaxy is a free public resource |
 | 9 | Get data, run tools, run workflows, interpret |
-| 10 | Software architecture and data availability |
-| 11 | The workflow, as it runs |
-| 12 | Summary: modernised *Cyclospora* surveillance |
+| 10 | Worked example: *Cyclospora cayetanensis* |
+| 11 | A labelled outbreak benchmark, public and unused |
+| 12 | The panel, as a Galaxy workflow |
 | 13 | What the open pipeline changes |
 | 14 | The future is agentic — Orbit demo |
 | 15 | We need testers! |
@@ -79,30 +79,15 @@ What changed, and why:
   argument, the three archive hits, and the read-level allele recovery. Slide
   16's third card was trimmed to a lead-in so it no longer duplicates them.
 - **Slide 17 added** — the kmindex/LexicMap comparison.
-- **Slides 10–12 replaced again**, on request, by slides 30, 31 and 32 of the
-  webinar deck: software architecture, the workflow canvas, and the four-point
-  summary. This **removed** the *Cyclospora* data-gap slide (9,054 runs, 99.6%
-  one assay), the labelled-benchmark slide (Vendor A/B, 203 specimens) and the
-  Galaxy reproduction table. See "Open defects" below — that removal has
-  consequences the deck does not yet resolve.
 
-## Open defects
-
-Two problems were introduced by the 10–12 replacement and are **not** fixed:
-
-1. **The cohort is never introduced.** Slides 12 and 13 quote "67 of 153",
-   "147 of 153" and "195 of 203", but nothing in the deck now says what those
-   specimens are. The word "Vendor" appears nowhere. The audience meets
-   *Cyclospora* for the first time on slide 10, as a software architecture
-   diagram. Fix by restoring a short setup slide before 10, or by adding one
-   sentence of cohort context to slide 12.
-2. **Slides 12 and 13 duplicate each other.** Slide 12 cards 1, 2 and 4 restate
-   the same three figures as slide 13's three cards — retention, 66.8%
-   determinism, 1.6 s against 370–655 s. Consecutive slides carrying identical
-   numbers read as an error. Either swap them so the evidence (13) precedes the
-   summary (12), or drop 13 — but if 13 goes, **move its `note` onto 12**: that
-   note carries the "legacy metric discriminates better, AUC 0.9964 against
-   0.7692, and the benchmark is easy" caveat, which must not be lost.
+**Reverted, 19 Aug 2026.** Slides 10–12 were briefly replaced by slides 30, 31
+and 32 of the webinar deck (software architecture, workflow canvas, four-point
+summary) and then reverted. Two problems drove the revert: the swap removed the
+only introduction to *Cyclospora* and to the 153/203 cohort, while slides 12 and
+13 went on quoting counts from it; and the imported summary duplicated slide 13's
+figures on the preceding slide. If that material is wanted again, the porting
+corrections are recorded under "Numbers deliberately not used" — reuse them, the
+webinar slide is wrong in three places.
 
 ## Argument
 
@@ -161,14 +146,13 @@ used" below.
   records, median 1,391 contigs / 103 kb N50. No RNA-seq, no proteomics, no data
   for any *Cyclospora* species other than *C. cayetanensis* — and with no in
   vitro culture and no animal model, that is structural.
-  **None of this is on a slide any more** — the data-gap slide was removed in the
-  10–12 replacement. If you want the audience to understand why *Cyclospora*
-  surveillance rests on one amplicon panel, you must say it from the podium.
+  **Say that last part out loud.** Slide 10 carries only the four figures and the
+  assembly-quality plot at full width; the card explaining *why* the data stays
+  this way was cut, so the point survives only if you make it from the podium.
 - Benchmark: 203 specimens, BioProject `PRJNA578931`, 10.3 GB. **Vendor A**
   (salads) n=99, **Vendor B** (vegetable trays) n=104, labelled by food-exposure
   traceback in CDC's `2018_gold_clusters.txt`. All 203 join to SRA runs via the
-  BioSample `Sample Alias` field. **Also no longer on a slide**, though slides 12
-  and 13 quote counts drawn from it — see "Open defects".
+  BioSample `Sample Alias` field.
 - Geography: 41 states across 2018–2025 recovered from CDC sample names, against
   BioSample metadata that reports only `geo_loc_name=USA`.
 - Reference files: `10.5281/zenodo.21924355` (version DOI; concept DOI
@@ -239,27 +223,25 @@ contains errors that were checked against the blog record and left out here:
   `C_IL119_18`) has no analysis record anywhere in the repo. Webinar slides 28
   and 29 cover it; they were **not** ported, and should not be without one.
 
-**Corrected while porting webinar slide 32 into slide 12.** That slide as written
-contradicts the measured record, and three of its four headline claims were
-changed rather than copied:
+**If webinar slide 32 is ever ported in, these corrections apply.** That slide as
+written contradicts the measured record in three of its four headline claims:
 
 - "100% Patient Retention" / "no discarded cases" → **false**. PyEuk's own filter
-  retains 144 of 153. Slide 12 instead states the legacy rule's 56% attrition and
-  the open pipeline's 147 of 153 and 195 of 203, which agree with slide 13.
+  retains 144 of 153. Use the legacy rule's 56% attrition and the open pipeline's
+  147 of 153 and 195 of 203, which agree with slide 13.
 - "rescues uncalled markers with 100% precision" → it is 27 **specimens** at the
-  **junction**, and panel-wide precision is 0.9150. Dropped from slide 12.
+  **junction**, and panel-wide precision is 0.9150.
 - "580,000 distances in 1.56 s (>300× faster than R)" → 580,503 pairs is CDC's
   1,078-specimen matrix, not this 153-specimen cohort (11,628 pairs), and the
   project's own plotting script refuses the ">300×" comparison as not
-  like-for-like. Slide 12 gives the runtime range and **230×–400×**, and drops
-  the pair count.
-- "PyEuk v2.1.0" and "Python 3.11" appear nowhere in the blog record, so slide 10
-  says PyEuk is "pinned by commit, not by tag" and names no Python version.
-  `nekrut/brc-tools` and the `cyclospora-lofreq-pyeuk` branch are real, as are
-  Apptainer, Numba, LoFreq and bwa.
-- ARI 0.9737 at k = 2 **is** measured — it is the label-free score on the Galaxy
-  workflow's own sheet, and slide 12 attributes it that way. Never compare it to
-  0.9721, which is the same engine on CDC's sheet.
+  like-for-like. Give the runtime range and **230×–400×**, without the pair count.
+- "PyEuk v2.1.0" and "Python 3.11" appear nowhere in the blog record. PyEuk is
+  pinned by commit, not by tag; name no Python version. `nekrut/brc-tools` and
+  its `cyclospora-lofreq-pyeuk` branch are real, as are Apptainer, Numba, LoFreq
+  and bwa.
+- ARI 0.9737 at k = 2 **is** measured — the label-free score on the Galaxy
+  workflow's own sheet. Attribute it that way, and never compare it to 0.9721,
+  which is the same engine on CDC's sheet.
 
 ## Numbers used, but only as preliminary
 
@@ -315,12 +297,10 @@ not prove that, and "proves" breaks the tone mandate.
   without re-fetching.
 - `assets/cyc/` — eight figures pulled from
   `nekrut/BRC-research:cyclospora/presentation/assets/`. Only
-  **`galaxy_workflow_canvas.png`** is used, on slide 11. The other seven —
-  `genome_quality.png`, `galaxy_workflow.png`, `distance_auc.png`,
-  `pipeline_compare.png`, `four_arm_design.png`, `expected_truth.png` and
-  `version_trajectory.png` — are unreferenced. `genome_quality.png` and
-  `galaxy_workflow.png` were on the slides removed in the 10–12 replacement;
-  keep them, they are what you need to restore that material.
+  `genome_quality.png` (slide 10) and `galaxy_workflow.png` (slide 12) are used.
+  `galaxy_workflow_canvas.png`, `distance_auc.png`, `pipeline_compare.png`,
+  `four_arm_design.png`, `expected_truth.png` and `version_trajectory.png` are
+  staged for a longer version of this talk.
 - `assets/qr/icopa26.svg` — `npx qrcode -t svg -o icopa26.svg https://gxy.io/icopa26`.
   `assets/qr/testers.svg` points at the signup form. The ASV and kmindex QRs
   were deleted. Verify a regenerated QR by decoding it out of the rendered PNG,

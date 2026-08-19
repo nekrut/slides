@@ -232,70 +232,83 @@ $2,000,000+ | free compute / year | accent=amber
 
 ---
 
-<!-- _class: compact middle -->
+<!-- _class: dense -->
 
-# Software architecture and data availability
+# Worked example: *Cyclospora cayetanensis*
 
-Every component is open source, containerised, and tied to a versioned reference set
+99.6% of the public data comes from one assay
 
-::: cards cols=3 gap=16px size=sm minh=215px
-### Galaxy tool suite {tag="1 · Open source" accent=sky}
+```stats cols=4
+9,054 | public SRA runs | the entire archive | accent=sky
+9,016 | CDC 8-marker amplicon | 99.6% of all runs | accent=amber
+38 | whole-genome runs | worldwide | accent=rose
+49 | assemblies | median 1,391 contigs | accent=slate
+```
 
-Tool wrappers in [`nekrut/brc-tools`](https://github.com/nekrut/brc-tools/tree/cyclospora-lofreq-pyeuk), written to the IWC specification.
-
-They join `bwa-mem` alignment, [`LoFreq`](https://csb5.github.io/lofreq/) variant calling, haplotype-sheet extraction and PyEuk clustering into one workflow. Run it from a browser, the [Galaxy](https://galaxyproject.org) API or a command line.
-
-### Containerised engine {tag="2 · One image" accent=emerald}
-
-One pinned Apptainer or Docker image holds PyEuk, its compiled Numba kernels, `LoFreq` and `bwa-mem`.
-
-PyEuk is pinned by commit, not by tag. Locked dependencies stop environment drift and R package conflicts.
-
-### Reference package {tag="3 · Cited by DOI" accent=amber}
-
-[`10.5281/zenodo.21924355`](https://doi.org/10.5281/zenodo.21924355) holds `markers.fa`, `parts.bed`, `haplotypes78.fa` and `junction.fa` with SHA-256 checksums.
-
-A run pins the exact bytes it used, so allele calls stay comparable between labs and between seasons.
+::: figure src="assets/cyc/genome_quality.png" h=338px bare
 :::
-
----
-
-<!-- _class: micro -->
-
-# The workflow, as it runs
-
-Eleven steps in the Galaxy editor: four inputs, two callers in parallel, one sheet, one clustering step. It is editable, versioned, and anyone with the link can run it.
-
-::: figure src="assets/cyc/galaxy_workflow_canvas.png" h=420px bare
-:::
-
-Coming to the BRC-Analytics **Workflows** tab. We need beta testers. {.footnote}
 
 ---
 
 <!-- _class: compact middle -->
 
-# Summary: modernised *Cyclospora* surveillance
+# A labelled outbreak benchmark, public and unused
 
-Four changes that make outbreak analysis sensitive, deterministic and reproducible
+The CDC typing repository provides epidemiologic cluster labels for the 2018 US outbreaks
 
-::: cards cols=2 gap=16px size=sm minh=155px
-### 1 · Fewer cases discarded {accent=emerald}
+::: cards cols=2 gap=18px size=md minh=185px
+### 203 specimens, two traceback clusters {tag="Ground truth" accent=emerald}
 
-The legacy retention rule discards **56%** of the cohort — it keeps 67 of 153. Run on the open pipeline's calls, the same rule keeps **147 of 153**, and **195 of 203**.
+BioProject [`PRJNA578931`](https://www.ebi.ac.uk/ena/browser/view/PRJNA578931), 10.3 GB of reads. **Vendor A** (salads) n=99; **Vendor B** (vegetable trays) n=104.
 
-### 2 · Deterministic topologies {accent=sky}
+The labels come from food-exposure traceback. They are independent of the sequence data.
 
-Stable sorting replaces random tie-breaking, and inverse-variance KING-wIBS weights model co-infection. Reruns are byte-identical, where the legacy ensemble differs in **66.8%** of cells.
+### A link that nobody had used {tag="Linkage" accent=sky}
 
-### 3 · Label-free outbreak discovery {accent=indigo}
+All 203 specimens connect to public SRA runs through the BioSample `Sample Alias` field.
 
-Dynamic relative-gap tree cutting finds the outbreak boundary from the data alone — **k = 2, ARI 0.9737** on the Galaxy workflow's own sheet. No pre-calibrated answer key.
-
-### 4 · Open, fast infrastructure {accent=amber}
-
-Vectorised Numba kernels build the distance matrix in **1.6 s**, against 370–655 s for the R implementation — **230× to 400×**. Pinned containers, open Galaxy wrappers.
+This link makes the largest public *Cyclospora* dataset a supervised clustering benchmark instead of unlabelled reads.
 :::
+
+::: cols ratio="1fr 1fr" gap=16px
+::: box .box-inline accent=amber size=md
+**The geography is recoverable.** CDC BioSamples report only `geo_loc_name=USA`. The sample names encode the submitting state and the specimen year — **41 states across 2018–2025**.
+:::
+
++++
+
+::: box .box-inline accent=indigo size=md
+**The reference files have a DOI.** Markers, PART windows, 78 named haplotypes and the junction windows: [`10.5281/zenodo.21924355`](https://doi.org/10.5281/zenodo.21924355) — the CDC release, deposited again as CC0.
+:::
+:::
+
+---
+
+<!-- _class: dense -->
+
+# The panel, as a Galaxy workflow
+
+11 steps. 153 specimens make 615 jobs.
+
+::: cols ratio="1.15fr 0.85fr" gap=18px stretch
+::: figure src="assets/cyc/galaxy_workflow.png" h=440px bare
+:::
+
++++
+
+::: card title="It reproduces the local analysis" accent=emerald border=top size=md
+| | local | Galaxy |
+| --- | --- | --- |
+| junction precision | 1.000 | 1.0000 |
+| junction recall | 0.971 | 0.9712 |
+| PART precision | 0.9150 | 0.9150 |
+| PART recall | 0.9145 | 0.9145 |
+
+The haplotype sheet is byte-identical. The distance matrices agree to 2.6 × 10⁻¹⁰: 0 of 23,409 cells are different.
+:::
+:::
+
+The numbers come from the A1 benchmark, August 2026. A preprint is in preparation. {.footnote}
 
 ---
 

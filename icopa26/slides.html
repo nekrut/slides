@@ -106,37 +106,65 @@
 </div></div></div><div class="col"><div class="figure figure-bare" style="--h:226px"><img src="assets/galaxy/interpret.png" alt="" /><div class="figure-caption"><p><strong>4 · Interpret and publish</strong> — <a href="https://jupyter.org">Jupyter</a>, <a href="https://posit.co">RStudio</a>, and soon agents</p>
 </div></div></div></div><footer><a href="https://brc-analytics.org">brc-analytics.org</a> | <a href="https://usegalaxy.org">usegalaxy.org</a> | <a href="https://galaxyproject.org">galaxyproject.org</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-header="![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026" data-footer="[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org)" data-class="compact middle" data-theme="deckkit" lang="en-US" class="compact middle" data-marpit-pagination="10" style="--paginate:true;--header:![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026;--footer:[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org);--class:compact middle;--theme:deckkit;" data-marpit-pagination-total="21" data-size="16:9">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-header="![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026" data-footer="[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org)" data-class="dense" data-theme="deckkit" lang="en-US" class="dense" data-marpit-pagination="10" style="--paginate:true;--header:![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026;--footer:[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org);--class:dense;--theme:deckkit;" data-marpit-pagination-total="21" data-size="16:9">
 <header><img src="https://brc-analytics.org/logo/brc.svg" alt="BRC Analytics" /> ICOPA XVI · Montréal 2026</header>
 
-<h1 id="software-architecture-and-data-availability">Software architecture and data availability</h1>
-<p>Every component is open source, containerised, and tied to a versioned reference set</p>
-<div class="cards" style="--cols:3;--gap:16px;--card-minh:215px"><div class="card card-left accent-sky size-sm"><div class="card-tag">1 · Open source</div><div class="card-title">Galaxy tool suite</div><div class="card-body"><p>Tool wrappers in <a href="https://github.com/nekrut/brc-tools/tree/cyclospora-lofreq-pyeuk"><code>nekrut/brc-tools</code></a>, written to the IWC specification.</p>
-<p>They join <code>bwa-mem</code> alignment, <a href="https://csb5.github.io/lofreq/"><code>LoFreq</code></a> variant calling, haplotype-sheet extraction and PyEuk clustering into one workflow. Run it from a browser, the <a href="https://galaxyproject.org">Galaxy</a> API or a command line.</p>
-</div></div><div class="card card-left accent-emerald size-sm"><div class="card-tag">2 · One image</div><div class="card-title">Containerised engine</div><div class="card-body"><p>One pinned Apptainer or Docker image holds PyEuk, its compiled Numba kernels, <code>LoFreq</code> and <code>bwa-mem</code>.</p>
-<p>PyEuk is pinned by commit, not by tag. Locked dependencies stop environment drift and R package conflicts.</p>
-</div></div><div class="card card-left accent-amber size-sm"><div class="card-tag">3 · Cited by DOI</div><div class="card-title">Reference package</div><div class="card-body"><p><a href="https://doi.org/10.5281/zenodo.21924355"><code>10.5281/zenodo.21924355</code></a> holds <code>markers.fa</code>, <code>parts.bed</code>, <code>haplotypes78.fa</code> and <code>junction.fa</code> with SHA-256 checksums.</p>
-<p>A run pins the exact bytes it used, so allele calls stay comparable between labs and between seasons.</p>
-</div></div></div><footer><a href="https://brc-analytics.org">brc-analytics.org</a> | <a href="https://usegalaxy.org">usegalaxy.org</a> | <a href="https://galaxyproject.org">galaxyproject.org</a></footer>
+<h1 id="worked-example-cyclospora-cayetanensis">Worked example: <em>Cyclospora cayetanensis</em></h1>
+<p>99.6% of the public data comes from one assay</p>
+<div class="stats" style="--cols:4"><div class="stat accent-sky"><span class="stat-value">9,054</span><span class="stat-label">public SRA runs</span><span class="stat-note">the entire archive</span></div><div class="stat accent-amber"><span class="stat-value">9,016</span><span class="stat-label">CDC 8-marker amplicon</span><span class="stat-note">99.6% of all runs</span></div><div class="stat accent-rose"><span class="stat-value">38</span><span class="stat-label">whole-genome runs</span><span class="stat-note">worldwide</span></div><div class="stat accent-slate"><span class="stat-value">49</span><span class="stat-label">assemblies</span><span class="stat-note">median 1,391 contigs</span></div></div><div class="figure figure-bare" style="--h:338px"><img src="assets/cyc/genome_quality.png" alt="" /></div><footer><a href="https://brc-analytics.org">brc-analytics.org</a> | <a href="https://usegalaxy.org">usegalaxy.org</a> | <a href="https://galaxyproject.org">galaxyproject.org</a></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-header="![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026" data-footer="[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org)" data-class="micro" data-theme="deckkit" lang="en-US" class="micro" data-marpit-pagination="11" style="--paginate:true;--header:![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026;--footer:[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org);--class:micro;--theme:deckkit;" data-marpit-pagination-total="21" data-size="16:9">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-header="![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026" data-footer="[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org)" data-class="compact middle" data-theme="deckkit" lang="en-US" class="compact middle" data-marpit-pagination="11" style="--paginate:true;--header:![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026;--footer:[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org);--class:compact middle;--theme:deckkit;" data-marpit-pagination-total="21" data-size="16:9">
 <header><img src="https://brc-analytics.org/logo/brc.svg" alt="BRC Analytics" /> ICOPA XVI · Montréal 2026</header>
 
-<h1 id="the-workflow-as-it-runs">The workflow, as it runs</h1>
-<p>Eleven steps in the Galaxy editor: four inputs, two callers in parallel, one sheet, one clustering step. It is editable, versioned, and anyone with the link can run it.</p>
-<div class="figure figure-bare" style="--h:420px"><img src="assets/cyc/galaxy_workflow_canvas.png" alt="" /></div><p class="footnote">Coming to the BRC-Analytics <strong>Workflows</strong> tab. We need beta testers.</p>
+<h1 id="a-labelled-outbreak-benchmark-public-and-unused">A labelled outbreak benchmark, public and unused</h1>
+<p>The CDC typing repository provides epidemiologic cluster labels for the 2018 US outbreaks</p>
+<div class="cards" style="--cols:2;--gap:18px;--card-minh:185px"><div class="card card-left accent-emerald size-md"><div class="card-tag">Ground truth</div><div class="card-title">203 specimens, two traceback clusters</div><div class="card-body"><p>BioProject <a href="https://www.ebi.ac.uk/ena/browser/view/PRJNA578931"><code>PRJNA578931</code></a>, 10.3 GB of reads. <strong>Vendor A</strong> (salads) n=99; <strong>Vendor B</strong> (vegetable trays) n=104.</p>
+<p>The labels come from food-exposure traceback. They are independent of the sequence data.</p>
+</div></div><div class="card card-left accent-sky size-md"><div class="card-tag">Linkage</div><div class="card-title">A link that nobody had used</div><div class="card-body"><p>All 203 specimens connect to public SRA runs through the BioSample <code>Sample Alias</code> field.</p>
+<p>This link makes the largest public <em>Cyclospora</em> dataset a supervised clustering benchmark instead of unlabelled reads.</p>
+</div></div></div><div class="cols" style="--gap:16px;grid-template-columns:1fr 1fr"><div class="col"><div class="box accent-amber size-md box-inline"><div class="box-body"><p><strong>The geography is recoverable.</strong> CDC BioSamples report only <code>geo_loc_name=USA</code>. The sample names encode the submitting state and the specimen year — <strong>41 states across 2018–2025</strong>.</p>
+</div></div></div><div class="col"><div class="box accent-indigo size-md box-inline"><div class="box-body"><p><strong>The reference files have a DOI.</strong> Markers, PART windows, 78 named haplotypes and the junction windows: <a href="https://doi.org/10.5281/zenodo.21924355"><code>10.5281/zenodo.21924355</code></a> — the CDC release, deposited again as CC0.</p>
+</div></div></div></div><footer><a href="https://brc-analytics.org">brc-analytics.org</a> | <a href="https://usegalaxy.org">usegalaxy.org</a> | <a href="https://galaxyproject.org">galaxyproject.org</a></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-header="![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026" data-footer="[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org)" data-class="dense" data-theme="deckkit" lang="en-US" class="dense" data-marpit-pagination="12" style="--paginate:true;--header:![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026;--footer:[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org);--class:dense;--theme:deckkit;" data-marpit-pagination-total="21" data-size="16:9">
+<header><img src="https://brc-analytics.org/logo/brc.svg" alt="BRC Analytics" /> ICOPA XVI · Montréal 2026</header>
+
+<h1 id="the-panel-as-a-galaxy-workflow">The panel, as a Galaxy workflow</h1>
+<p>11 steps. 153 specimens make 615 jobs.</p>
+<div class="cols cols-stretch" style="--gap:18px;grid-template-columns:1.15fr 0.85fr"><div class="col"><div class="figure figure-bare" style="--h:440px"><img src="assets/cyc/galaxy_workflow.png" alt="" /></div></div><div class="col"><div class="card card-top accent-emerald size-md"><div class="card-title">It reproduces the local analysis</div><div class="card-body"><table>
+<thead>
+<tr>
+<th></th>
+<th>local</th>
+<th>Galaxy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>junction precision</td>
+<td>1.000</td>
+<td>1.0000</td>
+</tr>
+<tr>
+<td>junction recall</td>
+<td>0.971</td>
+<td>0.9712</td>
+</tr>
+<tr>
+<td>PART precision</td>
+<td>0.9150</td>
+<td>0.9150</td>
+</tr>
+<tr>
+<td>PART recall</td>
+<td>0.9145</td>
+<td>0.9145</td>
+</tr>
+</tbody>
+</table>
+<p>The haplotype sheet is byte-identical. The distance matrices agree to 2.6 × 10⁻¹⁰: 0 of 23,409 cells are different.</p>
+</div></div></div></div><p class="footnote">The numbers come from the A1 benchmark, August 2026. A preprint is in preparation.</p>
 <footer><a href="https://brc-analytics.org">brc-analytics.org</a> | <a href="https://usegalaxy.org">usegalaxy.org</a> | <a href="https://galaxyproject.org">galaxyproject.org</a></footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-header="![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026" data-footer="[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org)" data-class="compact middle" data-theme="deckkit" lang="en-US" class="compact middle" data-marpit-pagination="12" style="--paginate:true;--header:![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026;--footer:[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org);--class:compact middle;--theme:deckkit;" data-marpit-pagination-total="21" data-size="16:9">
-<header><img src="https://brc-analytics.org/logo/brc.svg" alt="BRC Analytics" /> ICOPA XVI · Montréal 2026</header>
-
-<h1 id="summary-modernised-cyclospora-surveillance">Summary: modernised <em>Cyclospora</em> surveillance</h1>
-<p>Four changes that make outbreak analysis sensitive, deterministic and reproducible</p>
-<div class="cards" style="--cols:2;--gap:16px;--card-minh:155px"><div class="card card-left accent-emerald size-sm"><div class="card-title">1 · Fewer cases discarded</div><div class="card-body"><p>The legacy retention rule discards <strong>56%</strong> of the cohort — it keeps 67 of 153. Run on the open pipeline's calls, the same rule keeps <strong>147 of 153</strong>, and <strong>195 of 203</strong>.</p>
-</div></div><div class="card card-left accent-sky size-sm"><div class="card-title">2 · Deterministic topologies</div><div class="card-body"><p>Stable sorting replaces random tie-breaking, and inverse-variance KING-wIBS weights model co-infection. Reruns are byte-identical, where the legacy ensemble differs in <strong>66.8%</strong> of cells.</p>
-</div></div><div class="card card-left accent-indigo size-sm"><div class="card-title">3 · Label-free outbreak discovery</div><div class="card-body"><p>Dynamic relative-gap tree cutting finds the outbreak boundary from the data alone — <strong>k = 2, ARI 0.9737</strong> on the Galaxy workflow's own sheet. No pre-calibrated answer key.</p>
-</div></div><div class="card card-left accent-amber size-sm"><div class="card-title">4 · Open, fast infrastructure</div><div class="card-body"><p>Vectorised Numba kernels build the distance matrix in <strong>1.6 s</strong>, against 370–655 s for the R implementation — <strong>230× to 400×</strong>. Pinned containers, open Galaxy wrappers.</p>
-</div></div></div><footer><a href="https://brc-analytics.org">brc-analytics.org</a> | <a href="https://usegalaxy.org">usegalaxy.org</a> | <a href="https://galaxyproject.org">galaxyproject.org</a></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-header="![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026" data-footer="[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org)" data-class="compact middle" data-theme="deckkit" lang="en-US" class="compact middle" data-marpit-pagination="13" style="--paginate:true;--header:![BRC Analytics](https://brc-analytics.org/logo/brc.svg) ICOPA XVI · Montréal 2026;--footer:[brc-analytics.org](https://brc-analytics.org) | [usegalaxy.org](https://usegalaxy.org) | [galaxyproject.org](https://galaxyproject.org);--class:compact middle;--theme:deckkit;" data-marpit-pagination-total="21" data-size="16:9">
 <header><img src="https://brc-analytics.org/logo/brc.svg" alt="BRC Analytics" /> ICOPA XVI · Montréal 2026</header>
