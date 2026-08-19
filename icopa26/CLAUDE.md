@@ -244,4 +244,25 @@ not prove that, and "proves" breaks the tone mandate.
 - `assets/qr/icopa26.svg` — `npx qrcode -t svg -o icopa26.svg https://gxy.io/icopa26`.
   `assets/qr/testers.svg` carried over. The ASV and kmindex QRs were deleted.
 
+## Language: Simplified Technical English
+
+All slide text follows Simplified Technical English. Keep it that way when you
+edit. The rules that actually bite on this deck:
+
+- **No idioms, metaphors or colloquialisms.** Things that were removed: "ships"
+  (→ provides), "fan out into", "turns up" (→ finds), "the join nobody had
+  made", "the largest dataset on Earth", "junction rescue" (→ junction
+  coverage), "what hosting it buys" (→ what it provides), "results pipe onward"
+  (→ results go to other tools), "end to end", "bring your own", "goes looking",
+  "one last thing", "a 15 min impossible challenge", "teaser".
+- **Active voice.** "We give you API keys", not "You will be given API keys".
+- **Short sentences, one idea each.** Semicolon-joined clauses were split.
+- **One word, one meaning.** "Select" throughout, not select/pick/choose.
+- **Phrasal verbs replaced** by single verbs where one exists: cut → reduce,
+  inspect → examine, iterate → repeat.
+- **No hyperbole.** Claims stay exactly as strong as the data supports.
+
+Numbers, accessions, tool names and claims were not changed by the language
+pass — only the wording around them.
+
 Tone: objective about the biology, assertive about the tooling.
