@@ -80,9 +80,10 @@ Verified July 2026 — recheck before presenting:
   indices sequentially within one job.
 - The 383 novel papillomavirus types come from a **separate April 2026
   preprint** that used Logan, not from the Logan paper itself.
-- LexicMap is a real IUC tool but is **not on usegalaxy.org** — it is live on
-  usegalaxy.eu only. It was dropped from the outline for that reason; do not
-  reintroduce it without naming the server.
+- LexicMap was dropped from this deck's outline because it was live on
+  usegalaxy.eu only. **That is no longer true** — as of 19 Aug 2026 both
+  `lexicmap_index` and `lexicmap_search` are on usegalaxy.org (verified via
+  `usegalaxy.org/api/tools?q=lexicmap`), so the reason for excluding it is gone.
 - Hantavirus: 104 isolates, M segment, MV Hondius outbreak May 2026, six
   host-specific Contrast-FEL sites, site 649 in the W-A-A-S-A cleavage motif,
   selection intensity unchanged across the host transition (K ≈ 1).

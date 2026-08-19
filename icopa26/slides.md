@@ -383,7 +383,7 @@ Every public SRA accession reassembled into **unitigs** — near-lossless, best 
 
 ::: card title="How to query it" accent=sky border=top size=sm
 - [`kmindex_query`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/kmindex/kmindex_query/0.6.1+galaxy3) on [usegalaxy.org](https://usegalaxy.org) — median **4 s** against one index, **8.4 min** against all of them.
-- `LexicMap` on [usegalaxy.eu](https://usegalaxy.eu) — alignment-based, for longer queries.
+- `LexicMap` on [usegalaxy.org](https://usegalaxy.org) — alignment-based, for longer queries.
 - Or at [logan-search.org](https://logan-search.org).
 :::
 
@@ -392,8 +392,44 @@ Every public SRA accession reassembled into **unitigs** — near-lossless, best 
 ::: card title="What a search turned up" accent=amber border=top size=sm
 *Cyclospora* 28S rRNA in **3 clinical stool runs** annotated as something else — a Bangladeshi cholera cohort and two UK gastroenteritis metatranscriptomes.
 
-The next three slides work through them.
+The slides that follow work through them.
 :::
+:::
+
+---
+
+<!-- _class: micro middle -->
+
+# Two ways to search it, both on usegalaxy.org
+
+Same archive, different question — pick by what you need back
+
+::: cols cols=2 gap=20px
+::: card title="kmindex" subtitle="Is it present, and in which datasets?" accent=sky border=top size=md
+Queries pre-built k-mer indexes and returns the **fraction of k-mers shared** between your query and every indexed sample — as a matrix or JSON. No coordinates.
+
+- Searches **raw sequencing runs** — Logan unitigs, ~23M libraries
+- Any query length; `(k+z)`-mers cut false positives
+- Median **4 s** against one index, **8.4 min** against all
+
+`kmindex_build` · `kmindex_query`
+:::
+
++++
+
+::: card title="LexicMap" subtitle="Where does it align, and how well?" accent=emerald border=top size=md
+A true **alignment** tool: seeds against millions of indexed sequences, then returns each match with its coordinates and identity.
+
+- Searches **assembled sequence** — Logan contigs, genome collections
+- Queries **longer than 150 bp** — genes, plasmids, viral genomes, long reads
+- Output is alignments, so you can inspect what actually matched
+
+`lexicmap_index` · `lexicmap_search`
+:::
+:::
+
+::: note accent=amber
+This is why Logan ships two products: **unitigs** are near-lossless and suit `kmindex` presence search; **contigs** are error-corrected and suit `LexicMap` alignment.
 :::
 
 ---

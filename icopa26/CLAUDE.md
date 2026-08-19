@@ -3,11 +3,11 @@
 Montréal, 16–21 Aug 2026. Source: `slides.md` (deckkit — see `../CLAUDE.md`
 and `../deckkit/README.md`).
 
-**19 slides in a 15-minute slot.** It was 16, which was already brisk; slides
-16–18 were added later on request. At 19 slides this is roughly 47 seconds a
-slide with no room for questions. If it has to come down, slides 16–18 are the
-newest and most cuttable block, and slide 16 (the LexicMap infrastructure
-argument) carries no data of its own.
+**20 slides in a 15-minute slot.** It was 16, which was already brisk; the
+archive-search block (slides 16–19) was added later on request. At 20 slides
+this is 45 seconds a slide with nothing left for questions. If it has to come
+down, that block is the newest, and slide 17 (the LexicMap infrastructure
+argument) carries no data of its own and overlaps slide 16 — cut it first.
 
 ```bash
 ../deckkit/bin/deck build slides.md   # HTML — the deck you present
@@ -143,8 +143,19 @@ used" below.
   sets, and do not call the preprint published.
 - `kmindex_query` on usegalaxy.org: median 4 s single-index, 8.4 min all-index
   (a worst case — the wrapper queries indices sequentially in one job).
-- **LexicMap is on usegalaxy.eu only, not usegalaxy.org.** Slide 15 names the
-  server; keep it that way.
+- **LexicMap is now on usegalaxy.org.** The ASV deck's note that it was
+  usegalaxy.eu-only was true in July 2026 and is not any more — verified
+  19 Aug 2026 against `usegalaxy.org/api/tools?q=lexicmap`, which returns
+  `lexicmap_index/0.9.0+galaxy0` and `lexicmap_search/0.9.0+galaxy1`.
+  `kmindex_build/0.6.1+galaxy0` and `kmindex_query/0.6.1+galaxy3` are there too.
+  Both are also on usegalaxy.eu. Re-check the API before reusing this claim.
+- The kmindex/LexicMap split on slide 16: `kmindex` returns the **fraction of
+  k-mers shared** with each indexed sample — presence across raw runs, no
+  coordinates. `LexicMap` **aligns**, returning matches with coordinates and
+  identity, against assembled sequence, for queries longer than 150 bp. Upstream
+  frames LexicMap around prokaryotic genome collections; the slide says
+  "assembled sequence — Logan contigs, genome collections", which is the honest
+  generalisation and matches how it is used here.
 - The *Cyclospora* archive hits (28S rRNA in `SRR25011076`, Bangladesh cholera
   cohort; `ERR11474981` and `ERR11495252`, UK gastroenteritis metatranscriptomes)
   come from a task prompt, not a results document. The slide labels them
