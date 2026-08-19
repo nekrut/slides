@@ -29,7 +29,7 @@ insertion or deletion.**
 | 2 | Take as many pictures as you like |
 | 3 | Outline |
 | 4 | BRC-Analytics: data, tools, workflows, infrastructure |
-| 5 | Most of the catalogue is eukaryotic |
+| 5 | Most of the BRC-Analytics catalogue is eukaryotic |
 | 6 | BRC-Analytics flow |
 | 7 | Workflows that run on a eukaryotic pathogen |
 | 8 | Galaxy is a free public resource |

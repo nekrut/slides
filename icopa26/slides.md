@@ -79,7 +79,7 @@ Five topics in 15 minutes
 
 <!-- _class: compact middle -->
 
-# Most of the catalogue is eukaryotic
+# Most of the [BRC-Analytics](https://brc-analytics.org) catalogue is eukaryotic
 
 The catalogue holds 1,975 taxa and 5,506 annotated assemblies. **449 taxa** are parasitic protists, helminths or arthropod vectors.
 
