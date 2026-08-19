@@ -354,7 +354,7 @@ AI is an environmental and social disaster — but used responsibly it could be 
 You will be given API keys to frontier models!
 
 ::: figure src="assets/qr/testers.svg" h=455px bare
-[forms.gle/T9EZyXBnACso6cYn6](https://forms.gle/T9EZyXBnACso6cYn6)
+[forms.gle/W93iF3L6ypjCvcYQ6](https://forms.gle/W93iF3L6ypjCvcYQ6)
 :::
 
 ---
