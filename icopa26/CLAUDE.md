@@ -3,11 +3,10 @@
 Montréal, 16–21 Aug 2026. Source: `slides.md` (deckkit — see `../CLAUDE.md`
 and `../deckkit/README.md`).
 
-**20 slides in a 15-minute slot.** It was 16, which was already brisk; the
-archive-search block (slides 16–19) was added later on request. At 20 slides
-this is 45 seconds a slide with nothing left for questions. If it has to come
-down, that block is the newest, and slide 17 (the LexicMap infrastructure
-argument) carries no data of its own and overlaps slide 16 — cut it first.
+**21 slides in a 15-minute slot.** It started at 16, which was already brisk.
+At 21 this is roughly 43 seconds a slide with nothing left for questions. If it
+has to come down, the archive-search block (17–20) is the newest, and slide 18
+carries no data of its own and overlaps slide 17 — cut that one first.
 
 ```bash
 ../deckkit/bin/deck build slides.md   # HTML — the deck you present
@@ -18,6 +17,36 @@ argument) carries no data of its own and overlaps slide 16 — cut it first.
 Always run `build` as well as `png` after an edit — checking a PNG while
 `slides.html` is stale has caused confusion before.
 
+## Slide map
+
+Numbers shift whenever a slide is inserted, and this file refers to slides by
+number throughout. **Update this map and re-check every number below after any
+insertion or deletion.**
+
+| # | Slide |
+| --- | --- |
+| 1 | Title |
+| 2 | Take as many pictures as you like |
+| 3 | Outline |
+| 4 | BRC-Analytics: data, tools, workflows, infrastructure |
+| 5 | Most of the catalogue is eukaryotic |
+| 6 | BRC-Analytics flow |
+| 7 | Workflows that run on a eukaryotic pathogen |
+| 8 | Galaxy is a free public resource |
+| 9 | Get data, run tools, run workflows, interpret |
+| 10 | Software architecture and data availability |
+| 11 | The workflow, as it runs |
+| 12 | Summary: modernised *Cyclospora* surveillance |
+| 13 | What the open pipeline changes |
+| 14 | The future is agentic — Orbit demo |
+| 15 | We need testers! |
+| 16 | The entire public archive is searchable — Logan |
+| 17 | Two ways to search it — kmindex vs LexicMap |
+| 18 | Petabase-scale search, without the hardware |
+| 19 | What a 28S query finds in routine stool archives |
+| 20 | From shotgun reads to MLST alleles |
+| 21 | Thank you! |
+
 ## Provenance
 
 Adapted from `../asv2026/slides.md` (American Society for Virology, July 2026).
@@ -27,38 +56,65 @@ What changed, and why:
   agentic AI with open infrastructure for pathogen genomics". "From reads to
   outbreak clusters" survives as the subtitle. Note the tension this creates:
   the title makes agentic AI a co-headliner while the deck spends one slide of
-  sixteen on it (see the trim below). Restore a slide there if the title is
+  twenty-one on it (see the trim below). Restore a slide there if the title is
   what the room came for.
-- **Slide 4 is new** — the catalogue's taxonomic breakdown. An ASV audience did
+- **Slide 2 is new** — an explicit invitation to photograph the deck, with the
+  short link. Added on request.
+- **Slide 5 is new** — the catalogue's taxonomic breakdown. An ASV audience did
   not need to be told BRC-Analytics covers their organisms; a parasitology
   audience does, and the honest answer is that 449 of 1,975 taxa are parasitic
   protists, helminths or arthropod vectors.
-- **Slide 6 replaced** the four virology workflow cards with the eukaryote-
+- **Slide 7 replaced** the four virology workflow cards with the eukaryote-
   applicable workflows actually in the BRC catalogue.
-- **Slides 9–12 replaced** the Andes hantavirus selection example with
+- **Slides 10–13 replaced** the Andes hantavirus selection example with
   *Cyclospora cayetanensis* outbreak surveillance.
-- **The agentic section shrank from three slides to one** (slide 13). The ASV
+- **The agentic section shrank from three slides to one** (slide 14). The ASV
   deck spent a divider, a poll slide and the Orbit demo on it; here the
-  assertion rides in the lead line of the Orbit slide. The slide-3/slide-10
+  assertion rides in the lead line of the Orbit slide. The ASV deck's repeated
   pillars callback is therefore gone — do not go looking for it.
-- **Logan and LexicMap merged** into one closer (slide 15).
-- **Slides 16–18 ported** from slides 25, 26 and 27 of the Tools-for-Tomorrow
+- **Logan and LexicMap merged** into one closer (slide 16).
+- **Slides 18–20 ported** from slides 25, 26 and 27 of the Tools-for-Tomorrow
   webinar deck at `~/git/BRC-research/cyclospora/presentation/index.html`,
   rewritten into deckkit components: the LexicMap-on-Galaxy infrastructure
   argument, the three archive hits, and the read-level allele recovery. Slide
-  15's third card was trimmed to a lead-in so it no longer duplicates them.
+  16's third card was trimmed to a lead-in so it no longer duplicates them.
+- **Slide 17 added** — the kmindex/LexicMap comparison.
+- **Slides 10–12 replaced again**, on request, by slides 30, 31 and 32 of the
+  webinar deck: software architecture, the workflow canvas, and the four-point
+  summary. This **removed** the *Cyclospora* data-gap slide (9,054 runs, 99.6%
+  one assay), the labelled-benchmark slide (Vendor A/B, 203 specimens) and the
+  Galaxy reproduction table. See "Open defects" below — that removal has
+  consequences the deck does not yet resolve.
+
+## Open defects
+
+Two problems were introduced by the 10–12 replacement and are **not** fixed:
+
+1. **The cohort is never introduced.** Slides 12 and 13 quote "67 of 153",
+   "147 of 153" and "195 of 203", but nothing in the deck now says what those
+   specimens are. The word "Vendor" appears nowhere. The audience meets
+   *Cyclospora* for the first time on slide 10, as a software architecture
+   diagram. Fix by restoring a short setup slide before 10, or by adding one
+   sentence of cohort context to slide 12.
+2. **Slides 12 and 13 duplicate each other.** Slide 12 cards 1, 2 and 4 restate
+   the same three figures as slide 13's three cards — retention, 66.8%
+   determinism, 1.6 s against 370–655 s. Consecutive slides carrying identical
+   numbers read as an error. Either swap them so the evidence (13) precedes the
+   summary (12), or drop 13 — but if 13 goes, **move its `note` onto 12**: that
+   note carries the "legacy metric discriminates better, AUC 0.9964 against
+   0.7692, and the benchmark is easy" caveat, which must not be lost.
 
 ## Argument
 
 Four moves, same shape as ASV but with the parasitology example load-bearing:
 
-1. **BRC-Analytics is the front door**, and it is mostly eukaryotic — slides 3–5.
-2. **Its real function is handing you to Galaxy** — slides 5–8.
-3. **A worked example that a parasitologist can check** — slides 9–12. The
+1. **BRC-Analytics is the front door**, and it is mostly eukaryotic — slides 4–6.
+2. **Its real function is handing you to Galaxy** — slides 6–9.
+3. **A worked example that a parasitologist can check** — slides 10–13. The
    *Cyclospora* arc is: the public data is one assay; a labelled outbreak
    benchmark was sitting unused inside it; here is the panel as a Galaxy
    workflow, and here is honestly what that does and does not buy you.
-4. **The agentic turn and the searchable archive** — slides 13–15.
+4. **The agentic turn and the searchable archive** — slides 14–20.
 
 Closing ask: a parasitologist should leave able to run *their own* organism
 through it. The last slide is the one people photograph.
@@ -76,7 +132,7 @@ Counts come from `catalog/output/organisms.json` in
   Kinetoplastea 39/115, Amoebozoa 28/40, Metamonada 8/43.
 - Everything else: 681 fungi (Ascomycota 472, Basidiomycota 150, Chytridiomycota
   33, Mucoromycota 26), 457 viruses, 323 bacteria, 24 oomycetes, plus 41
-  ungrouped or incidental. Slide 4's footnote says "also in the catalogue" and
+  ungrouped or incidental. Slide 5's footnote says "also in the catalogue" and
   not "the rest" precisely because those 41 are unlisted.
 
 Re-derive rather than trusting these if the deck is reused; the catalogue moves.
@@ -86,7 +142,7 @@ Re-derive rather than trusting these if the deck is reused; the catalogue moves.
 750k jobs/month, 400k+ users, $2M+ free compute/year, 22k+ citations, 10,000+
 tools. Unchanged from the ASV deck.
 
-Slide 6's workflows are the eukaryote-applicable entries in the BRC catalogue
+Slide 7's workflows are the eukaryote-applicable entries in the BRC catalogue
 (`catalog/output/workflows.json`), except the assembly card, which reaches past
 BRC into IWC — the lead line points there, so that is fair. The **14-workflow
 VGP suite** is `workflows/VGP-assembly-v2/` in `galaxyproject/iwc`, counted as
@@ -105,18 +161,19 @@ used" below.
   records, median 1,391 contigs / 103 kb N50. No RNA-seq, no proteomics, no data
   for any *Cyclospora* species other than *C. cayetanensis* — and with no in
   vitro culture and no animal model, that is structural.
-  **Say that last part out loud.** Slide 9 carries only the four figures and the
-  assembly-quality plot at full width; the card explaining *why* the data stays
-  this way was cut, so the point survives only if you make it from the podium.
+  **None of this is on a slide any more** — the data-gap slide was removed in the
+  10–12 replacement. If you want the audience to understand why *Cyclospora*
+  surveillance rests on one amplicon panel, you must say it from the podium.
 - Benchmark: 203 specimens, BioProject `PRJNA578931`, 10.3 GB. **Vendor A**
   (salads) n=99, **Vendor B** (vegetable trays) n=104, labelled by food-exposure
   traceback in CDC's `2018_gold_clusters.txt`. All 203 join to SRA runs via the
-  BioSample `Sample Alias` field.
+  BioSample `Sample Alias` field. **Also no longer on a slide**, though slides 12
+  and 13 quote counts drawn from it — see "Open defects".
 - Geography: 41 states across 2018–2025 recovered from CDC sample names, against
   BioSample metadata that reports only `geo_loc_name=USA`.
 - Reference files: `10.5281/zenodo.21924355` (version DOI; concept DOI
   `…354`). Byte-identical to CDC's release, redeposited CC0. **Cite CDC as the
-  source of the panel and the nomenclature** — slide 16 does.
+  source of the panel and the nomenclature** — slide 21 does.
 - Galaxy workflow: 11 steps, 615 jobs for 153 specimens. Reproduction against
   the local run: junction precision 1.0000 / recall 0.9712; PART precision
   0.9150 / recall 0.9145; haplotype sheet byte-identical; distance matrices
@@ -124,12 +181,12 @@ used" below.
 - Retention: CDC's rule keeps **67 of 153** on CDC's own calls; on the open
   pipeline's calls the same rule keeps **147 of 153** and **195 of 203**.
   PyEuk's own completeness filter drops 9, retaining 144.
-- Junction rescue: called in **128 of 153** specimens against CDC's 103; **27
+- Junction coverage: called in **128 of 153** specimens against CDC's 103; **27
   specimens typed that CDC left blank**; among the 101 both call, 0 disagree.
 - Determinism and speed: rerun on identical input the legacy ensemble differs in
   **66.8%** of matrix cells and is 24.1% asymmetric; PyEuk is byte-identical.
   1.56–1.73 s against 370–655 s (three runs each) — **230×–400×**, not ">300×".
-- **The caveat on slide 12 is not optional.** On raw pairwise discrimination the
+- **The caveat on slide 13 is not optional.** On raw pairwise discrimination the
   legacy CDC metric wins: ROC AUC **0.9964** against **0.7692** on the same
   165-column sheet. And the benchmark is easy in a measurable way — single loci
   separate the vendors outright (`Nu_CDS1_PART_A`: 56/56 Vendor A carry `Hap_2`,
@@ -149,7 +206,7 @@ used" below.
   `lexicmap_index/0.9.0+galaxy0` and `lexicmap_search/0.9.0+galaxy1`.
   `kmindex_build/0.6.1+galaxy0` and `kmindex_query/0.6.1+galaxy3` are there too.
   Both are also on usegalaxy.eu. Re-check the API before reusing this claim.
-- The kmindex/LexicMap split on slide 16: `kmindex` returns the **fraction of
+- The kmindex/LexicMap split on slide 17: `kmindex` returns the **fraction of
   k-mers shared** with each indexed sample — presence across raw runs, no
   coordinates. `LexicMap` **aligns**, returning matches with coordinates and
   identity, against assembled sequence, for queries longer than 150 bp. Upstream
@@ -182,9 +239,31 @@ contains errors that were checked against the blog record and left out here:
   `C_IL119_18`) has no analysis record anywhere in the repo. Webinar slides 28
   and 29 cover it; they were **not** ported, and should not be without one.
 
+**Corrected while porting webinar slide 32 into slide 12.** That slide as written
+contradicts the measured record, and three of its four headline claims were
+changed rather than copied:
+
+- "100% Patient Retention" / "no discarded cases" → **false**. PyEuk's own filter
+  retains 144 of 153. Slide 12 instead states the legacy rule's 56% attrition and
+  the open pipeline's 147 of 153 and 195 of 203, which agree with slide 13.
+- "rescues uncalled markers with 100% precision" → it is 27 **specimens** at the
+  **junction**, and panel-wide precision is 0.9150. Dropped from slide 12.
+- "580,000 distances in 1.56 s (>300× faster than R)" → 580,503 pairs is CDC's
+  1,078-specimen matrix, not this 153-specimen cohort (11,628 pairs), and the
+  project's own plotting script refuses the ">300×" comparison as not
+  like-for-like. Slide 12 gives the runtime range and **230×–400×**, and drops
+  the pair count.
+- "PyEuk v2.1.0" and "Python 3.11" appear nowhere in the blog record, so slide 10
+  says PyEuk is "pinned by commit, not by tag" and names no Python version.
+  `nekrut/brc-tools` and the `cyclospora-lofreq-pyeuk` branch are real, as are
+  Apptainer, Numba, LoFreq and bwa.
+- ARI 0.9737 at k = 2 **is** measured — it is the label-free score on the Galaxy
+  workflow's own sheet, and slide 12 attributes it that way. Never compare it to
+  0.9721, which is the same engine on CDC's sheet.
+
 ## Numbers used, but only as preliminary
 
-Slides 16–18 came from the webinar deck, and the archive-mining figures on them
+Slides 18–20 came from the webinar deck, and the archive-mining figures on them
 have **no measurement record in `nekrut/BRC-research`** — they trace to
 `cyclospora/prompts/metagenomic_pyeuk_mining.md`, which is a task prompt
 describing work to be done, not a results document. The three accessions
@@ -196,7 +275,7 @@ read counts *are* corroborated; what is not corroborated is:
 - **4 reads at MAPQ 60 → 5 sub-locus calls**, the coordinates, E-values,
   MOI = 1, and the `Mt_MSR_PART_F_Hap_2` geographic split.
 
-Both slides label this preliminary, and slide 17 carries the contrary result
+Both slides label this preliminary, and slide 19 carries the contrary result
 from `SRA-DATA-ASSESSMENT.md` §6 — NCBI STAT scanned 421 stool metagenomes from
 ten endemic countries plus 200 wastewater metagenomes with a working positive
 control and found none. **Keep that caveat attached.** A "*Cyclospora* is hiding
@@ -205,7 +284,7 @@ own assessment document, and it is the first thing a sceptical parasitologist
 will ask about.
 
 Also corrected while porting: the webinar deck calls LexicMap "alignment-free".
-It is k-mer *indexed* but alignment-producing — slide 15 says "alignment-based",
+It is k-mer *indexed* but alignment-producing — slide 16 says "alignment-based",
 which is right. And its closing line, "LexicMap proves that public sequence
 archives already contain the missing links", was dropped; three accessions do
 not prove that, and "proves" breaks the tone mandate.
@@ -213,21 +292,20 @@ not prove that, and "proves" breaks the tone mandate.
 ## Published
 
 - Deck: <https://nekrut.github.io/slides/icopa26/>
-- Short link: `gxy.io/icopa26` — QR on the title and closing slides.
-  **The redirect does not exist yet.** Until someone adds it to
-  `galaxyproject/gxy.io`, the QR falls through to gxy.io's default. If there is
-  no time, repoint the QR at the GitHub Pages URL instead.
+- Short link: `gxy.io/icopa26` — QR on the title and closing slides, and the URL
+  on slide 2. **Live** — `galaxyproject/gxy.io` PR #135 merged on 19 Aug 2026
+  and the redirect resolves to the GitHub Pages URL.
 - `nekrutenko_icopa26.pptx` — image-only fallback for PowerPoint-only venues,
-  16 slides at 5120×2880. Regenerate after *any* slide edit; it is a snapshot,
+  21 slides at 5120×2880. Regenerate after *any* slide edit; it is a snapshot,
   not a build artifact that updates itself.
 
 ## Known limits
 
-- **Slide 13 is a live widget**, inlined from `assets/orbit-demo.html`. It plays
+- **Slide 14 is a live widget**, inlined from `assets/orbit-demo.html`. It plays
   when its slide becomes active and replays on each visit, keyed off Marp's
   `bespoke-marp-active` class. In the PPTX and PNG exports it is a still frame.
   Reduced-motion is deliberately overridden — the animation *is* the content.
-- Slide 13's embed is `h=485px`. At 470px the widget's status bar clips.
+- Slide 14's embed is `h=485px`. At 470px the widget's status bar clips.
 
 ## Assets
 
@@ -237,27 +315,31 @@ not prove that, and "proves" breaks the tone mandate.
   without re-fetching.
 - `assets/cyc/` — eight figures pulled from
   `nekrut/BRC-research:cyclospora/presentation/assets/`. Only
-  `genome_quality.png` and `galaxy_workflow.png` are used; `distance_auc.png`,
-  `pipeline_compare.png`, `four_arm_design.png`, `expected_truth.png`,
-  `version_trajectory.png` and `galaxy_workflow_canvas.png` are staged for a
-  longer version of this talk.
+  **`galaxy_workflow_canvas.png`** is used, on slide 11. The other seven —
+  `genome_quality.png`, `galaxy_workflow.png`, `distance_auc.png`,
+  `pipeline_compare.png`, `four_arm_design.png`, `expected_truth.png` and
+  `version_trajectory.png` — are unreferenced. `genome_quality.png` and
+  `galaxy_workflow.png` were on the slides removed in the 10–12 replacement;
+  keep them, they are what you need to restore that material.
 - `assets/qr/icopa26.svg` — `npx qrcode -t svg -o icopa26.svg https://gxy.io/icopa26`.
-  `assets/qr/testers.svg` carried over. The ASV and kmindex QRs were deleted.
+  `assets/qr/testers.svg` points at the signup form. The ASV and kmindex QRs
+  were deleted. Verify a regenerated QR by decoding it out of the rendered PNG,
+  not by trusting the generator.
 
 ## Links
 
 Every URL, product name, tool name and accession in the slide text is a link.
-All 47 were checked with `curl` on 19 Aug 2026; only `bv-brc.org` (403) and
+All were checked with `curl` on 19 Aug 2026; only `bv-brc.org` (403) and
 `niaid.nih.gov` (405) refuse scripted requests — both are fine in a browser.
 
 - Orbit → <https://galaxyproject.github.io/loom/>
 - Logan → <https://github.com/IndexThePlanet/Logan>
-- **On slide 16, every `kmindex` and `LexicMap` reference opens the tool on
+- **On slide 17, every `kmindex` and `LexicMap` reference opens the tool on
   usegalaxy.org**, not upstream documentation — the inline names go to
   `kmindex_query` and `lexicmap_search`, and the tool IDs under each card go to
   their own forms. That slide is about running them, so the links must land on
   something runnable. The kmindex documentation link is no longer used anywhere.
-- Slide 17 keeps `LexicMap` → <https://bioinf.shenwei.me/LexicMap/>, because
+- Slide 18 keeps `LexicMap` → <https://bioinf.shenwei.me/LexicMap/>, because
   there it names the indexing method rather than the Galaxy tool.
 - Galaxy tool IDs link to `usegalaxy.org/?tool_id=<id>`; the four IDs are the
   ones the API returns, so re-check them when versions move.
@@ -267,7 +349,7 @@ All 47 were checked with `curl` on 19 Aug 2026; only `bv-brc.org` (403) and
 
 **Card `title=`, `subtitle=` and `tag=` are attributes, not markdown** — links
 and italics inside them render as literal text. Anything that must be clickable
-belongs in the card body. Slide 18's tags were changed from accessions to data
+belongs in the card body. Slide 19's tags were changed from accessions to data
 types for exactly this reason, once the accessions became links in the body.
 
 ## Language: Simplified Technical English
