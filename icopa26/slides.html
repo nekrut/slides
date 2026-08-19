@@ -536,14 +536,14 @@
 
 <h1 id="two-ways-to-search-it-both-on-usegalaxyorg">Two ways to search it, both on <a href="https://usegalaxy.org">usegalaxy.org</a></h1>
 <p>The same archive, a different question. Select the tool by the output you need.</p>
-<div class="cols" style="--gap:20px;--cols:2"><div class="col"><div class="card card-top accent-sky size-md"><div class="card-title">kmindex</div><div class="card-subtitle">Is it present, and in which datasets?</div><div class="card-body"><p><a href="https://tlemane.github.io/kmindex/"><code>kmindex</code></a> queries pre-built k-mer indexes. It returns the <strong>fraction of k-mers</strong> that your query shares with each indexed sample, as a matrix or as JSON. It gives no coordinates.</p>
+<div class="cols" style="--gap:20px;--cols:2"><div class="col"><div class="card card-top accent-sky size-md"><div class="card-title">kmindex</div><div class="card-subtitle">Is it present, and in which datasets?</div><div class="card-body"><p><a href="https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/kmindex/kmindex_query/0.6.1+galaxy3"><code>kmindex</code></a> queries pre-built k-mer indexes. It returns the <strong>fraction of k-mers</strong> that your query shares with each indexed sample, as a matrix or as JSON. It gives no coordinates.</p>
 <ul>
 <li>It searches <strong>raw sequencing runs</strong> — Logan unitigs, ~23M libraries</li>
 <li>Any query length. <code>(k+z)</code>-mers reduce false positives</li>
 <li>Median <strong>4 s</strong> against one index, <strong>8.4 min</strong> against all</li>
 </ul>
 <p><a href="https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/kmindex/kmindex_build/0.6.1+galaxy0"><code>kmindex_build</code></a> · <a href="https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/kmindex/kmindex_query/0.6.1+galaxy3"><code>kmindex_query</code></a></p>
-</div></div></div><div class="col"><div class="card card-top accent-emerald size-md"><div class="card-title">LexicMap</div><div class="card-subtitle">Where does it align, and how well?</div><div class="card-body"><p><a href="https://bioinf.shenwei.me/LexicMap/"><code>LexicMap</code></a> aligns. It seeds against millions of indexed sequences, then returns each match with its coordinates and its identity.</p>
+</div></div></div><div class="col"><div class="card card-top accent-emerald size-md"><div class="card-title">LexicMap</div><div class="card-subtitle">Where does it align, and how well?</div><div class="card-body"><p><a href="https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/lexicmap/lexicmap_search/0.9.0+galaxy1"><code>LexicMap</code></a> aligns. It seeds against millions of indexed sequences, then returns each match with its coordinates and its identity.</p>
 <ul>
 <li>It searches <strong>assembled sequence</strong> — Logan contigs, genome collections</li>
 <li>Queries <strong>longer than 150 bp</strong> — genes, plasmids, viral genomes, long reads</li>

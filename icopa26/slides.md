@@ -406,7 +406,7 @@ The same archive, a different question. Select the tool by the output you need.
 
 ::: cols cols=2 gap=20px
 ::: card title="kmindex" subtitle="Is it present, and in which datasets?" accent=sky border=top size=md
-[`kmindex`](https://tlemane.github.io/kmindex/) queries pre-built k-mer indexes. It returns the **fraction of k-mers** that your query shares with each indexed sample, as a matrix or as JSON. It gives no coordinates.
+[`kmindex`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/kmindex/kmindex_query/0.6.1+galaxy3) queries pre-built k-mer indexes. It returns the **fraction of k-mers** that your query shares with each indexed sample, as a matrix or as JSON. It gives no coordinates.
 
 - It searches **raw sequencing runs** — Logan unitigs, ~23M libraries
 - Any query length. `(k+z)`-mers reduce false positives
@@ -418,7 +418,7 @@ The same archive, a different question. Select the tool by the output you need.
 +++
 
 ::: card title="LexicMap" subtitle="Where does it align, and how well?" accent=emerald border=top size=md
-[`LexicMap`](https://bioinf.shenwei.me/LexicMap/) aligns. It seeds against millions of indexed sequences, then returns each match with its coordinates and its identity.
+[`LexicMap`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/lexicmap/lexicmap_search/0.9.0+galaxy1) aligns. It seeds against millions of indexed sequences, then returns each match with its coordinates and its identity.
 
 - It searches **assembled sequence** — Logan contigs, genome collections
 - Queries **longer than 150 bp** — genes, plasmids, viral genomes, long reads

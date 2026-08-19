@@ -252,8 +252,13 @@ All 47 were checked with `curl` on 19 Aug 2026; only `bv-brc.org` (403) and
 
 - Orbit → <https://galaxyproject.github.io/loom/>
 - Logan → <https://github.com/IndexThePlanet/Logan>
-- `kmindex` → <https://tlemane.github.io/kmindex/>; `LexicMap` →
-  <https://bioinf.shenwei.me/LexicMap/>
+- **On slide 16, every `kmindex` and `LexicMap` reference opens the tool on
+  usegalaxy.org**, not upstream documentation — the inline names go to
+  `kmindex_query` and `lexicmap_search`, and the tool IDs under each card go to
+  their own forms. That slide is about running them, so the links must land on
+  something runnable. The kmindex documentation link is no longer used anywhere.
+- Slide 17 keeps `LexicMap` → <https://bioinf.shenwei.me/LexicMap/>, because
+  there it names the indexing method rather than the Galaxy tool.
 - Galaxy tool IDs link to `usegalaxy.org/?tool_id=<id>`; the four IDs are the
   ones the API returns, so re-check them when versions move.
 - Accessions and BioProjects all use `ebi.ac.uk/ena/browser/view/<acc>`. NCBI's
