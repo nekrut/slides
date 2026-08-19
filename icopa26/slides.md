@@ -155,9 +155,9 @@ Eukaryote-specific structural annotation; `lncRNA` annotation alongside it.
 
 Paired- and single-end processing, through to counts — plus single-cell preprocessing.
 
-### Assembly with Flye + polishing {tag="Assembly" accent=amber}
+### Assembly, end to end {tag="Assembly" accent=amber}
 
-Long-read assembly and long-read polishing, for organisms with no reference-grade genome.
+Flye assembly, long-read polishing, contamination control — plus the **14-workflow VGP suite**: k-mer profiling, HiFi and trio phasing, purging, Hi-C and Bionano scaffolding.
 
 ### Hi-C to balanced cool files {tag="Regulation" accent=purple}
 

@@ -75,6 +75,14 @@ Re-derive rather than trusting these if the deck is reused; the catalogue moves.
 750k jobs/month, 400k+ users, $2M+ free compute/year, 22k+ citations, 10,000+
 tools. Unchanged from the ASV deck.
 
+Slide 6's workflows are the eukaryote-applicable entries in the BRC catalogue
+(`catalog/output/workflows.json`), except the assembly card, which reaches past
+BRC into IWC — the lead line points there, so that is fair. The **14-workflow
+VGP suite** is `workflows/VGP-assembly-v2/` in `galaxyproject/iwc`, counted as
+`.ga` files: VGP0–VGP9 plus VGP6b, Plot-Nx-Size, the Hi-C contact map, and
+post-curation processing. `workflows/genome-assembly/` holds four more (Flye,
+bacterial, long-read polishing, raw-read QC). Recount before quoting; IWC grows.
+
 ### *Cyclospora* — from `nekrut/BRC-research`, `cyclospora/`
 
 The **blog posts (`brc-blog-part2/3/4.md`) are authoritative**; the deck at
