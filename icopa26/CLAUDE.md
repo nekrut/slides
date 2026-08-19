@@ -35,10 +35,10 @@ insertion or deletion.**
 | 8 | Galaxy is a free public resource |
 | 9 | Get data, run tools, run workflows, interpret |
 | 10 | Worked example: *Cyclospora cayetanensis* |
-| 11 | A labelled outbreak benchmark, public and unused |
-| 12 | The panel, as a Galaxy workflow |
-| 13 | What the open pipeline changes |
-| 14 | The future is agentic — Orbit demo |
+| 11 | The future is agentic — Orbit demo |
+| 12 | Software architecture and data availability |
+| 13 | The workflow, as it runs |
+| 14 | Summary: modernised *Cyclospora* surveillance |
 | 15 | We need testers! |
 | 16 | The entire public archive is searchable — Logan |
 | 17 | Two ways to search it — kmindex vs LexicMap |
@@ -68,7 +68,7 @@ What changed, and why:
   applicable workflows actually in the BRC catalogue.
 - **Slides 10–13 replaced** the Andes hantavirus selection example with
   *Cyclospora cayetanensis* outbreak surveillance.
-- **The agentic section shrank from three slides to one** (slide 14). The ASV
+- **The agentic section shrank from three slides to one** (slide 11). The ASV
   deck spent a divider, a poll slide and the Orbit demo on it; here the
   assertion rides in the lead line of the Orbit slide. The ASV deck's repeated
   pillars callback is therefore gone — do not go looking for it.
@@ -80,14 +80,28 @@ What changed, and why:
   16's third card was trimmed to a lead-in so it no longer duplicates them.
 - **Slide 17 added** — the kmindex/LexicMap comparison.
 
-**Reverted, 19 Aug 2026.** Slides 10–12 were briefly replaced by slides 30, 31
-and 32 of the webinar deck (software architecture, workflow canvas, four-point
-summary) and then reverted. Two problems drove the revert: the swap removed the
-only introduction to *Cyclospora* and to the 153/203 cohort, while slides 12 and
-13 went on quoting counts from it; and the imported summary duplicated slide 13's
-figures on the preceding slide. If that material is wanted again, the porting
-corrections are recorded under "Numbers deliberately not used" — reuse them, the
-webinar slide is wrong in three places.
+- **Orbit moved to slide 11**, between the *Cyclospora* data gap and the software
+  that answers it. The arc now reads: here is the problem, here is the agent,
+  here is what the analysis looks like when it is built.
+- **Slides 12–14 replaced** by slides 30, 31 and 32 of the webinar deck at
+  `~/git/BRC-research/cyclospora/presentation/index.html` — software
+  architecture, the workflow canvas, and the four-point summary. This removed
+  the labelled-benchmark slide, the Galaxy reproduction table, and "What the open
+  pipeline changes".
+
+Two things were carried across deliberately when those three went:
+
+- **The caveat note from the old "What the open pipeline changes" now sits on
+  slide 14.** It says the legacy CDC metric discriminates better (ROC AUC 0.9964
+  against 0.7692) and that the benchmark is easy. Losing it would leave the
+  summary claiming more than the data supports. **Do not drop it.**
+- **The cohort is named in slide 14's first card** — "the 2018 outbreak cohort,
+  203 specimens, two traceback clusters" — because the slide that introduced it
+  is gone and the counts 67/153, 147/153 and 195/203 would otherwise be naked.
+
+An earlier attempt at this replacement was reverted because it also removed the
+*Cyclospora* data-gap slide, leaving the organism unintroduced. Slide 10 must
+stay ahead of this block.
 
 ## Argument
 
@@ -95,11 +109,11 @@ Four moves, same shape as ASV but with the parasitology example load-bearing:
 
 1. **BRC-Analytics is the front door**, and it is mostly eukaryotic — slides 4–6.
 2. **Its real function is handing you to Galaxy** — slides 6–9.
-3. **A worked example that a parasitologist can check** — slides 10–13. The
+3. **A worked example that a parasitologist can check** — slides 10 and 12–14. The
    *Cyclospora* arc is: the public data is one assay; a labelled outbreak
    benchmark was sitting unused inside it; here is the panel as a Galaxy
    workflow, and here is honestly what that does and does not buy you.
-4. **The agentic turn and the searchable archive** — slides 14–20.
+4. **The agentic turn** — slide 11. **The searchable archive** — slides 16–20.
 
 Closing ask: a parasitologist should leave able to run *their own* organism
 through it. The last slide is the one people photograph.
@@ -170,7 +184,7 @@ used" below.
 - Determinism and speed: rerun on identical input the legacy ensemble differs in
   **66.8%** of matrix cells and is 24.1% asymmetric; PyEuk is byte-identical.
   1.56–1.73 s against 370–655 s (three runs each) — **230×–400×**, not ">300×".
-- **The caveat on slide 13 is not optional.** On raw pairwise discrimination the
+- **The caveat on slide 14 is not optional.** On raw pairwise discrimination the
   legacy CDC metric wins: ROC AUC **0.9964** against **0.7692** on the same
   165-column sheet. And the benchmark is easy in a measurable way — single loci
   separate the vendors outright (`Nu_CDS1_PART_A`: 56/56 Vendor A carry `Hap_2`,
@@ -283,11 +297,11 @@ not prove that, and "proves" breaks the tone mandate.
 
 ## Known limits
 
-- **Slide 14 is a live widget**, inlined from `assets/orbit-demo.html`. It plays
+- **Slide 11 is a live widget**, inlined from `assets/orbit-demo.html`. It plays
   when its slide becomes active and replays on each visit, keyed off Marp's
   `bespoke-marp-active` class. In the PPTX and PNG exports it is a still frame.
   Reduced-motion is deliberately overridden — the animation *is* the content.
-- Slide 14's embed is `h=485px`. At 470px the widget's status bar clips.
+- Slide 11's embed is `h=485px`. At 470px the widget's status bar clips.
 
 ## Assets
 
@@ -297,10 +311,11 @@ not prove that, and "proves" breaks the tone mandate.
   without re-fetching.
 - `assets/cyc/` — eight figures pulled from
   `nekrut/BRC-research:cyclospora/presentation/assets/`. Only
-  `genome_quality.png` (slide 10) and `galaxy_workflow.png` (slide 12) are used.
-  `galaxy_workflow_canvas.png`, `distance_auc.png`, `pipeline_compare.png`,
+  `genome_quality.png` (slide 10) and `galaxy_workflow_canvas.png` (slide 13) are
+  used. `galaxy_workflow.png`, `distance_auc.png`, `pipeline_compare.png`,
   `four_arm_design.png`, `expected_truth.png` and `version_trajectory.png` are
-  staged for a longer version of this talk.
+  unreferenced — `galaxy_workflow.png` was the reproduction-table slide's
+  diagram, so keep it if that material may return.
 - `assets/qr/icopa26.svg` — `npx qrcode -t svg -o icopa26.svg https://gxy.io/icopa26`.
   `assets/qr/testers.svg` points at the signup form. The ASV and kmindex QRs
   were deleted. Verify a regenerated QR by decoding it out of the rendered PNG,
