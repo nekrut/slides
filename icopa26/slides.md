@@ -56,15 +56,15 @@ Five topics in 15 minutes
 ::: pillars brace="Agents" accent=amber size=xl
 ### Data {accent=sky}
 
-NCBI Datasets · NCBI Virus · EBI · UCSC Genome Browser
+[NCBI Datasets](https://www.ncbi.nlm.nih.gov/datasets/) · [NCBI Virus](https://www.ncbi.nlm.nih.gov/labs/virus/) · [EBI](https://www.ebi.ac.uk) · [UCSC Genome Browser](https://genome.ucsc.edu)
 
 ### Tools + Workflows {accent=emerald}
 
-BioConda · BioContainers · Workflows
+[BioConda](https://bioconda.github.io) · [BioContainers](https://biocontainers.pro) · [Workflows](https://iwc.galaxyproject.org/)
 
 ### Compute and Storage {accent=indigo}
 
-TACC · IU JetStream2 · ACCESS-CI
+[TACC](https://www.tacc.utexas.edu) · [IU JetStream2](https://jetstream-cloud.org) · [ACCESS-CI](https://access-ci.org)
 :::
 
 ---
@@ -149,7 +149,7 @@ This workflow does not assume a haploid genome. Use it for diploid vectors and f
 
 ### Genome annotation with Braker3 {tag="Annotation" accent=emerald}
 
-Braker3 gives eukaryote-specific structural annotation. An `lncRNA` workflow is also available.
+[Braker3](https://github.com/Gaius-Augustus/BRAKER) gives eukaryote-specific structural annotation. An `lncRNA` workflow is also available.
 
 ### RNA-Seq quantification {tag="Transcriptomics" accent=indigo}
 
@@ -157,7 +157,7 @@ Paired-end and single-end processing, through to counts. Single-cell preprocessi
 
 ### Assembly and polishing {tag="Assembly" accent=amber}
 
-Flye assembly, long-read polishing and contamination control. The **VGP suite adds 14 workflows**: k-mer profiling, HiFi and trio phasing, purging, Hi-C and Bionano scaffolding.
+[Flye](https://github.com/fenderglass/Flye) assembly, long-read polishing and contamination control. The **[VGP](https://vertebrategenomesproject.org) suite adds 14 workflows**: k-mer profiling, HiFi and trio phasing, purging, Hi-C and Bionano scaffolding.
 
 ### Hi-C to balanced cool files {tag="Regulation" accent=purple}
 
@@ -165,7 +165,7 @@ Scaffolding and chromatin contact maps. ATAC-seq and CUT&RUN use the same tools.
 
 ### Use your own {tag="Anything" accent=rose}
 
-Any Galaxy workflow runs here. The *Cyclospora* typing panel later in this talk is one example.
+Any [Galaxy](https://galaxyproject.org) workflow runs here. The *Cyclospora* typing panel later in this talk is one example.
 :::
 
 ---
@@ -218,7 +218,7 @@ $2,000,000+ | free compute / year | accent=amber
 +++
 
 ::: figure src="assets/galaxy/interpret.png" h=226px bare
-**4 · Interpret and publish** — Jupyter, RStudio, and soon agents
+**4 · Interpret and publish** — [Jupyter](https://jupyter.org), [RStudio](https://posit.co), and soon agents
 :::
 :::
 
@@ -251,7 +251,7 @@ The CDC typing repository provides epidemiologic cluster labels for the 2018 US 
 ::: cards cols=2 gap=18px size=md minh=185px
 ### 203 specimens, two traceback clusters {tag="Ground truth" accent=emerald}
 
-BioProject `PRJNA578931`, 10.3 GB of reads. **Vendor A** (salads) n=99; **Vendor B** (vegetable trays) n=104.
+BioProject [`PRJNA578931`](https://www.ebi.ac.uk/ena/browser/view/PRJNA578931), 10.3 GB of reads. **Vendor A** (salads) n=99; **Vendor B** (vegetable trays) n=104.
 
 The labels come from food-exposure traceback. They are independent of the sequence data.
 
@@ -340,7 +340,7 @@ It takes **1.6 s**, against 370–655 s.
 
 # The future is agentic
 
-AI is an environmental and social disaster. Used responsibly, it can still be very good for science. **Orbit** is a BRC-Analytics and Galaxy agent.
+AI is an environmental and social disaster. Used responsibly, it can still be very good for science. **[Orbit](https://galaxyproject.github.io/loom/)** is a [BRC-Analytics](https://brc-analytics.org) and [Galaxy](https://galaxyproject.org) agent.
 
 ```embed src="assets/orbit-demo.html" w=1300px scale=0.80 h=485px
 ```
@@ -363,7 +363,7 @@ We give you API keys to frontier models
 
 # The entire public archive is searchable
 
-**Logan** reassembles every public SRA accession. You can query it from Galaxy, and soon directly from BRC-Analytics.
+**[Logan](https://github.com/IndexThePlanet/Logan)** reassembles every public SRA accession. You can query it from [Galaxy](https://galaxyproject.org), and soon directly from [BRC-Analytics](https://brc-analytics.org).
 
 ```stats cols=4
 38M | accessions | 99.5% of SRA by size | accent=emerald
@@ -374,7 +374,7 @@ We give you API keys to frontier models
 
 ::: cols ratio="1fr 1fr 1.05fr" gap=16px stretch
 ::: card title="What it is" accent=emerald border=top size=sm
-Logan reassembles every public SRA accession into **unitigs** and **contigs**. Unitigs are near-lossless and best for search. Contigs are error-corrected and best for alignment.
+[Logan](https://github.com/IndexThePlanet/Logan) reassembles every public SRA accession into **unitigs** and **contigs**. Unitigs are near-lossless and best for search. Contigs are error-corrected and best for alignment.
 
 [Read more](https://www.biorxiv.org/content/10.1101/2024.07.30.605881v2)
 :::
@@ -383,7 +383,7 @@ Logan reassembles every public SRA accession into **unitigs** and **contigs**. U
 
 ::: card title="How to query it" accent=sky border=top size=sm
 - [`kmindex_query`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/kmindex/kmindex_query/0.6.1+galaxy3) on [usegalaxy.org](https://usegalaxy.org) — median **4 s** against one index, **8.4 min** against all of them.
-- `LexicMap` on [usegalaxy.org](https://usegalaxy.org) — alignment-based, for longer queries.
+- [`LexicMap`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/lexicmap/lexicmap_search/0.9.0+galaxy1) on [usegalaxy.org](https://usegalaxy.org) — alignment-based, for longer queries.
 - Or at [logan-search.org](https://logan-search.org).
 :::
 
@@ -400,36 +400,36 @@ The following slides describe them.
 
 <!-- _class: micro middle -->
 
-# Two ways to search it, both on usegalaxy.org
+# Two ways to search it, both on [usegalaxy.org](https://usegalaxy.org)
 
 The same archive, a different question. Select the tool by the output you need.
 
 ::: cols cols=2 gap=20px
 ::: card title="kmindex" subtitle="Is it present, and in which datasets?" accent=sky border=top size=md
-`kmindex` queries pre-built k-mer indexes. It returns the **fraction of k-mers** that your query shares with each indexed sample, as a matrix or as JSON. It gives no coordinates.
+[`kmindex`](https://tlemane.github.io/kmindex/) queries pre-built k-mer indexes. It returns the **fraction of k-mers** that your query shares with each indexed sample, as a matrix or as JSON. It gives no coordinates.
 
 - It searches **raw sequencing runs** — Logan unitigs, ~23M libraries
 - Any query length. `(k+z)`-mers reduce false positives
 - Median **4 s** against one index, **8.4 min** against all
 
-`kmindex_build` · `kmindex_query`
+[`kmindex_build`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/kmindex/kmindex_build/0.6.1+galaxy0) · [`kmindex_query`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/kmindex/kmindex_query/0.6.1+galaxy3)
 :::
 
 +++
 
 ::: card title="LexicMap" subtitle="Where does it align, and how well?" accent=emerald border=top size=md
-`LexicMap` aligns. It seeds against millions of indexed sequences, then returns each match with its coordinates and its identity.
+[`LexicMap`](https://bioinf.shenwei.me/LexicMap/) aligns. It seeds against millions of indexed sequences, then returns each match with its coordinates and its identity.
 
 - It searches **assembled sequence** — Logan contigs, genome collections
 - Queries **longer than 150 bp** — genes, plasmids, viral genomes, long reads
 - The output is alignments, so you can examine each match
 
-`lexicmap_index` · `lexicmap_search`
+[`lexicmap_index`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/lexicmap/lexicmap_index/0.9.0+galaxy0) · [`lexicmap_search`](https://usegalaxy.org/?tool_id=toolshed.g2.bx.psu.edu/repos/iuc/lexicmap/lexicmap_search/0.9.0+galaxy1)
 :::
 :::
 
 ::: note accent=amber
-Logan provides two products for this reason. Unitigs are near-lossless and suit `kmindex` presence search. Contigs are error-corrected and suit `LexicMap` alignment.
+[Logan](https://github.com/IndexThePlanet/Logan) provides two products for this reason. Unitigs are near-lossless and suit `kmindex` presence search. Contigs are error-corrected and suit `LexicMap` alignment.
 :::
 
 ---
@@ -443,7 +443,7 @@ The index is the expensive part. Build it once, then give everyone a web form.
 ::: pillars brace="One query box" accent=amber size=lg
 ### Petabase index {accent=sky}
 
-Logan unitigs · `LexicMap` k-mer tables
+[Logan](https://github.com/IndexThePlanet/Logan) unitigs · [`LexicMap`](https://bioinf.shenwei.me/LexicMap/) k-mer tables
 
 ### High-memory compute {accent=emerald}
 
@@ -462,7 +462,7 @@ To build and search a petabase index, you need terabyte-scale memory, fast scrat
 +++
 
 ::: card title="What central hosting provides" accent=emerald border=top size=sm
-One shared, pre-computed index behind a web form. The accessions it returns go directly to other Galaxy tools: `LoFreq`, the typing panel and phylogenetic placement.
+One shared, pre-computed index behind a web form. The accessions it returns go directly to other [Galaxy](https://galaxyproject.org) tools: [`LoFreq`](https://csb5.github.io/lofreq/), the typing panel and phylogenetic placement.
 :::
 :::
 
@@ -475,17 +475,17 @@ One shared, pre-computed index behind a web form. The accessions it returns go d
 Three clinical runs contain *Cyclospora*. Nobody had annotated them as such.
 
 ::: cards cols=3 gap=14px size=sm minh=170px
-### Bangladesh, cholera cohort {tag="SRR25011076" accent=sky}
+### Bangladesh, cholera cohort {tag="WGS metagenome" accent=sky}
 
-An acute diarrhoeal gut metagenome from Dhaka surveillance, ~14.3M read pairs (`PRJNA976726`). It contains unannotated *Cyclospora* DNA.
+An acute diarrhoeal gut metagenome from Dhaka surveillance, ~14.3M read pairs ([`SRR25011076`](https://www.ebi.ac.uk/ena/browser/view/SRR25011076) · [`PRJNA976726`](https://www.ebi.ac.uk/ena/browser/view/PRJNA976726)). It contains unannotated *Cyclospora* DNA.
 
-### UK, unresolved gastroenteritis {tag="ERR11474981" accent=emerald}
+### UK, unresolved gastroenteritis {tag="Metatranscriptome" accent=emerald}
 
-A metatranscriptome, ~28.3M read pairs (`PRJEB62473`). Routine diagnostics found no pathogen in this case.
+A metatranscriptome, ~28.3M read pairs ([`ERR11474981`](https://www.ebi.ac.uk/ena/browser/view/ERR11474981) · [`PRJEB62473`](https://www.ebi.ac.uk/ena/browser/view/PRJEB62473)). Routine diagnostics found no pathogen in this case.
 
-### UK, *Salmonella* co-infection {tag="ERR11495252" accent=amber}
+### UK, *Salmonella* co-infection {tag="Metatranscriptome" accent=amber}
 
-A metatranscriptome from a patient with confirmed *Salmonella*. The patient also had an unrecognised parasitic co-infection.
+A metatranscriptome ([`ERR11495252`](https://www.ebi.ac.uk/ena/browser/view/ERR11495252)) from a patient with confirmed *Salmonella*. The patient also had an unrecognised parasitic co-infection.
 :::
 
 ::: cols ratio="1fr 1fr" gap=18px
@@ -506,7 +506,7 @@ A metatranscriptome from a patient with confirmed *Salmonella*. The patient also
 
 # From shotgun reads to MLST alleles
 
-`SRR25011076`: filtered mapping recovers **4 reads** at MAPQ 60 with full-length identity. These give **5 sub-locus calls** on the CDC panel.
+[`SRR25011076`](https://www.ebi.ac.uk/ena/browser/view/SRR25011076): filtered mapping recovers **4 reads** at MAPQ 60 with full-length identity. These give **5 sub-locus calls** on the CDC panel.
 
 ::: cols cols=2 gap=18px stretch
 ::: card title="Nu_360i2 — nuclear intron" subtitle="PART_D_Hap_2 / PART_E_Hap_2" accent=sky border=top size=sm
@@ -546,15 +546,15 @@ The read-level results are preliminary and unpublished. {.footnote}
 ::: card title="People A to Z" accent=emerald size=lg
 Artem Babayan, Dannon Baker, Kelsey Beavers, Danielle Callan, Rayan Chikhi, Nate Coraor, John Davis, Björn Grüning, Teo Lemane, Wolfgang Maier, Pierre Peterlongo, Sergei Pond, Dave Rogers, Marius Van Den Beek
 
-CDC produced the *Cyclospora* panel, its nomenclature and the 2018 cluster labels, and released them as CC0.
+[CDC](https://github.com/Joel-Barratt/CDC-Complete-Cyclospora-typing-workflow-ALPHA-TEST) produced the *Cyclospora* panel, its nomenclature and the 2018 cluster labels, and released them as CC0.
 :::
 
 +++
 
 ::: card title="Funding" accent=sky size=lg
-NIH NIAID
+NIH [NIAID](https://www.niaid.nih.gov)
 
-NIH NHGRI
+NIH [NHGRI](https://www.genome.gov)
 :::
 
 +++

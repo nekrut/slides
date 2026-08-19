@@ -244,6 +244,27 @@ not prove that, and "proves" breaks the tone mandate.
 - `assets/qr/icopa26.svg` — `npx qrcode -t svg -o icopa26.svg https://gxy.io/icopa26`.
   `assets/qr/testers.svg` carried over. The ASV and kmindex QRs were deleted.
 
+## Links
+
+Every URL, product name, tool name and accession in the slide text is a link.
+All 47 were checked with `curl` on 19 Aug 2026; only `bv-brc.org` (403) and
+`niaid.nih.gov` (405) refuse scripted requests — both are fine in a browser.
+
+- Orbit → <https://galaxyproject.github.io/loom/>
+- Logan → <https://github.com/IndexThePlanet/Logan>
+- `kmindex` → <https://tlemane.github.io/kmindex/>; `LexicMap` →
+  <https://bioinf.shenwei.me/LexicMap/>
+- Galaxy tool IDs link to `usegalaxy.org/?tool_id=<id>`; the four IDs are the
+  ones the API returns, so re-check them when versions move.
+- Accessions and BioProjects all use `ebi.ac.uk/ena/browser/view/<acc>`. NCBI's
+  own BioProject pages return 500 to scripted requests, and ENA resolves both
+  `PRJNA*` and `PRJEB*`, so ENA is used for every accession for consistency.
+
+**Card `title=`, `subtitle=` and `tag=` are attributes, not markdown** — links
+and italics inside them render as literal text. Anything that must be clickable
+belongs in the card body. Slide 18's tags were changed from accessions to data
+types for exactly this reason, once the accessions became links in the body.
+
 ## Language: Simplified Technical English
 
 All slide text follows Simplified Technical English. Keep it that way when you
