@@ -302,41 +302,25 @@ Coming to the BRC-Analytics **Workflows** tab. We need beta testers. {.footnote}
 
 ---
 
-<!-- _class: micro -->
+<!-- _class: micro middle -->
 
-# Summary: modernised *Cyclospora* surveillance
+# Head to head: conventional methods against PyEuk
 
-Four changes that make outbreak analysis sensitive, deterministic and reproducible
+Supervised heuristics calibrated on known outbreak labels, against label-free discovery — 2018 cohort
 
-::: cards cols=4 gap=14px size=sm minh=210px
-### 1 · Fewer cases discarded {accent=emerald}
-
-In the 2018 outbreak cohort — 203 specimens, two traceback clusters — the legacy retention rule keeps only **67 of 153**.
-
-On the open pipeline's calls the same rule keeps **147 of 153**, and **195 of 203**.
-
-### 2 · Deterministic topologies {accent=sky}
-
-Stable sorting replaces random tie-breaking, and inverse-variance KING-wIBS weights model co-infection.
-
-Reruns are byte-identical, where the legacy ensemble differs in **66.8%** of cells.
-
-### 3 · Label-free discovery {accent=indigo}
-
-Dynamic relative-gap tree cutting finds the outbreak boundary from the data alone — **k = 2, ARI 0.9737** on the workflow's own sheet.
-
-No pre-calibrated answer key.
-
-### 4 · Open, fast infrastructure {accent=amber}
-
-Vectorised Numba kernels build the distance matrix in **1.6 s**, against 370–655 s in R — **230× to 400×**.
-
-Pinned containers, open Galaxy wrappers.
-:::
+| Calls | Distance | Specimens retained | Cluster ARI | Calibration |
+| --- | --- | --- | --- | --- |
+| CDC's own | legacy R | 67 of 153 | 1.0000 | cutoffs fitted to the labels |
+| Open pipeline | legacy R | 147 of 153 | 1.0000 | cutoffs fitted to the labels |
+| Open pipeline | legacy R | 195 of 203 | 1.0000 | cutoffs fitted to the labels |
+| CDC's own | PyEuk wIBS | 144 of 153 | 0.9721 | none — label-free |
+| Open pipeline | PyEuk wIBS | 195 of 203 | 0.8894 | supervised path |
 
 ::: note accent=slate
-**Note this clearly:** the legacy CDC metric discriminates better — ROC AUC **0.9964** against **0.7692** on the same sheet. This benchmark is also easy: single loci separate the two vendors. The improvement is in reproducibility and sample retention, not in accuracy.
+**Read it this way.** The legacy 1.0000 is not free: those distance cutoffs were fitted to the known Vendor A and Vendor B labels, on a subset of 67 cases. PyEuk reaches **0.9721** having seen no labels at all, over 144. But on raw pairwise discrimination the legacy metric is still ahead — ROC AUC **0.9964** against **0.7692** — and single loci separate the two vendors, so this benchmark is easy.
 :::
+
+Adjusted Rand index against the Vendor A / Vendor B labels. A1 benchmark; preprint in preparation. {.footnote}
 
 ---
 
@@ -354,7 +338,7 @@ We give you API keys to frontier models
 
 <!-- _class: micro -->
 
-# The entire public archive is searchable
+# Search against the entire SRA: only at BRC-Analytics and Galaxy
 
 **[Logan](https://github.com/IndexThePlanet/Logan)** reassembles every public SRA accession. You can query it from [Galaxy](https://galaxyproject.org), and soon directly from [BRC-Analytics](https://brc-analytics.org).
 

@@ -38,9 +38,9 @@ insertion or deletion.**
 | 11 | The future is agentic — Orbit demo |
 | 12 | Software architecture and data availability |
 | 13 | The workflow, as it runs |
-| 14 | Summary: modernised *Cyclospora* surveillance |
+| 14 | Head to head: conventional methods against PyEuk |
 | 15 | We need testers! |
-| 16 | The entire public archive is searchable — Logan |
+| 16 | Search against the entire SRA: only at BRC-Analytics and Galaxy |
 | 17 | Two ways to search it — kmindex vs LexicMap |
 | 18 | Petabase-scale search, without the hardware |
 | 19 | What a 28S query finds in routine stool archives |
@@ -87,7 +87,10 @@ What changed, and why:
   `~/git/BRC-research/cyclospora/presentation/index.html` — software
   architecture, the workflow canvas, and the four-point summary. This removed
   the labelled-benchmark slide, the Galaxy reproduction table, and "What the open
-  pipeline changes".
+  pipeline changes". **Slide 14 was then replaced again** by webinar slide 23,
+  the four-arm benchmark table.
+- **Slide 16 retitled** "Search against the entire SRA: only at BRC-Analytics and
+  Galaxy", on request.
 
 Two things were carried across deliberately when those three went:
 
@@ -224,8 +227,14 @@ used" below.
 contains errors that were checked against the blog record and left out here:
 
 - "Arm 3 … Cluster ARI 0.9975" — 0.9975 is an **AUC**; that row's ARI is 1.0000.
+  Slide 14 carries the corrected 1.0000.
 - "Arm 1 … ARI 0.9721, N=153" — Arm 1 as filed scored **0.0022** supervised;
   0.9721 is the label-free score at a later commit, over **144** specimens.
+  Slide 14 shows 144 and labels the row "none — label-free".
+- "Arm 4 … N=203, 100% retention, Unsupervised (0 Labels)" — it is **195 of 203**,
+  and that grid row is the **supervised** path. Slide 14 states both correctly.
+  The webinar's headline "Full Cohort Retention (203 vs 67)" is wrong for the
+  same reason.
 - "100% retention (153/153)" — PyEuk retains **144 of 153**.
 - "27 blank *markers* recovered" — it is 27 **specimens**, at the junction only.
 - "92.2% of isolates carry MOI ≥ 2" — unsupported; the real figure is 130 of 153
