@@ -1,7 +1,13 @@
 # Deck: ICOPA XVI (16th International Congress of Parasitology)
 
-15-minute talk, 16 slides. Montréal, 16–21 Aug 2026. Source: `slides.md`
-(deckkit — see `../CLAUDE.md` and `../deckkit/README.md`).
+Montréal, 16–21 Aug 2026. Source: `slides.md` (deckkit — see `../CLAUDE.md`
+and `../deckkit/README.md`).
+
+**19 slides in a 15-minute slot.** It was 16, which was already brisk; slides
+16–18 were added later on request. At 19 slides this is roughly 47 seconds a
+slide with no room for questions. If it has to come down, slides 16–18 are the
+newest and most cuttable block, and slide 16 (the LexicMap infrastructure
+argument) carries no data of its own.
 
 ```bash
 ../deckkit/bin/deck build slides.md   # HTML — the deck you present
@@ -36,6 +42,11 @@ What changed, and why:
   assertion rides in the lead line of the Orbit slide. The slide-3/slide-10
   pillars callback is therefore gone — do not go looking for it.
 - **Logan and LexicMap merged** into one closer (slide 15).
+- **Slides 16–18 ported** from slides 25, 26 and 27 of the Tools-for-Tomorrow
+  webinar deck at `~/git/BRC-research/cyclospora/presentation/index.html`,
+  rewritten into deckkit components: the LexicMap-on-Galaxy infrastructure
+  argument, the three archive hits, and the read-level allele recovery. Slide
+  15's third card was trimmed to a lead-in so it no longer duplicates them.
 
 ## Argument
 
@@ -157,7 +168,36 @@ contains errors that were checked against the blog record and left out here:
 - The "MOI paradox" framing of the legacy metric — `brc-blog-part2.md` refutes
   it explicitly. A mixed infection is rewarded by that arithmetic, not penalised.
 - The Canadian ONT placement result (`Can-NML:CYC2020-001`, D = 0.0136 to
-  `C_IL119_18`) has no analysis record anywhere in the repo. Left off entirely.
+  `C_IL119_18`) has no analysis record anywhere in the repo. Webinar slides 28
+  and 29 cover it; they were **not** ported, and should not be without one.
+
+## Numbers used, but only as preliminary
+
+Slides 16–18 came from the webinar deck, and the archive-mining figures on them
+have **no measurement record in `nekrut/BRC-research`** — they trace to
+`cyclospora/prompts/metagenomic_pyeuk_mining.md`, which is a task prompt
+describing work to be done, not a results document. The three accessions
+themselves (`SRR25011076`, `ERR11474981`, `ERR11495252`), their BioProjects and
+read counts *are* corroborated; what is not corroborated is:
+
+- **"2 in roughly 1,000" UK cohort prevalence** — no denominator or screen
+  recorded anywhere.
+- **4 reads at MAPQ 60 → 5 sub-locus calls**, the coordinates, E-values,
+  MOI = 1, and the `Mt_MSR_PART_F_Hap_2` geographic split.
+
+Both slides label this preliminary, and slide 17 carries the contrary result
+from `SRA-DATA-ASSESSMENT.md` §6 — NCBI STAT scanned 421 stool metagenomes from
+ten endemic countries plus 200 wastewater metagenomes with a working positive
+control and found none. **Keep that caveat attached.** A "*Cyclospora* is hiding
+everywhere" slide with the counter-evidence removed contradicts the project's
+own assessment document, and it is the first thing a sceptical parasitologist
+will ask about.
+
+Also corrected while porting: the webinar deck calls LexicMap "alignment-free".
+It is k-mer *indexed* but alignment-producing — slide 15 says "alignment-based",
+which is right. And its closing line, "LexicMap proves that public sequence
+archives already contain the missing links", was dropped; three accessions do
+not prove that, and "proves" breaks the tone mandate.
 
 ## Published
 

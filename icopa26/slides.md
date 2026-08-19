@@ -392,9 +392,113 @@ Every public SRA accession reassembled into **unitigs** — near-lossless, best 
 ::: card title="What a search turned up" accent=amber border=top size=sm
 *Cyclospora* 28S rRNA in **3 clinical stool runs** annotated as something else — a Bangladeshi cholera cohort and two UK gastroenteritis metatranscriptomes.
 
-But a k-mer scan of 421 stool metagenomes from ten endemic countries and 200 wastewater metagenomes found **none**. Both results are preliminary.
+The next three slides work through them.
 :::
 :::
+
+---
+
+<!-- _class: micro middle -->
+
+# Petabase-scale search, without the hardware
+
+The index is the expensive part — so host it once and give everyone a web form
+
+::: pillars brace="One query box" accent=amber size=lg
+### Petabase index {accent=sky}
+
+Logan unitigs · `LexicMap` k-mer tables
+
+### High-memory compute {accent=emerald}
+
+TB-scale RAM · NVMe scratch · many cores
+
+### Galaxy front end {accent=indigo}
+
+Web UI or API · results pipe onward
+:::
+
+::: cols cols=2 gap=18px
+::: card title="Why most labs cannot run this themselves" accent=rose border=top size=sm
+Building and traversing a petabase index needs terabyte-scale memory, fast scratch storage and many cores — well beyond standard lab hardware, and it has to be rebuilt as the archive grows.
+:::
+
++++
+
+::: card title="What hosting it centrally buys" accent=emerald border=top size=sm
+One shared, pre-computed index behind a web form. Accessions that come back feed straight into the rest of Galaxy — `LoFreq`, the typing panel, phylogenetic placement — without leaving the platform.
+:::
+:::
+
+---
+
+<!-- _class: micro middle -->
+
+# What a 28S query turns up in routine stool archives
+
+Three clinical runs carrying *Cyclospora* that nobody had annotated as such
+
+::: cards cols=3 gap=14px size=sm minh=170px
+### Bangladesh, cholera cohort {tag="SRR25011076" accent=sky}
+
+Acute diarrhoeal gut metagenome from Dhaka surveillance, ~14.3M read pairs (`PRJNA976726`) — carrying unannotated *Cyclospora* DNA.
+
+### UK, unresolved gastroenteritis {tag="ERR11474981" accent=emerald}
+
+Metatranscriptome, ~28.3M read pairs (`PRJEB62473`), from a case where routine diagnostics found no pathogen at all.
+
+### UK, *Salmonella* co-infection {tag="ERR11495252" accent=amber}
+
+Metatranscriptome from a patient with confirmed *Salmonella* — an unrecognised parasitic co-infection underneath a bacterial positive.
+:::
+
+::: cols ratio="1fr 1fr" gap=18px
+::: box .box-inline accent=indigo size=sm
+**Why they were missed.** Routine GI panels test for bacteria and viruses; a parasite that is not on the panel stays invisible unless someone sequences everything and goes looking. 28S rRNA is abundant, so metatranscriptomes stay sensitive even where parasite DNA is scarce.
+:::
+
++++
+
+::: box .box-inline accent=slate size=sm
+**Preliminary, and contested.** This is 2 of roughly 1,000 in the UK cohort. A separate k-mer scan of 421 stool metagenomes from ten endemic countries and 200 wastewater metagenomes, with a working positive control, returned nothing.
+:::
+:::
+
+---
+
+<!-- _class: micro middle -->
+
+# From shotgun reads to MLST alleles
+
+`SRR25011076`: filtered mapping recovers **4 reads** at MAPQ 60 and full-length identity — **5 sub-locus calls** on the CDC panel
+
+::: cols cols=2 gap=18px
+::: card title="Nu_360i2 — nuclear intron" subtitle="PART_D_Hap_2 / PART_E_Hap_2" accent=sky border=top size=sm
+One read spanning positions 334–485 (151 bp, E = 2 × 10⁻⁴³), matching CDC outbreak haplotypes with 0 mismatches.
+:::
+
++++
+
+::: card title="Mt_MSR — mitochondrial rRNA" subtitle="PART_A/B_Hap_1 · PART_F_Hap_2" accent=emerald border=top size=sm
+Three reads spanning positions 35–686 (E = 1 × 10⁻⁵⁵); two overlapping reads agree at 100% identity.
+:::
+:::
+
+::: cards cols=3 gap=14px size=sm
+### One lineage, at this depth {accent=indigo}
+
+Zero heterozygous sites across the called loci — unamplified shotgun at under 0.6% parasite content samples a single lineage.
+
+### A geographic signal {accent=amber}
+
+`Mt_MSR_PART_F_Hap_2` separates this South Asian isolate from North American `PART_F_Hap_1`; the shared `Nu_360i2` alleles are the conserved ones.
+
+### DNA panel ≠ RNA scheme {accent=rose}
+
+The UK metatranscriptomes gave 28S hits but **0 reads** at the DNA amplicon loci — RNA-based surveillance needs ribosomal subtyping alongside MLST.
+:::
+
+Read-level results are preliminary and unpublished. {.footnote}
 
 ---
 
