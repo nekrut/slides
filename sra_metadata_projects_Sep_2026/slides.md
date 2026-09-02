@@ -14,7 +14,7 @@ Which open-access paper **generated** which SRA dataset. Not cited, not reused: 
 ::: cards cols=3 gap=18px size=sm border=top
 ### 1 · Scan {tag="Europe PMC full text" accent=sky}
 
-Every accession-shaped string in every open-access paper, resolved to a BioProject.
+Every accession-shaped string in every candidate paper, resolved to a BioProject.
 
 ### 2 · Classify {tag="generated · reused · ambiguous" accent=purple}
 
@@ -26,7 +26,7 @@ Independent adjudication with verified quotes. The two evidence sources agree on
 :::
 
 ```stats accent=sky
-622,896 | open-access papers scanned | 1,717,129 accession mentions
+622,896 | candidate papers · Europe PMC query | 337,254 carry a mention · 1,717,129 mentions
 658,946 | paper–project pairs | every one kept and classified
 136,323 | papers that generated data | 157,619 projects · 164,848 pairs
 ```
@@ -36,6 +36,8 @@ Public on Zenodo as `linkage_generated.tsv` plus all pairs, conflicts, validatio
 :::
 
 <!--
+622,896 is a prefilter result at ~25% precision, not a count of open-access
+papers; the August walkthrough records what happened when it was called that.
 Counts verified against links.duckdb on 2026-08-24 (text classification
 validated 2026-08-18, GEO evidence merged 2026-08-24). Precision on
 `generated` 96% on 117 adjudicated pairs. Text alone decided ~56% of pairs;
@@ -67,7 +69,9 @@ Full text of the corpus is on local disk: 161 GB Europe PMC mirror.
 **VOCAB**
 :::
 
+::: note accent=emerald
 Group C needs no paper, no adjudication, and no assumption about model training data.
+:::
 
 ---
 
@@ -93,6 +97,8 @@ Papers that print a table of accession against condition.
 ```stats accent=sky
 701 | papers with a usable table | 18,628 samples
 ```
+
+**Test:** count the tables the plain parser cannot handle. Under ~100, there is no model question.
 :::
 
 ---
@@ -146,7 +152,7 @@ Paired vs single-end, with the paper as tie-breaker.
 
 ### SELECTION-CHECK {accent=emerald}
 
-PolyA vs ribo-depletion. **2.2M** runs say only `cDNA`.
+PolyA vs ribo-depletion. **2.2M** runs record `cDNA` and nothing more.
 
 ### TENX-DETECT {accent=emerald}
 
@@ -266,6 +272,8 @@ like it failed. Flagged to Rayan Chikhi on the issue.
 
 # Two immediate priorities at Penn State
 
+What the institution should do this month. The technical order is on the next slide.
+
 ::: cards cols=2 gap=24px size=lg border=top
 ### Make John Davis' database easy to reach {accent=sky}
 
@@ -285,6 +293,8 @@ Interviews add a layer neither the archive nor the paper has: ground truth.
 <!-- _class: middle -->
 
 # What runs first
+
+The technical order, once the database is reachable.
 
 | Order | Project | Why |
 |---|---|---|
