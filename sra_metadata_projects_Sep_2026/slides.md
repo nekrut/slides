@@ -7,11 +7,7 @@ header: 'Ten projects | SRA metadata'
 footer: 'Paper ↔ SRA linkage · project catalogue · September 2026'
 ---
 
-<!-- _class: title -->
-
-# Ten projects to improve SRA metadata
-
-## The paper corpus, ten testable projects, and two findings from one hand-checked study
+# The paper corpus, ten testable projects, and two findings from one hand-checked study
 
 ---
 
