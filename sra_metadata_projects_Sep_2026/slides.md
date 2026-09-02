@@ -7,10 +7,6 @@ header: 'Ten projects | SRA metadata'
 footer: 'Paper ↔ SRA linkage · project catalogue · September 2026'
 ---
 
-# The paper corpus, ten testable projects, and two findings from one hand-checked study
-
----
-
 # The paper corpus
 
 Which open-access paper **generated** which SRA dataset. Not cited, not reused: generated.
