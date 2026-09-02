@@ -55,7 +55,7 @@ Full text of the corpus is on local disk: 161 GB Europe PMC mirror.
 
 <!-- _class: middle -->
 
-# Four groups
+# Four project groups
 
 ::: cards cols=2 gap=24px size=md border=top
 ### A · Metadata from other sources {accent=sky}
