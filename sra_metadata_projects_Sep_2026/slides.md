@@ -60,19 +60,19 @@ Full text of the corpus is on local disk: 161 GB Europe PMC mirror.
 ::: cards cols=2 gap=24px size=md border=top
 ### A · Metadata from other sources {accent=sky}
 
-**A1 GEO-MIRROR · A2 ROSTER-AUDIT**
+**GEO-MIRROR · ROSTER-AUDIT**
 
 ### B · Paper text as input {accent=purple}
 
-**B1 HIDDEN-CELL**
+**HIDDEN-CELL**
 
 ### C · Record against sequence {accent=emerald}
 
-**C1–C6**
+**STRANDCHECK · LAYOUT-TRIANGLE · SELECTION-CHECK · TENX-DETECT · TAXON-RATE · KARYOCHECK**
 
 ### D · Measurement methodology {accent=amber}
 
-**D1 VOCAB**
+**VOCAB**
 :::
 
 Group C needs no paper, no adjudication, and no assumption about model training data.
@@ -84,7 +84,7 @@ Group C needs no paper, no adjudication, and no assumption about model training 
 # Group A · Metadata available from other sources
 
 ::: cards cols=2 gap=24px size=md border=top
-### A1 GEO-MIRROR {accent=sky}
+### GEO-MIRROR {accent=sky}
 
 Per-sample values lost when GEO records were copied into SRA.
 
@@ -92,24 +92,22 @@ Per-sample values lost when GEO records were copied into SRA.
 116,660 | field-and-project pairs | constant in SRA, original in GEO
 ```
 
-**Week-one test:** fetch 200 projects and count how many GEO holds more for.
+**Test:** fetch 200 projects and count how many GEO holds more for.
 
-### A2 ROSTER-AUDIT {accent=sky}
+### ROSTER-AUDIT {accent=sky}
 
 Papers that print a table of accession against condition.
 
 ```stats accent=sky
 701 | papers with a usable table | 18,628 samples
 ```
-
-**Cost:** a table parser and 15–25 hours of adjudication.
 :::
 
 ---
 
 <!-- _class: middle -->
 
-# Group B · B1 HIDDEN-CELL
+# Group B · HIDDEN-CELL
 
 Withhold a value the submitter did supply. Give a model the paper. Measure recovery.
 
@@ -139,45 +137,43 @@ right answer is "not applicable".
 
 ---
 
+<!-- _class: middle -->
+
 # Group C · The record against the sequence data
 
 A few megabytes of reads answer a question the record cannot.
 
 ::: cards cols=3 gap=18px size=sm border=top
-### C1 STRANDCHECK {accent=emerald}
+### STRANDCHECK {accent=emerald}
 
 RNA-seq strandedness. No field records it. **2.6M** runs under a paper.
 
-### C2 LAYOUT-TRIANGLE {accent=emerald}
+### LAYOUT-TRIANGLE {accent=emerald}
 
 Paired vs single-end, with the paper as tie-breaker.
 
-### C3 SELECTION-CHECK {accent=emerald}
+### SELECTION-CHECK {accent=emerald}
 
 PolyA vs ribo-depletion. **2.2M** runs say only `cDNA`.
 
-### C4 TENX-DETECT {accent=emerald}
+### TENX-DETECT {accent=emerald}
 
 Droplet single-cell filed as bulk. Rate unmeasured.
 
-### C5 TAXON-RATE {accent=emerald}
+### TAXON-RATE {accent=emerald}
 
 Wrong species. No estimate exists. **20,000** random runs.
 
-### C6 KARYOCHECK {accent=emerald}
+### KARYOCHECK {accent=emerald}
 
 Declared sex vs X/Y coverage. **107,564** donors.
-:::
-
-::: note accent=emerald
-One shared read-subsampling client. Download throughput is **1.0 MB/s** whatever the parallelism.
 :::
 
 ---
 
 <!-- _class: middle -->
 
-# Group D · D1 VOCAB
+# Group D · VOCAB
 
 Fill rate counts a submitter who writes `not collected` as populated.
 
@@ -197,8 +193,6 @@ not applicable                596,948
 Every one of these follows the INSDC standard.
 
 Every one is counted as populated.
-
-**Cost:** one 30-second scan.
 :::
 
 <!--
@@ -253,7 +247,7 @@ Commercial amplicon panels whose target sequences were never published. Nobody o
 ```stats accent=indigo
 48 | amplicons rebuilt from reads | 94% of the published panel
 93.6% | of panel k-mers in Logan unitigs | 35.9% in Logan contigs
-44 / 48 | recovered whole, blind | from ~2 GB of unitigs, not 25 GB of FASTQ
+44 / 48 | recovered whole, blind | from Logan unitigs alone
 ```
 
 ::: cards cols=2 gap=24px size=md border=top
@@ -302,11 +296,9 @@ Interviews add a layer neither the archive nor the paper has: ground truth.
 
 | Order | Project | Why |
 |---|---|---|
-| **1** | D1 VOCAB | 30 seconds. Decides whether fill-rate figures are valid. |
-| **2** | A1 GEO-MIRROR | 200 requests settle whether the gap is large or negligible. |
+| **1** | VOCAB | Decides whether fill-rate figures are valid. |
+| **2** | GEO-MIRROR | 200 requests settle whether the gap is large or negligible. |
 | **3** | Read-subsampling client | Shared by five Group C projects. |
-| Day 1 | A1, A2, C2, C4, C5, C6, D1 | Independent resources. |
-| Week 2 | C1, C3, B1 | Queue behind C6 for bandwidth; B1 needs D1 and A1. |
 
 <!--
 Each project has a stated week-one test; run it before the supporting work.

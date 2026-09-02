@@ -29,10 +29,10 @@
 <header>Ten projects | SRA metadata</header>
 
 <h1 id="four-project-groups">Four project groups</h1>
-<div class="cards" style="--cols:2;--gap:24px"><div class="card card-top accent-sky size-md"><div class="card-title">A · Metadata from other sources</div><div class="card-body"><p><strong>A1 GEO-MIRROR · A2 ROSTER-AUDIT</strong></p>
-</div></div><div class="card card-top accent-purple size-md"><div class="card-title">B · Paper text as input</div><div class="card-body"><p><strong>B1 HIDDEN-CELL</strong></p>
-</div></div><div class="card card-top accent-emerald size-md"><div class="card-title">C · Record against sequence</div><div class="card-body"><p><strong>C1–C6</strong></p>
-</div></div><div class="card card-top accent-amber size-md"><div class="card-title">D · Measurement methodology</div><div class="card-body"><p><strong>D1 VOCAB</strong></p>
+<div class="cards" style="--cols:2;--gap:24px"><div class="card card-top accent-sky size-md"><div class="card-title">A · Metadata from other sources</div><div class="card-body"><p><strong>GEO-MIRROR · ROSTER-AUDIT</strong></p>
+</div></div><div class="card card-top accent-purple size-md"><div class="card-title">B · Paper text as input</div><div class="card-body"><p><strong>HIDDEN-CELL</strong></p>
+</div></div><div class="card card-top accent-emerald size-md"><div class="card-title">C · Record against sequence</div><div class="card-body"><p><strong>STRANDCHECK · LAYOUT-TRIANGLE · SELECTION-CHECK · TENX-DETECT · TAXON-RATE · KARYOCHECK</strong></p>
+</div></div><div class="card card-top accent-amber size-md"><div class="card-title">D · Measurement methodology</div><div class="card-body"><p><strong>VOCAB</strong></p>
 </div></div></div><p>Group C needs no paper, no adjudication, and no assumption about model training data.</p>
 <footer>Paper ↔ SRA linkage · project catalogue · September 2026</footer>
 </section>
@@ -40,38 +40,37 @@
 <header>Ten projects | SRA metadata</header>
 
 <h1 id="group-a--metadata-available-from-other-sources">Group A · Metadata available from other sources</h1>
-<div class="cards" style="--cols:2;--gap:24px"><div class="card card-top accent-sky size-md"><div class="card-title">A1 GEO-MIRROR</div><div class="card-body"><p>Per-sample values lost when GEO records were copied into SRA.</p>
-<div class="stats accent-sky" style="--cols:1"><div class="stat"><span class="stat-value">116,660</span><span class="stat-label">field-and-project pairs</span><span class="stat-note">constant in SRA, original in GEO</span></div></div><p><strong>Week-one test:</strong> fetch 200 projects and count how many GEO holds more for.</p>
-</div></div><div class="card card-top accent-sky size-md"><div class="card-title">A2 ROSTER-AUDIT</div><div class="card-body"><p>Papers that print a table of accession against condition.</p>
-<div class="stats accent-sky" style="--cols:1"><div class="stat"><span class="stat-value">701</span><span class="stat-label">papers with a usable table</span><span class="stat-note">18,628 samples</span></div></div><p><strong>Cost:</strong> a table parser and 15–25 hours of adjudication.</p>
-</div></div></div><footer>Paper ↔ SRA linkage · project catalogue · September 2026</footer>
+<div class="cards" style="--cols:2;--gap:24px"><div class="card card-top accent-sky size-md"><div class="card-title">GEO-MIRROR</div><div class="card-body"><p>Per-sample values lost when GEO records were copied into SRA.</p>
+<div class="stats accent-sky" style="--cols:1"><div class="stat"><span class="stat-value">116,660</span><span class="stat-label">field-and-project pairs</span><span class="stat-note">constant in SRA, original in GEO</span></div></div><p><strong>Test:</strong> fetch 200 projects and count how many GEO holds more for.</p>
+</div></div><div class="card card-top accent-sky size-md"><div class="card-title">ROSTER-AUDIT</div><div class="card-body"><p>Papers that print a table of accession against condition.</p>
+<div class="stats accent-sky" style="--cols:1"><div class="stat"><span class="stat-value">701</span><span class="stat-label">papers with a usable table</span><span class="stat-note">18,628 samples</span></div></div></div></div></div><footer>Paper ↔ SRA linkage · project catalogue · September 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="Ten projects | SRA metadata" data-footer="Paper ↔ SRA linkage · project catalogue · September 2026" data-class="middle" data-theme="deckkit" lang="en-US" class="middle" data-marpit-pagination="5" style="--paginate:true;--header:Ten projects | SRA metadata;--footer:Paper ↔ SRA linkage · project catalogue · September 2026;--class:middle;--theme:deckkit;" data-marpit-pagination-total="11" data-size="16:9">
 <header>Ten projects | SRA metadata</header>
 
-<h1 id="group-b--b1-hidden-cell">Group B · B1 HIDDEN-CELL</h1>
+<h1 id="group-b--hidden-cell">Group B · HIDDEN-CELL</h1>
 <p>Withhold a value the submitter did supply. Give a model the paper. Measure recovery.</p>
 <div class="stats accent-purple" style="--cols:3"><div class="stat"><span class="stat-value">1,028,626</span><span class="stat-label">values available to withhold</span></div><div class="stat"><span class="stat-value">524,391</span><span class="stat-label">genuinely blank cells</span><span class="stat-note">the deployment target</span></div><div class="stat"><span class="stat-value">15,147</span><span class="stat-label">papers</span><span class="stat-note">full text on disk</span></div></div><div class="cards" style="--cols:2;--gap:24px"><div class="card card-top accent-purple size-md"><div class="card-title">Control arm</div><div class="card-body"><p>Same model, no paper. If accuracy is unchanged, the paper adds nothing.</p>
 </div></div><div class="card card-top accent-rose size-md"><div class="card-title">Limit</div><div class="card-body"><p>Recovery of <em>what the submitter recorded</em>, not ground truth.</p>
 </div></div></div><footer>Paper ↔ SRA linkage · project catalogue · September 2026</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="Ten projects | SRA metadata" data-footer="Paper ↔ SRA linkage · project catalogue · September 2026" data-theme="deckkit" lang="en-US" data-marpit-pagination="6" style="--paginate:true;--header:Ten projects | SRA metadata;--footer:Paper ↔ SRA linkage · project catalogue · September 2026;--theme:deckkit;" data-marpit-pagination-total="11" data-size="16:9">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="Ten projects | SRA metadata" data-footer="Paper ↔ SRA linkage · project catalogue · September 2026" data-class="middle" data-theme="deckkit" lang="en-US" class="middle" data-marpit-pagination="6" style="--paginate:true;--header:Ten projects | SRA metadata;--footer:Paper ↔ SRA linkage · project catalogue · September 2026;--class:middle;--theme:deckkit;" data-marpit-pagination-total="11" data-size="16:9">
 <header>Ten projects | SRA metadata</header>
+
 <h1 id="group-c--the-record-against-the-sequence-data">Group C · The record against the sequence data</h1>
 <p>A few megabytes of reads answer a question the record cannot.</p>
-<div class="cards" style="--cols:3;--gap:18px"><div class="card card-top accent-emerald size-sm"><div class="card-title">C1 STRANDCHECK</div><div class="card-body"><p>RNA-seq strandedness. No field records it. <strong>2.6M</strong> runs under a paper.</p>
-</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">C2 LAYOUT-TRIANGLE</div><div class="card-body"><p>Paired vs single-end, with the paper as tie-breaker.</p>
-</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">C3 SELECTION-CHECK</div><div class="card-body"><p>PolyA vs ribo-depletion. <strong>2.2M</strong> runs say only <code>cDNA</code>.</p>
-</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">C4 TENX-DETECT</div><div class="card-body"><p>Droplet single-cell filed as bulk. Rate unmeasured.</p>
-</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">C5 TAXON-RATE</div><div class="card-body"><p>Wrong species. No estimate exists. <strong>20,000</strong> random runs.</p>
-</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">C6 KARYOCHECK</div><div class="card-body"><p>Declared sex vs X/Y coverage. <strong>107,564</strong> donors.</p>
-</div></div></div><div class="note accent-emerald"><p>One shared read-subsampling client. Download throughput is <strong>1.0 MB/s</strong> whatever the parallelism.</p>
-</div><footer>Paper ↔ SRA linkage · project catalogue · September 2026</footer>
+<div class="cards" style="--cols:3;--gap:18px"><div class="card card-top accent-emerald size-sm"><div class="card-title">STRANDCHECK</div><div class="card-body"><p>RNA-seq strandedness. No field records it. <strong>2.6M</strong> runs under a paper.</p>
+</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">LAYOUT-TRIANGLE</div><div class="card-body"><p>Paired vs single-end, with the paper as tie-breaker.</p>
+</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">SELECTION-CHECK</div><div class="card-body"><p>PolyA vs ribo-depletion. <strong>2.2M</strong> runs say only <code>cDNA</code>.</p>
+</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">TENX-DETECT</div><div class="card-body"><p>Droplet single-cell filed as bulk. Rate unmeasured.</p>
+</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">TAXON-RATE</div><div class="card-body"><p>Wrong species. No estimate exists. <strong>20,000</strong> random runs.</p>
+</div></div><div class="card card-top accent-emerald size-sm"><div class="card-title">KARYOCHECK</div><div class="card-body"><p>Declared sex vs X/Y coverage. <strong>107,564</strong> donors.</p>
+</div></div></div><footer>Paper ↔ SRA linkage · project catalogue · September 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="Ten projects | SRA metadata" data-footer="Paper ↔ SRA linkage · project catalogue · September 2026" data-class="middle" data-theme="deckkit" lang="en-US" class="middle" data-marpit-pagination="7" style="--paginate:true;--header:Ten projects | SRA metadata;--footer:Paper ↔ SRA linkage · project catalogue · September 2026;--class:middle;--theme:deckkit;" data-marpit-pagination-total="11" data-size="16:9">
 <header>Ten projects | SRA metadata</header>
 
-<h1 id="group-d--d1-vocab">Group D · D1 VOCAB</h1>
+<h1 id="group-d--vocab">Group D · VOCAB</h1>
 <p>Fill rate counts a submitter who writes <code>not collected</code> as populated.</p>
 <div class="cols" style="grid-template-columns:1fr 1fr"><div class="col"><pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-text">collection_date, not a date — 6,253,348 samples
 
@@ -83,7 +82,6 @@ not applicable                596,948
 </code></pre>
 </div><div class="col"><p>Every one of these follows the INSDC standard.</p>
 <p>Every one is counted as populated.</p>
-<p><strong>Cost:</strong> one 30-second scan.</p>
 </div></div><footer>Paper ↔ SRA linkage · project catalogue · September 2026</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="Ten projects | SRA metadata" data-footer="Paper ↔ SRA linkage · project catalogue · September 2026" data-class="middle" data-theme="deckkit" lang="en-US" class="middle" data-marpit-pagination="8" style="--paginate:true;--header:Ten projects | SRA metadata;--footer:Paper ↔ SRA linkage · project catalogue · September 2026;--class:middle;--theme:deckkit;" data-marpit-pagination-total="11" data-size="16:9">
@@ -101,7 +99,7 @@ not applicable                596,948
 
 <h1 id="unreached-sra-public-correctly-annotated-unusable">Unreached SRA: public, correctly annotated, unusable</h1>
 <p>Commercial amplicon panels whose target sequences were never published. Nobody outside the vendor can use the reads.</p>
-<div class="stats accent-indigo" style="--cols:3"><div class="stat"><span class="stat-value">48</span><span class="stat-label">amplicons rebuilt from reads</span><span class="stat-note">94% of the published panel</span></div><div class="stat"><span class="stat-value">93.6%</span><span class="stat-label">of panel k-mers in Logan unitigs</span><span class="stat-note">35.9% in Logan contigs</span></div><div class="stat"><span class="stat-value">44 / 48</span><span class="stat-label">recovered whole, blind</span><span class="stat-note">from ~2 GB of unitigs, not 25 GB of FASTQ</span></div></div><div class="cards" style="--cols:2;--gap:24px"><div class="card card-top accent-indigo size-md"><div class="card-title">Why it matters</div><div class="card-body"><p>What is missing is not annotation but a reference sequence, and the source is the data, not the paper.</p>
+<div class="stats accent-indigo" style="--cols:3"><div class="stat"><span class="stat-value">48</span><span class="stat-label">amplicons rebuilt from reads</span><span class="stat-note">94% of the published panel</span></div><div class="stat"><span class="stat-value">93.6%</span><span class="stat-label">of panel k-mers in Logan unitigs</span><span class="stat-note">35.9% in Logan contigs</span></div><div class="stat"><span class="stat-value">44 / 48</span><span class="stat-label">recovered whole, blind</span><span class="stat-note">from Logan unitigs alone</span></div></div><div class="cards" style="--cols:2;--gap:24px"><div class="card card-top accent-indigo size-md"><div class="card-title">Why it matters</div><div class="card-body"><p>What is missing is not annotation but a reference sequence, and the source is the data, not the paper.</p>
 </div></div><div class="card card-top accent-amber size-md"><div class="card-title">Caveat</div><div class="card-body"><p>Works because amplicon depth is extreme. One project, not a rate.</p>
 </div></div></div><footer>Paper ↔ SRA linkage · project catalogue · September 2026</footer>
 </section>
@@ -129,28 +127,18 @@ not applicable                596,948
 <tbody>
 <tr>
 <td><strong>1</strong></td>
-<td>D1 VOCAB</td>
-<td>30 seconds. Decides whether fill-rate figures are valid.</td>
+<td>VOCAB</td>
+<td>Decides whether fill-rate figures are valid.</td>
 </tr>
 <tr>
 <td><strong>2</strong></td>
-<td>A1 GEO-MIRROR</td>
+<td>GEO-MIRROR</td>
 <td>200 requests settle whether the gap is large or negligible.</td>
 </tr>
 <tr>
 <td><strong>3</strong></td>
 <td>Read-subsampling client</td>
 <td>Shared by five Group C projects.</td>
-</tr>
-<tr>
-<td>Day 1</td>
-<td>A1, A2, C2, C4, C5, C6, D1</td>
-<td>Independent resources.</td>
-</tr>
-<tr>
-<td>Week 2</td>
-<td>C1, C3, B1</td>
-<td>Queue behind C6 for bandwidth; B1 needs D1 and A1.</td>
 </tr>
 </tbody>
 </table>
