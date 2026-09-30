@@ -34,6 +34,7 @@ September 30, 2026
 - A mild provocation
 - What I learned from the past year
 - What we do to survive
+- Putting this all together: A vision for very near future
 
 ---
 
@@ -174,6 +175,12 @@ Find me all papers that used BEAST for molecular clock dating. For each paper fi
 <!-- _class: divider -->
 
 # What do we do to survive
+
+---
+
+<!-- _class: middle center -->
+
+# [https://galaxyproject.org/agents/](https://galaxyproject.org/agents/)
 
 ---
 
@@ -416,3 +423,49 @@ Executes user-defined code within secure, containerized runtimes with strict san
 
 Inherits Galaxy's 20-year provenance model: inputs, parameters, environments, and outputs remain fully reproducible.
 :::
+
+---
+
+<!-- _class: divider -->
+
+# So what do we do to survive?
+
+A vision for the next year
+
+---
+
+<!-- _class: compact middle -->
+
+# The problems with agentic flow
+
+- Things usually run locally
+- Agents generate many transient scripts
+- Agents generate many datasets
+- Yes, agents can summarize and document but …
+- … this requires user discipline (e.g., git use)
+- In the end it is very difficult to untangle what was *actually* done.
+- Some tools cannot run locally (Logan, alphagenome, etc.)
+
+---
+
+<!-- _class: compact middle -->
+
+# How we solve this problem
+
+- Leverage Galaxy and Bioconductor communities to create, maintain, and curate broad set of fundamental skills
+- Prototype locally -> push every step to cloud (`usegalaxy.*`)
+- Generate analysis history notebooks (an equivalent of `AGENTS.md`) — History becomes a shareable relay (remote control)
+- Harden UDTs and promote community curated UDT cloud
+
+---
+
+<!-- _class: middle -->
+
+::: figure src="assets/danger-de-mort.png" h=480px bare
+:::
+
+---
+
+<!-- _class: divider middle center -->
+
+# La fin
