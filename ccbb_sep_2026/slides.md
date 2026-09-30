@@ -189,31 +189,31 @@ Find me all papers that used BEAST for molecular clock dating. For each paper fi
 # Galaxy ecosystem
 
 ::: cards cols=4 gap=16px size=xs
-### Pulsar {accent=sky}
+### [Pulsar](https://github.com/galaxyproject/pulsar) {accent=sky}
 
 ![](assets/logos/uniform/pulsar.png)
 
-### TPV {accent=emerald}
+### [TPV](https://github.com/galaxyproject/total-perspective-vortex) {accent=emerald}
 
 ![](assets/logos/uniform/tpv.png)
 
-### IUC {accent=indigo}
+### [IUC](https://github.com/galaxyproject/tools-iuc) {accent=indigo}
 
 ![](assets/logos/uniform/iuc.png)
 
-### IWC {accent=amber}
+### [IWC](https://github.com/galaxyproject/iwc) {accent=amber}
 
 ![](assets/logos/uniform/iwc.png)
 
-### BioConda {accent=purple}
+### [BioConda](https://bioconda.github.io) {accent=purple}
 
 ![](assets/logos/uniform/bioconda.png)
 
-### BioContainers {accent=rose}
+### [BioContainers](https://biocontainers.pro) {accent=rose}
 
 ![](assets/logos/uniform/biocontainers.png)
 
-### Planemo {accent=slate}
+### [Planemo](https://github.com/galaxyproject/planemo) {accent=slate}
 
 ![](assets/logos/uniform/planemo.png)
 :::
@@ -231,7 +231,7 @@ Find me all papers that used BEAST for molecular clock dating. For each paper fi
 
 <!-- _class: dense -->
 
-# Pulsar
+# Pulsar · [github.com/galaxyproject/pulsar](https://github.com/galaxyproject/pulsar)
 
 Distributed job execution engine for Galaxy.
 
@@ -257,7 +257,7 @@ Decoupled message-queue design handles high concurrency, network partitions, and
 
 <!-- _class: dense -->
 
-# TPV
+# TPV · [github.com/galaxyproject/total-perspective-vortex](https://github.com/galaxyproject/total-perspective-vortex)
 
 Total Perspective Vortex: dynamic, rule-based job routing engine for Galaxy.
 
@@ -283,7 +283,7 @@ Balances computational demand across heterogeneous backends, GPU clusters, and P
 
 <!-- _class: dense -->
 
-# Planemo
+# Planemo · [github.com/galaxyproject/planemo](https://github.com/galaxyproject/planemo)
 
 Command-line software development kit for Galaxy developers.
 
@@ -309,7 +309,7 @@ Automates publishing, versioning, and repository management to the Galaxy Tool S
 
 <!-- _class: dense -->
 
-# BioContainers
+# BioContainers · [biocontainers.pro](https://biocontainers.pro)
 
 Community-driven container architecture for reproducible bioinformatics software.
 
@@ -369,7 +369,7 @@ Executes heavy scientific computing with full provenance.
 
 <!-- _class: dense -->
 
-# Foundry
+# Foundry · [github.com/galaxyproject/foundry](https://github.com/galaxyproject/foundry)
 
 The Galaxy Workflow Knowledge Base: casting community workflows into skills and actionable knowledge.
 
@@ -395,7 +395,7 @@ Pairs vetted best-practice workflows with empirical test datasets to ensure reli
 
 <!-- _class: dense -->
 
-# UDTs
+# UDTs · [github.com/galaxyproject/galaxy](https://github.com/galaxyproject/galaxy)
 
 User-Defined Tools: on-demand dynamic execution primitives for Galaxy and AI agents.
 
