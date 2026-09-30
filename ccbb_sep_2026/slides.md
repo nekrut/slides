@@ -20,7 +20,7 @@ CCBB · Penn State {.badge}
 ## A very biased view {.nocaps}
 
 ::: presenter
-Anton Nekrutenko | Penn State | [galaxyproject.org](https://galaxyproject.org)
+Anton Nekrutenko | Galaxy Team | HyPhy / Hyphaeon team | Penn State | [galaxyproject.org](https://galaxyproject.org)
 
 September 30, 2026
 :::
